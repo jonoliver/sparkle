@@ -1,9 +1,0 @@
-@mixin sparkle-border-width {
-  @each $key, $value in $border-width {
-    .#{settings(prefix)}-border-width-#{$key} {
-      @include loop-mq {
-        border-width: $value;
-      }
-    }
-  }
-}

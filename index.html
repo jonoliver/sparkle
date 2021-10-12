@@ -1,11 +1,5572 @@
----
-layout: default
----
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>✨ Sparkle Utility Framework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./primer.css" rel="stylesheet"><link href="./docs.css" rel="stylesheet">
+    <script>examples={"base":"","target":"_self","css":["style.css"],"js":[],"bodyjs":[],"htmlcss":"background:none;border:0;clip:auto;display:block;height:auto;margin:0;padding:0;position:static;width:auto","bodycss":"background:none;border:0;clip:auto;display:block;height:auto;margin:0;padding:16px;position:static;width:auto"};</script>
+    
+  </head>
+  <body>
+    <header class="masthead" style="background-color: rgba(0,0,0,0);">
+      <div class="container">
+        <a href="/" class="masthead-logo">
+          <img src="/" alt="✨ Sparkle Utility Framework" height="32"> ✨ Sparkle Utility Framework
+        </a>
+        <nav class="masthead-nav">
+            
+        </nav>
+      </div>
+    </header>
 
-<header>
-  <div class="obj-max-width util-pad-vertical-md util-border-bottom-hairline util-border-color-text">
-    <h1 class="cmp-logo">
-      {% include logo.html %}
-    </h1>
+    <div class="container">
+      <div class="columns docs-layout">
+        <div class="one-fourth column">
+          <nav class="menu docs-menu">
+            
+    
+        <a class="menu-heading" href="#introduction"><span>Introduction</span></a>
+        
+    
+  
+        
+        <a class="menu-heading" href="#settings"><span>Settings</span></a>
+        
+    
+  
+        
+        <a class="menu-heading" href="#tools"><span>Tools</span></a>
+        
+    
+        <a class="menu-item" href="#negative-function"><span>Negative Function</span></a>
+        
+        
+        <a class="menu-item" href="#ratio-function"><span>Ratio Function</span></a>
+        
+        
+        <a class="menu-item" href="#remify-function"><span>Remify Function</span></a>
+        
+        
+        <a class="menu-item" href="#strip-units-function"><span>Strip Units Function</span></a>
+        
+        
+        <a class="menu-item" href="#stringify-function"><span>Stringify Function</span></a>
+        
+        
+        <a class="menu-item" href="#loop-mq-mixin"><span>Loop Media Query Mixin</span></a>
+        
+        
+        <a class="menu-item" href="#anti-aliased-mixin"><span>Anti-aliased Mixin</span></a>
+        
+        
+        <a class="menu-item" href="#clearfix-mixin"><span>Clearfix Mixin</span></a>
+        
+        
+        <a class="menu-item" href="#delink-mixin"><span>Delink Mixin</span></a>
+        
+        
+        <a class="menu-item" href="#delist-mixin"><span>Delist Mixin</span></a>
+        
+        
+        <a class="menu-item" href="#print-mixin"><span>Print Mixin</span></a>
+        
+        
+        <a class="menu-item" href="#unbuttonize-mixin"><span>Unbuttonize Mixin</span></a>
+        
+        
+        <a class="menu-item" href="#visually-hidden-mixin"><span>Visually Hidden Mixin</span></a>
+        
+        
+  
+        
+        <a class="menu-heading" href="#systems"><span>Systems</span></a>
+        
+    
+        <a class="menu-item" href="#media-queries-system"><span>Media Queries System</span></a>
+        
+        
+        <a class="menu-item" href="#color-system"><span>Color System</span></a>
+        
+        
+        <a class="menu-item" href="#spacing-system"><span>Spacing System</span></a>
+        
+        
+        <a class="menu-item" href="#font-system"><span>Font System</span></a>
+        
+        
+        <a class="menu-item" href="#grid-system"><span>Grid System</span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-1"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-2"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-3"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-4"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-5"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-6"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-7"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-8"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-9"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-10"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-11"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-12"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-1"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-2"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-3"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-4"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-5"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-6"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-7"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-8"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-9"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-10"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-11"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-12"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-1"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-2"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-3"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-4"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-5"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-6"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-7"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-8"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-9"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-10"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-11"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-12"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-1"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-2"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-3"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-4"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-5"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-6"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-7"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-8"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-9"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-10"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-11"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-12"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-1"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-2"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-3"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-4"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-5"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-6"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-7"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-8"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-9"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-10"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-11"><span></span></a>
+        
+        
+        <a class="menu-item" href="#grid-demo-12"><span></span></a>
+        
+        
+        <a class="menu-item" href="#border-system"><span>Border System</span></a>
+        
+        
+        <a class="menu-item" href="#z-index-system"><span>Z-Index System</span></a>
+        
+        
+  
+        
+        <a class="menu-heading" href="#utilities"><span>Utilities</span></a>
+        
+    
+        <a class="menu-item" href="#anti-aliased-utility"><span>Anti-aliased Utility</span></a>
+        
+        
+        <a class="menu-item" href="#clearfix-utility"><span>Clearfix Utility</span></a>
+        
+        
+        <a class="menu-item" href="#delink-utility"><span>Delink Utility</span></a>
+        
+        
+        <a class="menu-item" href="#delist-utility"><span>Delist Utility</span></a>
+        
+        
+        <a class="menu-item" href="#unbuttonize-utility"><span>Unbuttonize Utility</span></a>
+        
+        
+        <a class="menu-item" href="#display-utility"><span>Display Utility</span></a>
+        
+        
+        <a class="menu-item" href="#position-utility"><span>Position Utility</span></a>
+        
+        
+        <a class="menu-item" href="#text-align-utility"><span>Text-Align Utility</span></a>
+        
+        
+        <a class="menu-item" href="#text-decoration-utility"><span>Text Decoration Utility</span></a>
+        
+        
+        <a class="menu-item" href="#text-transform-utility"><span>Text Transform Utility</span></a>
+        
+        
+        <a class="menu-item" href="#visually-hidden-utility"><span>Visually Hidden Utility</span></a>
+        
+        
+        <a class="menu-item" href="#justify-content-utility"><span>Justify Content Utility</span></a>
+        
+        
+        <a class="menu-item" href="#align-items-utility"><span>Align Items Utility</span></a>
+        
+        
+        <a class="menu-item" href="#align-self-utility"><span>Align Self Utility</span></a>
+        
+        
+        <a class="menu-item" href="#order-utility"><span>Order Utility</span></a>
+        
+        
+        <a class="menu-item" href="#flex-direction-utility"><span>Flex Direction Utility</span></a>
+        
+        
+        <a class="menu-item" href="#flex-grow-utility"><span>Flex Grow Utility</span></a>
+        
+        
+        <a class="menu-item" href="#flex-shrink-utility"><span>Flex Shrink Utility</span></a>
+        
+        
+        <a class="menu-item" href="#flex-wrap-utility"><span>Flex Wrap Utility</span></a>
+        
+        
+  
+        
+  
+          </nav>
+        </div>
+
+        <main class="three-fourths column markdown-body">
+          
+    <section id="introduction">
+      <h1 class="page-title">Introduction</h1>
+
+      <div class="markdown-body">
+        
+        
+    <section>
+      
+
+      <div class="markdown-body">
+        <p>The Sparkle Utility Framework is a customizable system of Sass tools and classes that is intended to work within the Inverted Triangle CSS (ITCSS) organization method. This site is a resource of the settings, tools, and utility classes available, including documentation about what each is, how to use them, and the CSS that they&#39;ll output.</p>
+
+        
+      </div>
+    </section>
+    
+      </div>
+    </section>
+    
+    <section id="settings">
+      <h1 class="page-title">Settings</h1>
+
+      <div class="markdown-body">
+        
+        
+    <section>
+      
+
+      <div class="markdown-body">
+        <p>In the ITCSS method, settings are declared first and at the top of the Sass document. These contain all variables used throughout the tools and utilities. The settings inform what Tools, Systems, and Utilities are available in the framework. More details about settings setup can be found on the <a href="https://github.com/sparkbox/sparkle">Sparkle repo</a>.</p>
+
+        
+      </div>
+    </section>
+    
+      </div>
+    </section>
+    
+    <section id="tools">
+      <h1 class="page-title">Tools</h1>
+
+      <div class="markdown-body">
+        
+        
+    <section>
+      
+
+      <div class="markdown-body">
+        <p>The second declaration of the ITCSS method are the tools. Tools are the Sass mixins and functions used throughout the framework.</p>
+
+        
+      </div>
+    </section>
+    
+    <section id="negative-function">
+      <h2 class="page-title">Negative Function</h2>
+
+      <div class="markdown-body">
+        <p>Turns a positive number into a negative number. This comes in handy when a variable is passed in, so <code>-$value</code> becomes explicit <code>negative($value)</code>.</p>
+<p><strong>Use</strong></p>
+<pre><code class="lang-scss">.test-class {
+  prop: negative(&lt;number&gt;);
+}
+</code></pre>
+<p><strong>Use with a prop</strong></p>
+<pre><code class="lang-scss">.test-class {
+  margin: negative(1rem);
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">.test-class {
+  margin: -1rem;
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="ratio-function">
+      <h2 class="page-title">Ratio Function</h2>
+
+      <div class="markdown-body">
+        <p>Creates a ratio percentage value when given a height value and width value.</p>
+<p><strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  prop: ratio(&lt;height&gt;, &lt;width&gt;);
+}
+</code></pre>
+<p><strong>Use with a prop</strong></p>
+<pre><code class="lang-scss">.my-class {
+  width: ratio(200, 400);
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">.my-class {
+  width: 50%;
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="remify-function">
+      <h2 class="page-title">Remify Function</h2>
+
+      <div class="markdown-body">
+        <p>Converts a number to a rem value.</p>
+<p><strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  prop: remify(&lt;number&gt;);
+}
+</code></pre>
+<p><strong>Use with a prop</strong></p>
+<pre><code class="lang-scss">.my-class {
+  margin: remify(24);
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">.my-class {
+  margin: 1.5rem;
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="strip-units-function">
+      <h2 class="page-title">Strip Units Function</h2>
+
+      <div class="markdown-body">
+        <p>Removes the unit of number. This is handy for maths in mixins/functions, for example if you need to check to values of two numbers. If one is a <code>em</code> value and the other is a <code>rem</code> value, you have to strip the units to accomplish the math.</p>
+<p><strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  prop: strip-units(&lt;number&gt;);
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="stringify-function">
+      <h2 class="page-title">Stringify Function</h2>
+
+      <div class="markdown-body">
+        <p>Converts a number to a string.</p>
+<p><strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  prop: stringify(&lt;number&gt;);
+}
+</code></pre>
+<p><strong>Use with a prop</strong></p>
+<pre><code class="lang-scss">.my-class::before {
+  content: stringify(6);
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">.my-class::before {
+  content: &#39;6&#39;;
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="loop-mq-mixin">
+      <h2 class="page-title">Loop Media Query Mixin</h2>
+
+      <div class="markdown-body">
+        <p>Auto-generates media queries for looping content.</p>
+<p><strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  @include loop-mq {
+    prop: value;
+  }
+}
+</code></pre>
+<p><strong>Use with a prop</strong></p>
+<pre><code class="lang-scss">.my-class {
+  @include loop-mq {
+    margin: 1rem;
+  }
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">.my-class {
+  margin: 1rem;
+}
+@media (min-width: 40rem) {
+  .my-class\@sm {
+    margin: 1rem;
+  }
+}
+@media (min-width: 60rem) {
+  .my-class\@md {
+    margin: 1rem;
+  }
+}
+@media (min-width: 80rem) {
+  .my-class\@lg {
+    margin: 1rem;
+  }
+}
+</code></pre>
+<p><strong>Note:</strong> when using these classes in HTML, the <code>@</code> does not need to be escaped. Here&#39;s an example:</p>
+<pre><code>&lt;p class=&quot;my-class@lg&quot;&gt;No need to escape the @ symbol&lt;/p&gt;
+</code></pre>
+        
+      </div>
+    </section>
+    
+    <section id="anti-aliased-mixin">
+      <h2 class="page-title">Anti-aliased Mixin</h2>
+
+      <div class="markdown-body">
+        <p>Adds font smoothing properties.
+<strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  @include antialiased;
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">.my-class {
+  -moz-osx-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="clearfix-mixin">
+      <h2 class="page-title">Clearfix Mixin</h2>
+
+      <div class="markdown-body">
+        <p><strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  @include clearfix;
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">.my-class::after {
+  clear: both;
+  content: &quot;&quot;;
+  display: table;
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="delink-mixin">
+      <h2 class="page-title">Delink Mixin</h2>
+
+      <div class="markdown-body">
+        <p>Removes default link styles.</p>
+<p><strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  @include delink;
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">.my-class {
+  color: inherit;
+  text-decoration: none;
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="delist-mixin">
+      <h2 class="page-title">Delist Mixin</h2>
+
+      <div class="markdown-body">
+        <p>Removes default list styles.</p>
+<p><strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  @include delist;
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">.my-class {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="print-mixin">
+      <h2 class="page-title">Print Mixin</h2>
+
+      <div class="markdown-body">
+        <p>Provides two functionalities. The first is to hide the element when printed.</p>
+<p><strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  @include print(hide);
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">@media (print) {
+  .my-class {
+    display: none !important;
+  }
+}
+</code></pre>
+<p>The second functionality is to provide custom styles when printed.</p>
+<p><strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  @include print {
+    prop: value;
+  }
+}
+</code></pre>
+<p><strong>Use with a prop</strong></p>
+<pre><code class="lang-scss">.my-class {
+  @include print {
+    background-color: black;
+  }
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">@media print {
+  .my-class {
+    background-color: black;
+  }
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="unbuttonize-mixin">
+      <h2 class="page-title">Unbuttonize Mixin</h2>
+
+      <div class="markdown-body">
+        <p>Removes styles added by default to button elements. For when something should semantically be a button, but isn&#39;t buttony in appearance.</p>
+<p><strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  @include unbuttonize;
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">.my-class {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: inherit;
+  font: inherit;
+  border-radius: 0;
+  appearance: none;
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="visually-hidden-mixin">
+      <h2 class="page-title">Visually Hidden Mixin</h2>
+
+      <div class="markdown-body">
+        <p>Hides an element visually, but still accessible to screen readers.</p>
+<p><strong>Use</strong></p>
+<pre><code class="lang-scss">.my-class {
+  @include visually-hidden;
+}
+</code></pre>
+<p><strong>CSS Output</strong></p>
+<pre><code class="lang-css">.my-class {
+  position: fixed;
+  clip: rect(0, 0, 0, 0);
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+      </div>
+    </section>
+    
+    <section id="systems">
+      <h1 class="page-title">Systems</h1>
+
+      <div class="markdown-body">
+        
+        
+    <section>
+      
+
+      <div class="markdown-body">
+        <p>Systems are not on their own part of the ITCSS organization, but instead are a collection of Settings, Tools, and Utilities. Systems are the most complex and customizable part of this framework. Each System usually has at least a Sass Function and Sass Map, while some generate Utility classes as well.</p>
+
+        
+      </div>
+    </section>
+    
+    <section id="media-queries-system">
+      <h2 class="page-title">Media Queries System</h2>
+
+      <div class="markdown-body">
+        <p>The media queries of this system are not intended to be the only media queries in your styles, but are meant to be the major media queries and inform the responsive suffixes that are applied to the utility classes.</p>
+<h3 id="media-queries-function">Media Queries Function</h3>
+<pre><code class="lang-scss">@media (min-width: mq(&lt;key&gt;)) {
+  ...
+}
+</code></pre>
+<h3 id="responsive-suffix-classes">Responsive Suffix Classes</h3>
+<p>Responsive suffix classes scope a utility class’s styles to a media query. For example a class named <code>.display-block</code> add the property and value of <code>display: block</code>, it will have a companion class called <code>.display-block@md</code> that applies <code>display: block</code> only when the screen width is at the defined size for the <code>md</code> media query key.</p>
+<h3 id="framework-media-queries">Framework Media Queries</h3>
+<p>The following table contains a list of the media query values defined in this framework.</p>
+<p><table></p>
+<p><title>Framework Media Queries</title></p>
+<p><thead></p>
+<p><tr>
+  <th>Function</th>
+  <th>Screen Width Size</th>
+  <th>Class Suffix</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>mq(sm)</td>
+<td>40rem</td>
+<td>@sm</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>mq(md)</td>
+<td>60rem</td>
+<td>@md</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>mq(lg)</td>
+<td>80rem</td>
+<td>@lg</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="color-system">
+      <h2 class="page-title">Color System</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th></th></p>
+<p><th>Color</th></p>
+<p><th>Name</th></p>
+<p><th>Function</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="deeppink" /></svg></td>
+  <td><code>deeppink</code></td>
+  <td>primary</td>
+  <td><code>color(primary)</code></td>
+  </tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="dodgerblue" /></svg></td>
+  <td><code>dodgerblue</code></td>
+  <td>secondary</td>
+  <td><code>color(secondary)</code></td>
+  </tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="#333" /></svg></td>
+  <td><code>#333</code></td>
+  <td>text</td>
+  <td><code>color(text)</code></td>
+  </tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="blue" /></svg></td>
+  <td><code>blue</code></td>
+  <td>link</td>
+  <td><code>color(link)</code></td>
+  </tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="rebeccapurple" /></svg></td>
+  <td><code>rebeccapurple</code></td>
+  <td>link-visited</td>
+  <td><code>color(link-visited)</code></td>
+  </tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="tomato" /></svg></td>
+  <td><code>tomato</code></td>
+  <td>link-active</td>
+  <td><code>color(link-active)</code></td>
+  </tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+  </table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h3 id="text-color-utility-classes">Text Color Utility Classes</h3>
+<p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th></th></p>
+<p><th>Default Class</th></p>
+<p><th><code>:hover</code> Class</th></p>
+<p><th><code>:focus</code> Class</th></p>
+<p><th><code>:active</code> Class</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="deeppink" /></svg></td>
+<td><code>.sparkle-color-primary</code></td>
+<td><code>.sparkle-color-primary:hover</code></td>
+<td><code>.sparkle-color-primary:focus</code></td>
+<td><code>.sparkle-color-primary:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="dodgerblue" /></svg></td>
+<td><code>.sparkle-color-secondary</code></td>
+<td><code>.sparkle-color-secondary:hover</code></td>
+<td><code>.sparkle-color-secondary:focus</code></td>
+<td><code>.sparkle-color-secondary:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="#333" /></svg></td>
+<td><code>.sparkle-color-text</code></td>
+<td><code>.sparkle-color-text:hover</code></td>
+<td><code>.sparkle-color-text:focus</code></td>
+<td><code>.sparkle-color-text:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="blue" /></svg></td>
+<td><code>.sparkle-color-link</code></td>
+<td><code>.sparkle-color-link:hover</code></td>
+<td><code>.sparkle-color-link:focus</code></td>
+<td><code>.sparkle-color-link:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="rebeccapurple" /></svg></td>
+<td><code>.sparkle-color-link-visited</code></td>
+<td><code>.sparkle-color-link-visited:hover</code></td>
+<td><code>.sparkle-color-link-visited:focus</code></td>
+<td><code>.sparkle-color-link-visited:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="tomato" /></svg></td>
+<td><code>.sparkle-color-link-active</code></td>
+<td><code>.sparkle-color-link-active:hover</code></td>
+<td><code>.sparkle-color-link-active:focus</code></td>
+<td><code>.sparkle-color-link-active:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h3 id="background-color-utility-classes">Background Color Utility Classes</h3>
+<p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th></th></p>
+<p><th>Default Class</th></p>
+<p><th><code>:hover</code> Class</th></p>
+<p><th><code>:focus</code> Class</th></p>
+<p><th><code>:active</code> Class</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="deeppink" /></svg></td>
+<td><code>.sparkle-background-color-primary</code></td>
+<td><code>.sparkle-background-color-primary:hover</code></td>
+<td><code>.sparkle-background-color-primary:focus</code></td>
+<td><code>.sparkle-background-color-primary:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="dodgerblue" /></svg></td>
+<td><code>.sparkle-background-color-secondary</code></td>
+<td><code>.sparkle-background-color-secondary:hover</code></td>
+<td><code>.sparkle-background-color-secondary:focus</code></td>
+<td><code>.sparkle-background-color-secondary:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="#333" /></svg></td>
+<td><code>.sparkle-background-color-text</code></td>
+<td><code>.sparkle-background-color-text:hover</code></td>
+<td><code>.sparkle-background-color-text:focus</code></td>
+<td><code>.sparkle-background-color-text:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="blue" /></svg></td>
+<td><code>.sparkle-background-color-link</code></td>
+<td><code>.sparkle-background-color-link:hover</code></td>
+<td><code>.sparkle-background-color-link:focus</code></td>
+<td><code>.sparkle-background-color-link:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="rebeccapurple" /></svg></td>
+<td><code>.sparkle-background-color-link-visited</code></td>
+<td><code>.sparkle-background-color-link-visited:hover</code></td>
+<td><code>.sparkle-background-color-link-visited:focus</code></td>
+<td><code>.sparkle-background-color-link-visited:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="tomato" /></svg></td>
+<td><code>.sparkle-background-color-link-active</code></td>
+<td><code>.sparkle-background-color-link-active:hover</code></td>
+<td><code>.sparkle-background-color-link-active:focus</code></td>
+<td><code>.sparkle-background-color-link-active:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h3 id="border-color-utility-classes">Border Color Utility Classes</h3>
+<p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th></th></p>
+<p><th>Default Class</th></p>
+<p><th><code>:hover</code> Class</th></p>
+<p><th><code>:focus</code> Class</th></p>
+<p><th><code>:active</code> Class</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="deeppink" /></svg></td>
+<td><code>.sparkle-border-color-primary</code></td>
+<td><code>.sparkle-border-color-primary:hover</code></td>
+<td><code>.sparkle-border-color-primary:focus</code></td>
+<td><code>.sparkle-border-color-primary:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="dodgerblue" /></svg></td>
+<td><code>.sparkle-border-color-secondary</code></td>
+<td><code>.sparkle-border-color-secondary:hover</code></td>
+<td><code>.sparkle-border-color-secondary:focus</code></td>
+<td><code>.sparkle-border-color-secondary:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="#333" /></svg></td>
+<td><code>.sparkle-border-color-text</code></td>
+<td><code>.sparkle-border-color-text:hover</code></td>
+<td><code>.sparkle-border-color-text:focus</code></td>
+<td><code>.sparkle-border-color-text:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="blue" /></svg></td>
+<td><code>.sparkle-border-color-link</code></td>
+<td><code>.sparkle-border-color-link:hover</code></td>
+<td><code>.sparkle-border-color-link:focus</code></td>
+<td><code>.sparkle-border-color-link:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="rebeccapurple" /></svg></td>
+<td><code>.sparkle-border-color-link-visited</code></td>
+<td><code>.sparkle-border-color-link-visited:hover</code></td>
+<td><code>.sparkle-border-color-link-visited:focus</code></td>
+<td><code>.sparkle-border-color-link-visited:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="tomato" /></svg></td>
+<td><code>.sparkle-border-color-link-active</code></td>
+<td><code>.sparkle-border-color-link-active:hover</code></td>
+<td><code>.sparkle-border-color-link-active:focus</code></td>
+<td><code>.sparkle-border-color-link-active:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h3 id="outline-color-utility-classes">Outline Color Utility Classes</h3>
+<p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th></th></p>
+<p><th>Default Class</th></p>
+<p><th><code>:hover</code> Class</th></p>
+<p><th><code>:focus</code> Class</th></p>
+<p><th><code>:active</code> Class</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="deeppink" /></svg></td>
+<td><code>.sparkle-outline-primary</code></td>
+<td><code>.sparkle-outline-primary:hover</code></td>
+<td><code>.sparkle-outline-primary:focus</code></td>
+<td><code>.sparkle-outline-primary:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="dodgerblue" /></svg></td>
+<td><code>.sparkle-outline-secondary</code></td>
+<td><code>.sparkle-outline-secondary:hover</code></td>
+<td><code>.sparkle-outline-secondary:focus</code></td>
+<td><code>.sparkle-outline-secondary:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="#333" /></svg></td>
+<td><code>.sparkle-outline-text</code></td>
+<td><code>.sparkle-outline-text:hover</code></td>
+<td><code>.sparkle-outline-text:focus</code></td>
+<td><code>.sparkle-outline-text:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="blue" /></svg></td>
+<td><code>.sparkle-outline-link</code></td>
+<td><code>.sparkle-outline-link:hover</code></td>
+<td><code>.sparkle-outline-link:focus</code></td>
+<td><code>.sparkle-outline-link:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="rebeccapurple" /></svg></td>
+<td><code>.sparkle-outline-link-visited</code></td>
+<td><code>.sparkle-outline-link-visited:hover</code></td>
+<td><code>.sparkle-outline-link-visited:focus</code></td>
+<td><code>.sparkle-outline-link-visited:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="tomato" /></svg></td>
+<td><code>.sparkle-outline-link-active</code></td>
+<td><code>.sparkle-outline-link-active:hover</code></td>
+<td><code>.sparkle-outline-link-active:focus</code></td>
+<td><code>.sparkle-outline-link-active:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h3 id="text-decoration-color-utility-classes">Text Decoration Color Utility Classes</h3>
+<p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th></th></p>
+<p><th>Default Class</th></p>
+<p><th><code>:hover</code> Class</th></p>
+<p><th><code>:focus</code> Class</th></p>
+<p><th><code>:active</code> Class</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="deeppink" /></svg></td>
+<td><code>.sparkle-decoration-color-primary</code></td>
+<td><code>.sparkle-decoration-color-primary:hover</code></td>
+<td><code>.sparkle-decoration-color-primary:focus</code></td>
+<td><code>.sparkle-decoration-color-primary:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="dodgerblue" /></svg></td>
+<td><code>.sparkle-decoration-color-secondary</code></td>
+<td><code>.sparkle-decoration-color-secondary:hover</code></td>
+<td><code>.sparkle-decoration-color-secondary:focus</code></td>
+<td><code>.sparkle-decoration-color-secondary:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="#333" /></svg></td>
+<td><code>.sparkle-decoration-color-text</code></td>
+<td><code>.sparkle-decoration-color-text:hover</code></td>
+<td><code>.sparkle-decoration-color-text:focus</code></td>
+<td><code>.sparkle-decoration-color-text:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="blue" /></svg></td>
+<td><code>.sparkle-decoration-color-link</code></td>
+<td><code>.sparkle-decoration-color-link:hover</code></td>
+<td><code>.sparkle-decoration-color-link:focus</code></td>
+<td><code>.sparkle-decoration-color-link:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="rebeccapurple" /></svg></td>
+<td><code>.sparkle-decoration-color-link-visited</code></td>
+<td><code>.sparkle-decoration-color-link-visited:hover</code></td>
+<td><code>.sparkle-decoration-color-link-visited:focus</code></td>
+<td><code>.sparkle-decoration-color-link-visited:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="tomato" /></svg></td>
+<td><code>.sparkle-decoration-color-link-active</code></td>
+<td><code>.sparkle-decoration-color-link-active:hover</code></td>
+<td><code>.sparkle-decoration-color-link-active:focus</code></td>
+<td><code>.sparkle-decoration-color-link-active:active</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="spacing-system">
+      <h2 class="page-title">Spacing System</h2>
+
+      <div class="markdown-body">
+        <h3 id="spacing-system-function">Spacing System Function</h3>
+<p>The spacing system function allows you to load the determined spacing value by calling the <code>space()</code> function with the size key.</p>
+<pre><code class="lang-css">.my-class {
+  margin-left: space(md);
+}
+</code></pre>
+<p>Below is the spacing system value options and the spacing size.</p>
+<p><table></p>
+<p><thead></p>
+<p><th>Function</th></p>
+<p><th>Size</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>space(sm)</code></td>
+<td><code>0.5rem</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>space(md)</code></td>
+<td><code>1rem</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>space(lg)</code></td>
+<td><code>1.5rem</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h3 id="margin-utility-classes">Margin Utility Classes</h3>
+<p>The margin spacing utility classes apply spacing system value size to the defined side on the outside of the container.</p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Spacing Size</th></p>
+<p><th>Sides</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-btm-sm</code></td>
+<td><code>0.5rem</td>
+<td>bottom</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-btm-md</code></td>
+<td><code>1rem</td>
+<td>bottom</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-btm-lg</code></td>
+<td><code>1.5rem</td>
+<td>bottom</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-top-sm</code></td>
+<td><code>0.5rem</td>
+<td>top</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-top-md</code></td>
+<td><code>1rem</td>
+<td>top</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-top-lg</code></td>
+<td><code>1.5rem</td>
+<td>top</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-lft-sm</code></td>
+<td><code>0.5rem</td>
+<td>left</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-lft-md</code></td>
+<td><code>1rem</td>
+<td>left</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-lft-lg</code></td>
+<td><code>1.5rem</td>
+<td>left</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-rgt-sm</code></td>
+<td><code>0.5rem</td>
+<td>right</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-rgt-md</code></td>
+<td><code>1rem</td>
+<td>right</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-rgt-lg</code></td>
+<td><code>1.5rem</td>
+<td>right</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-all-sm</code></td>
+<td><code>0.5rem</td>
+<td>all</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-all-md</code></td>
+<td><code>1rem</td>
+<td>all</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-all-lg</code></td>
+<td><code>1.5rem</td>
+<td>all</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-vrt-sm</code></td>
+<td><code>0.5rem</td>
+<td>y-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-vrt-md</code></td>
+<td><code>1rem</td>
+<td>y-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-vrt-lg</code></td>
+<td><code>1.5rem</td>
+<td>y-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-hrz-sm</code></td>
+<td><code>0.5rem</td>
+<td>x-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-hrz-md</code></td>
+<td><code>1rem</td>
+<td>x-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-margin-hrz-lg</code></td>
+<td><code>1.5rem</td>
+<td>x-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h3 id="padding-utility-classes">Padding Utility Classes</h3>
+<p>The padding spacing utility classes apply spacing system value size to the defined side on the inside of the container.</p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Spacing Size</th></p>
+<p><th>Sides</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-btm-sm</code></td>
+<td><code>0.5rem</td>
+<td>bottom</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-btm-md</code></td>
+<td><code>1rem</td>
+<td>bottom</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-btm-lg</code></td>
+<td><code>1.5rem</td>
+<td>bottom</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-top-sm</code></td>
+<td><code>0.5rem</td>
+<td>top</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-top-md</code></td>
+<td><code>1rem</td>
+<td>top</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-top-lg</code></td>
+<td><code>1.5rem</td>
+<td>top</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-lft-sm</code></td>
+<td><code>0.5rem</td>
+<td>left</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-lft-md</code></td>
+<td><code>1rem</td>
+<td>left</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-lft-lg</code></td>
+<td><code>1.5rem</td>
+<td>left</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-rgt-sm</code></td>
+<td><code>0.5rem</td>
+<td>right</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-rgt-md</code></td>
+<td><code>1rem</td>
+<td>right</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-rgt-lg</code></td>
+<td><code>1.5rem</td>
+<td>right</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-all-sm</code></td>
+<td><code>0.5rem</td>
+<td>all</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-all-md</code></td>
+<td><code>1rem</td>
+<td>all</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-all-lg</code></td>
+<td><code>1.5rem</td>
+<td>all</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-vrt-sm</code></td>
+<td><code>0.5rem</td>
+<td>y-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-vrt-md</code></td>
+<td><code>1rem</td>
+<td>y-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-vrt-lg</code></td>
+<td><code>1.5rem</td>
+<td>y-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-hrz-sm</code></td>
+<td><code>0.5rem</td>
+<td>x-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-hrz-md</code></td>
+<td><code>1rem</td>
+<td>x-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-pad-hrz-lg</code></td>
+<td><code>1.5rem</td>
+<td>x-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h3 id="position-spacing-utility-classes">Position Spacing Utility Classes</h3>
+<p>The position spacing utility classes should be used in conjunction with the position utility classes. These classes apply spacing system value size to the defined side.</p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Spacing Size</th></p>
+<p><th>Sides</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-btm-sm</code></td>
+<td><code>0.5rem</td>
+<td>bottom</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-btm-md</code></td>
+<td><code>1rem</td>
+<td>bottom</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-btm-lg</code></td>
+<td><code>1.5rem</td>
+<td>bottom</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-top-sm</code></td>
+<td><code>0.5rem</td>
+<td>top</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-top-md</code></td>
+<td><code>1rem</td>
+<td>top</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-top-lg</code></td>
+<td><code>1.5rem</td>
+<td>top</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-lft-sm</code></td>
+<td><code>0.5rem</td>
+<td>left</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-lft-md</code></td>
+<td><code>1rem</td>
+<td>left</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-lft-lg</code></td>
+<td><code>1.5rem</td>
+<td>left</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-rgt-sm</code></td>
+<td><code>0.5rem</td>
+<td>right</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-rgt-md</code></td>
+<td><code>1rem</td>
+<td>right</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-rgt-lg</code></td>
+<td><code>1.5rem</td>
+<td>right</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-all-sm</code></td>
+<td><code>0.5rem</td>
+<td>all</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-all-md</code></td>
+<td><code>1rem</td>
+<td>all</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-all-lg</code></td>
+<td><code>1.5rem</td>
+<td>all</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-vrt-sm</code></td>
+<td><code>0.5rem</td>
+<td>y-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-vrt-md</code></td>
+<td><code>1rem</td>
+<td>y-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-vrt-lg</code></td>
+<td><code>1.5rem</td>
+<td>y-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-hrz-sm</code></td>
+<td><code>0.5rem</td>
+<td>x-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-hrz-md</code></td>
+<td><code>1rem</td>
+<td>x-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-position-hrz-lg</code></td>
+<td><code>1.5rem</td>
+<td>x-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="font-system">
+      <h2 class="page-title">Font System</h2>
+
+      <div class="markdown-body">
+        <p>Below are the font system functions and utilities.</p>
+<h3 id="font-functions">Font Functions</h3>
+<p>The font functions allow you to load the determined value by calling the function, e.g. <code>size()</code>, with the key from the corresponding map.</p>
+<pre><code class="lang-css">.my-class {
+  font-family: family(&lt;key&gt;);
+  font-size: size(&lt;key&gt;);
+  font-weight: weight(&lt;key&gt;);
+}
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h4 id="font-family">Font Family</h4>
+<p><table></p>
+<p><thead></p>
+<p><th>Class</th></p>
+<p><th>Function</th></p>
+<p><th>Name</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-family-sans</code></td>
+  <td><code>family(sans)</code></td>
+  <td><code>sans: Helvetica Nueue, Helvetica, sans-serif</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-family-serif</code></td>
+  <td><code>family(serif)</code></td>
+  <td><code>serif: Georgia, Times New Roman, serif</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-family-mono</code></td>
+  <td><code>family(mono)</code></td>
+  <td><code>mono: Monaco, monospace</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h4 id="font-size">Font Size</h4>
+<p><table></p>
+<p><thead></p>
+<p><th>Class</th></p>
+<p><th>Function</th></p>
+<p><th>Size</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-size-sm</code></td>
+<td><code>size(sm)</code></td>
+<td><code>sm: 0.875rem</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-size-md</code></td>
+<td><code>size(md)</code></td>
+<td><code>md: 1.125rem</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-size-lg</code></td>
+<td><code>size(lg)</code></td>
+<td><code>lg: 1.5rem</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h4 id="font-weight">Font Weight</h4>
+<p><table></p>
+<p><thead></p>
+<p><th>Class</th></p>
+<p><th>Function</th></p>
+<p><th>Weight</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-weight-light</code></td>
+<td><code>weight(light)</code></td>
+<td><code>light: 200</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-weight-normal</code></td>
+<td><code>weight(normal)</code></td>
+<td><code>normal: 400</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-weight-bold</code></td>
+<td><code>weight(bold)</code></td>
+<td><code>bold: 700</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="grid-system">
+      <h2 class="page-title">Grid System</h2>
+
+      <div class="markdown-body">
+        <p>The grid system we are using for page layouts is based on a 12 column grid. Grid classes can be nested if needed for more complex layouts.</p>
+<p>Most grid layouts are going to use either a two, three, or four column layout. The basic grid system includes all of the classes needed to create a simple layout with class names that are spelled out and easy to read.</p>
+<p>Each <code>sparkle-grid-cell-</code> class can have a responsive suffix to adjust the grid column span a different screen sizes. The 12 column count of <code>sparkle-grid-block</code> remain persistent at all screen sizes.</p>
+<h3 id="grid-block-class">Grid Block Class</h3>
+<p>To define a grid, an element must have the <code>sparkle-grid-block</code> class. This will apply a <code>display: grid</code> along with fallback styles for browsers that do not support CSS Grid.</p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h3 id="grid-cell-classes">Grid Cell Classes</h3>
+<p>To define a grid, an element must have the <code>sparkle-grid-block</code> class. This will apply a <code>display: grid</code> along with fallback styles for browsers that do not support CSS Grid.</p>
+
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-1">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
   </div>
-</header>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-2">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+  </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-3">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+  </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-4">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+  </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-5">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+  </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-6">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-6-12"><span>6-12</span></div><div class="sparkle-grid-cell-6-12"><span>6-12</span></div>
+  </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-7">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-7-12"><span>7-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div>
+  </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-8">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-8-12"><span>8-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+  </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-9">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-9-12"><span>9-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+  </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-10">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-10-12"><span>10-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+  </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-11">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-11-12"><span>11-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+  </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-12">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-12-12"><span>12-12</span></div>
+  </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-1">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-2">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-3">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-4">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-5">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-6">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-6-12"><span>6-12</span></div><div class="sparkle-grid-cell-6-12"><span>6-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-7">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-7-12"><span>7-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-8">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-8-12"><span>8-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-9">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-9-12"><span>9-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-10">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-10-12"><span>10-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-11">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-11-12"><span>11-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-12">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-12-12"><span>12-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-1">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-2">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-3">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-4">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-5">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-6">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-6-12"><span>6-12</span></div><div class="sparkle-grid-cell-6-12"><span>6-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-7">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-7-12"><span>7-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-8">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-8-12"><span>8-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-9">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-9-12"><span>9-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-10">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-10-12"><span>10-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-11">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-11-12"><span>11-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-12">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-12-12"><span>12-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-1">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-2">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-3">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-4">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-5">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-6">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-6-12"><span>6-12</span></div><div class="sparkle-grid-cell-6-12"><span>6-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-7">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-7-12"><span>7-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-8">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-8-12"><span>8-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-9">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-9-12"><span>9-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-10">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-10-12"><span>10-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-11">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-11-12"><span>11-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-12">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-12-12"><span>12-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-1">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-2">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-3">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-4">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-5">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-6">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-6-12"><span>6-12</span></div><div class="sparkle-grid-cell-6-12"><span>6-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-7">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-7-12"><span>7-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-8">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-8-12"><span>8-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-9">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-9-12"><span>9-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-10">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-10-12"><span>10-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-11">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-11-12"><span>11-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section id="grid-demo-12">
+      
+
+      <div class="markdown-body">
+        <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-12-12"><span>12-12</span></div>
+    </div>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Column Span</th></p>
+<p><th>Span Class(es)</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>1</td>
+<td><code>.sparkle-grid-cell-1-12</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>2</td>
+<td><code>.sparkle-grid-cell-2-12</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>3</td>
+<td><code>.sparkle-grid-cell-quarter, .sparkle-grid-cell-3-12</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>4</td>
+<td><code>.sparkle-grid-cell-third, .sparkle-grid-cell-4-12</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>5</td>
+<td><code>.sparkle-grid-cell-5-12</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>6</td>
+<td><code>.sparkle-grid-cell-half, .sparkle-grid-cell-6-12</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>7</td>
+<td><code>.sparkle-grid-cell-7-12</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>8</td>
+<td><code>.sparkle-grid-cell-two-third, .sparkle-grid-cell-two-thirds, .sparkle-grid-cell-8-12</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>9</td>
+<td><code>.sparkle-grid-cell-three-quarter, .sparkle-grid-cell-three-quarters, .sparkle-grid-cell-9-12</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>10</td>
+<td><code>.sparkle-grid-cell-10-12</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>11</td>
+<td><code>.sparkle-grid-cell-11-12</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td>12</td>
+<td><code>.sparkle-grid-cell-full, .sparkle-grid-cell-12-12</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h3 id="grid-gap-classes">Grid Gap Classes</h3>
+<p><table></p>
+<p><thead>
+  <th>Gap Width</th>
+  <th>Class Name</th>
+</thead></p>
+<p><tbody></p>
+<tr>
+  <th colspan="2">Row and Column Gap</th>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>0.5rem</td>
+  <td><code>sparkle-gap-sm</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>1rem</td>
+  <td><code>sparkle-gap-md</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>1.5rem</td>
+  <td><code>sparkle-gap-lg</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <th colspan="2">Row Gap</th>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>0.5rem</td>
+  <td><code>sparkle-gap-row-sm</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>1rem</td>
+  <td><code>sparkle-gap-row-md</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>1.5rem</td>
+  <td><code>sparkle-gap-row-lg</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <th colspan="2">Column Gap</th>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>0.5rem</td>
+  <td><code>sparkle-gap-column-sm</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>1rem</td>
+  <td><code>sparkle-gap-column-md</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>1.5rem</td>
+  <td><code>sparkle-gap-column-lg</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="border-system">
+      <h2 class="page-title">Border System</h2>
+
+      <div class="markdown-body">
+        <h3 id="border-position-and-width">Border Position and Width</h3>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Spacing Size</th></p>
+<p><th>Sides</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-btm-hairline</code></td>
+<td><code>1px</td>
+<td>bottom</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-btm-sm</code></td>
+<td><code>0.125rem</td>
+<td>bottom</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-btm-lg</code></td>
+<td><code>0.75rem</td>
+<td>bottom</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-top-hairline</code></td>
+<td><code>1px</td>
+<td>top</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-top-sm</code></td>
+<td><code>0.125rem</td>
+<td>top</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-top-lg</code></td>
+<td><code>0.75rem</td>
+<td>top</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-lft-hairline</code></td>
+<td><code>1px</td>
+<td>left</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-lft-sm</code></td>
+<td><code>0.125rem</td>
+<td>left</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-lft-lg</code></td>
+<td><code>0.75rem</td>
+<td>left</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-rgt-hairline</code></td>
+<td><code>1px</td>
+<td>right</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-rgt-sm</code></td>
+<td><code>0.125rem</td>
+<td>right</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-rgt-lg</code></td>
+<td><code>0.75rem</td>
+<td>right</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-all-hairline</code></td>
+<td><code>1px</td>
+<td>all</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-all-sm</code></td>
+<td><code>0.125rem</td>
+<td>all</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-all-lg</code></td>
+<td><code>0.75rem</td>
+<td>all</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-vrt-hairline</code></td>
+<td><code>1px</td>
+<td>y-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-vrt-sm</code></td>
+<td><code>0.125rem</td>
+<td>y-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-vrt-lg</code></td>
+<td><code>0.75rem</td>
+<td>y-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-hrz-hairline</code></td>
+<td><code>1px</td>
+<td>x-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-hrz-sm</code></td>
+<td><code>0.125rem</td>
+<td>x-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-hrz-lg</code></td>
+<td><code>0.75rem</td>
+<td>x-axis</td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h3 id="border-styles">Border Styles</h3>
+<p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Function</th></p>
+<p><th>Border Style Value</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-style-none</code></td>
+<td><code>border-style(none)</code></td>
+<td><code>none</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-style-solid</code></td>
+<td><code>border-style(solid)</code></td>
+<td><code>solid</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <h3 id="border-width">Border Width</h3>
+<p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Function</th></p>
+<p><th>Border Width Value</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-width-hairline</code></td>
+<td><code>border-width(hairline)</code></td>
+<td><code>1px</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-width-sm</code></td>
+<td><code>border-width(sm)</code></td>
+<td><code>0.125rem</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>sparkle-border-width-lg</code></td>
+<td><code>border-width(lg)</code></td>
+<td><code>0.75rem</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="z-index-system">
+      <h2 class="page-title">Z-Index System</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Property Value</th></p>
+<p><th>Class</th></p>
+<p><th>Function</th>
+</tr>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>100</td>
+  <td><code>.sparkle-z-index-1</code></td>
+  <td><code>z-index(1)</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>200</td>
+  <td><code>.sparkle-z-index-2</code></td>
+  <td><code>z-index(2)</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>300</td>
+  <td><code>.sparkle-z-index-3</code></td>
+  <td><code>z-index(3)</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>400</td>
+  <td><code>.sparkle-z-index-4</code></td>
+  <td><code>z-index(4)</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>500</td>
+  <td><code>.sparkle-z-index-5</code></td>
+  <td><code>z-index(5)</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>600</td>
+  <td><code>.sparkle-z-index-6</code></td>
+  <td><code>z-index(6)</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>700</td>
+  <td><code>.sparkle-z-index-7</code></td>
+  <td><code>z-index(7)</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>800</td>
+  <td><code>.sparkle-z-index-8</code></td>
+  <td><code>z-index(8)</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>900</td>
+  <td><code>.sparkle-z-index-9</code></td>
+  <td><code>z-index(9)</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td>1000</td>
+  <td><code>.sparkle-z-index-10</code></td>
+  <td><code>z-index(10)</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+      </div>
+    </section>
+    
+    <section id="utilities">
+      <h1 class="page-title">Utilities</h1>
+
+      <div class="markdown-body">
+        
+        
+    <section>
+      
+
+      <div class="markdown-body">
+        <p>The final declaration of the ITCSS method are the utilities. Any additional styles should be declared between Tools and Utilities. The utilities are classes that have distinct purposes. Some of the Utilities are part of a System. Systems contain specific mixins, functions, and utility classes around a specific aspect of the framework, for example the Color and Spacing systems.</p>
+
+        
+      </div>
+    </section>
+    
+    <section id="anti-aliased-utility">
+      <h2 class="page-title">Anti-aliased Utility</h2>
+
+      <div class="markdown-body">
+        <p>Smooths the font on the level of the pixel.</p>
+<pre><code class="lang-scss">.sparkle-antialiased
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="clearfix-utility">
+      <h2 class="page-title">Clearfix Utility</h2>
+
+      <div class="markdown-body">
+        <p>Prevents an element from collapsing due to margins for floated contents.</p>
+<pre><code class="lang-scss">.sparkle-clearfix
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="delink-utility">
+      <h2 class="page-title">Delink Utility</h2>
+
+      <div class="markdown-body">
+        <p>Removes link styles from and element.</p>
+<pre><code class="lang-scss">.sparkle-delink
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="delist-utility">
+      <h2 class="page-title">Delist Utility</h2>
+
+      <div class="markdown-body">
+        <p>Removes the list styles from ordered and unordered lists.</p>
+<pre><code class="lang-scss">.sparkle-delist
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="unbuttonize-utility">
+      <h2 class="page-title">Unbuttonize Utility</h2>
+
+      <div class="markdown-body">
+        <p>Removes styles added by default to button elements.</p>
+<pre><code class="lang-scss">.sparkle-unbuttonize
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="display-utility">
+      <h2 class="page-title">Display Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-display-none</code></td>
+<td><code>display: none</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-display-block</code></td>
+<td><code>display: block</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-display-inline</code></td>
+<td><code>display: inline</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-display-inline-block</code></td>
+<td><code>display: inline-block</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-display-flex</code></td>
+<td><code>display: flex</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-display-inline-flex</code></td>
+<td><code>display: inline-flex</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="position-utility">
+      <h2 class="page-title">Position Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-position-fixed</code></td>
+<td><code>position: fixed</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-position-relative</code></td>
+<td><code>position: relative</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-position-absolute</code></td>
+<td><code>position: absolute</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-position-static</code></td>
+<td><code>position: static</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-position-sticky</code></td>
+<td><code>position: sticky</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="text-align-utility">
+      <h2 class="page-title">Text-Align Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-text-left</code></td>
+<td><code>text-align: left</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-text-right</code></td>
+<td><code>text-align: right</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-text-center</code></td>
+<td><code>text-align: center</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="text-decoration-utility">
+      <h2 class="page-title">Text Decoration Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td><code>.sparkle-text-decoration-none</code></td>
+  <td><code>text-decoration: none</code></td>
+  </tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td><code>.sparkle-text-decoration-overline</code></td>
+  <td><code>text-decoration: overline</code></td>
+  </tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td><code>.sparkle-text-decoration-underline</code></td>
+  <td><code>text-decoration: underline</code></td>
+  </tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+  <td><code>.sparkle-text-decoration-line-through</code></td>
+  <td><code>text-decoration: line-through</code></td>
+  </tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+  </table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="text-transform-utility">
+      <h2 class="page-title">Text Transform Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-text-uppercase</code></td>
+<td><code>text-transform: uppercase</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-text-lowercase</code></td>
+<td><code>text-transform: lowercase</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-text-capitalize</code></td>
+<td><code>text-transform: capitalize</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+  </table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="visually-hidden-utility">
+      <h2 class="page-title">Visually Hidden Utility</h2>
+
+      <div class="markdown-body">
+        <p>Use the <code>sparkle-visually-hidden</code> to hide content that should be hidden from the page visually, but still accessible to those using keyboard or screen reader controls.</p>
+<pre><code class="lang-html">&lt;div class=&quot;sparkle-visually-hidden&quot;&gt;...&lt;/div&gt;
+</code></pre>
+
+        
+      </div>
+    </section>
+    
+    <section id="justify-content-utility">
+      <h2 class="page-title">Justify Content Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-justify-content-left</code></td>
+<td><code>justify-content: left</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-justify-content-right</code></td>
+<td><code>justify-content: right</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-justify-content-center</code></td>
+<td><code>justify-content: center</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="align-items-utility">
+      <h2 class="page-title">Align Items Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-align-items-start</code></td>
+<td><code>align-items: start</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-align-items-end</code></td>
+<td><code>align-items: end</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-align-items-flex-start</code></td>
+<td><code>align-items: flex-start</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-align-items-flex-end</code></td>
+<td><code>align-items: flex-end</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-align-items-center</code></td>
+<td><code>align-items: center</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-align-items-stretch</code></td>
+<td><code>align-items: stretch</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="align-self-utility">
+      <h2 class="page-title">Align Self Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-align-self-start</code></td>
+<td><code>align-self: start</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-align-self-end</code></td>
+<td><code>align-self: end</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-align-self-flex-start</code></td>
+<td><code>align-self: flex-start</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-align-self-flex-end</code></td>
+<td><code>align-self: flex-end</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-align-self-center</code></td>
+<td><code>align-self: center</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-align-self-stretch</code></td>
+<td><code>align-self: stretch</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="order-utility">
+      <h2 class="page-title">Order Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-order--1</code></td>
+<td><code>order: -1</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-order-0</code></td>
+<td><code>order: 0</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-order-1</code></td>
+<td><code>order: 1</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-order-2</code></td>
+<td><code>order: 2</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-order-3</code></td>
+<td><code>order: 3</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-order-4</code></td>
+<td><code>order: 4</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-order-5</code></td>
+<td><code>order: 5</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="flex-direction-utility">
+      <h2 class="page-title">Flex Direction Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-row</code></td>
+<td><code>flex-direction: row</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-row-reverse</code></td>
+<td><code>flex-direction: row-reverse</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-column</code></td>
+<td><code>flex-direction: column</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-column-reverse</code></td>
+<td><code>flex-direction: column-reverse</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="flex-grow-utility">
+      <h2 class="page-title">Flex Grow Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-grow-0</code></td>
+<td><code>flex-grow: 0</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-grow-1</code></td>
+<td><code>flex-grow: 1</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-grow-2</code></td>
+<td><code>flex-grow: 2</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="flex-shrink-utility">
+      <h2 class="page-title">Flex Shrink Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-shrink-0</code></td>
+<td><code>flex-shrink: 0</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-shrink-1</code></td>
+<td><code>flex-shrink: 1</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-shrink-2</code></td>
+<td><code>flex-shrink: 2</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+    <section id="flex-wrap-utility">
+      <h2 class="page-title">Flex Wrap Utility</h2>
+
+      <div class="markdown-body">
+        <p><table></p>
+<p><thead></p>
+<p><tr></p>
+<p><th>Class Name</th></p>
+<p><th>Property</th>
+</thead></p>
+<tbody>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-wrap</code></td>
+<td><code>flex-wrap: wrap</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-nowrap</code></td>
+<td><code>flex-wrap: nowrap</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <tr>
+<td><code>.sparkle-flex-wrap-reverse</code></td>
+<td><code>flex-wrap: wrap-reverse</code></td>
+</tr>
+        
+      </div>
+    </section>
+    
+    <section>
+      
+
+      <div class="markdown-body">
+        <p></tbody>
+</table></p>
+
+        
+      </div>
+    </section>
+    
+      </div>
+    </section>
+    
+        </main>
+      </div>
+      <footer class="footer">
+        Last modified Tuesday, 12 October 2021 3:40
+      </footer>
+    </div>
+    <script src="prism.js?871234"></script>
+    <script src="examples.js?873428"></script>
+    <script src="script.js?02359872"></script>
+    <script src="anchor.min.js?225234"></script>
+    <script src="interact.min.js?8552934"></script>
+    <script>
+     anchors.options = {
+         placement: 'left',
+         visible: 'hover',
+         class: 'anchor-link'
+     };
+     anchors.add('h2, h3');
+
+     /* interact('.docs-resize')
+      *   .resizable({
+      *     edges: {
+      *       left: '.c-resize--left',
+      *       right: '.c-resize--right',
+      *       bottom: false,
+      *       top: false
+      *     },
+      *     onmove: function (e) {
+      *       var width = e.rect.width,
+      *         windowWidth = $(window).width();
+
+      *       if (width < 160) {
+      *         width = 160;
+      *       } else if ((width * 2) + 100 > windowWidth) {
+      *         width = (windowWidth - 100) / 2;
+      *       }
+
+      *       $('.docs-example').find('docs-resize').addClass('resize-overlay');
+      *       $('.docs-resize').style.width = (width * 2) + 'px';
+      *     },
+      *     onend: function () {
+      *       $('.docs-example').find('docs-resize').removeClass('resize-overlay');
+      *     }
+      *   })
+      *   .on('resizemove', function (event) {
+      *     var target = event.target,
+      *         x = (parseFloat(target.getAttribute('data-x')) || 0);
+
+      *     // update the element's style
+      *     target.style.width  = event.rect.width + 'px';
+
+      *     // translate when resizing from top or left edges
+      *     x += event.deltaRect.left;
+
+      *     target.style.webkitTransform = target.style.transform =
+      *       'translateX(' + x + 'px)';
+
+      *     target.setAttribute('data-x', x);
+      *     target.textContent = Math.round(event.rect.width);
+      *   });*/
+    </script>
+    
+  
+  </body>
+</html>
+
+

@@ -1,0 +1,8961 @@
+@charset "UTF-8";
+/* Begin Sparkle Docs */
+/* ---
+section: Introduction
+order: -1
+---
+The Sparkle Utility Framework is a customizable system of Sass tools and classes that is intended to work within the Inverted Triangle CSS (ITCSS) organization method. This site is a resource of the settings, tools, and utility classes available, including documentation about what each is, how to use them, and the CSS that they'll output.
+*/
+/* ---
+section: Settings
+order: -1
+---
+In the ITCSS method, settings are declared first and at the top of the Sass document. These contain all variables used throughout the tools and utilities. The settings inform what Tools, Systems, and Utilities are available in the framework. More details about settings setup can be found on the [Sparkle repo](https://github.com/sparkbox/sparkle).
+*/
+/* ---
+section: Tools
+order: -1
+---
+The second declaration of the ITCSS method are the tools. Tools are the Sass mixins and functions used throughout the framework.
+*/
+/* ---
+title: Negative Function
+section: Tools
+---
+
+Turns a positive number into a negative number. This comes in handy when a variable is passed in, so `-$value` becomes explicit `negative($value)`.
+
+**Use**
+```scss
+.test-class {
+  prop: negative(<number>);
+}
+```
+
+**Use with a prop**
+```scss
+.test-class {
+  margin: negative(1rem);
+}
+```
+
+**CSS Output**
+```css
+.test-class {
+  margin: -1rem;
+}
+```
+*/
+/* ---
+title: Ratio Function
+section: Tools
+---
+
+Creates a ratio percentage value when given a height value and width value.
+
+**Use**
+```scss
+.my-class {
+  prop: ratio(<height>, <width>);
+}
+```
+
+**Use with a prop**
+```scss
+.my-class {
+  width: ratio(200, 400);
+}
+```
+
+**CSS Output**
+```css
+.my-class {
+  width: 50%;
+}
+```
+*/
+/* ---
+title: Remify Function
+section: Tools
+---
+
+Converts a number to a rem value.
+
+**Use**
+```scss
+.my-class {
+  prop: remify(<number>);
+}
+```
+
+**Use with a prop**
+```scss
+.my-class {
+  margin: remify(24);
+}
+```
+
+**CSS Output**
+```css
+.my-class {
+  margin: 1.5rem;
+}
+```
+*/
+/* ---
+title: Strip Units Function
+section: Tools
+---
+Removes the unit of number. This is handy for maths in mixins/functions, for example if you need to check to values of two numbers. If one is a `em` value and the other is a `rem` value, you have to strip the units to accomplish the math.
+
+**Use**
+```scss
+.my-class {
+  prop: strip-units(<number>);
+}
+```
+*/
+/* ---
+title: Stringify Function
+section: Tools
+---
+
+Converts a number to a string.
+
+**Use**
+```scss
+.my-class {
+  prop: stringify(<number>);
+}
+```
+
+**Use with a prop**
+```scss
+.my-class::before {
+  content: stringify(6);
+}
+```
+
+**CSS Output**
+```css
+.my-class::before {
+  content: '6';
+}
+```
+*/
+/* ---
+title: Loop Media Query Mixin
+name: loop-mq-mixin
+section: Tools
+---
+
+Auto-generates media queries for looping content.
+
+**Use**
+```scss
+.my-class {
+  @include loop-mq {
+    prop: value;
+  }
+}
+```
+
+**Use with a prop**
+```scss
+.my-class {
+  @include loop-mq {
+    margin: 1rem;
+  }
+}
+```
+
+**CSS Output**
+```css
+.my-class {
+  margin: 1rem;
+}
+@media (min-width: 40rem) {
+  .my-class\@sm {
+    margin: 1rem;
+  }
+}
+@media (min-width: 60rem) {
+  .my-class\@md {
+    margin: 1rem;
+  }
+}
+@media (min-width: 80rem) {
+  .my-class\@lg {
+    margin: 1rem;
+  }
+}
+```
+
+**Note:** when using these classes in HTML, the `@` does not need to be escaped. Here's an example:
+
+```
+<p class="my-class@lg">No need to escape the @ symbol</p>
+```
+
+*/
+/* ---
+title: Anti-aliased Mixin
+section: Tools
+---
+Adds font smoothing properties.
+**Use**
+```scss
+.my-class {
+  @include antialiased;
+}
+```
+**CSS Output**
+```css
+.my-class {
+  -moz-osx-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+```
+*/
+/* ---
+title: Clearfix Mixin
+section: Tools
+---
+
+**Use**
+```scss
+.my-class {
+  @include clearfix;
+}
+```
+
+**CSS Output**
+```css
+.my-class::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+```
+
+*/
+/* ---
+title: Delink Mixin
+section: Tools
+---
+
+Removes default link styles.
+
+**Use**
+```scss
+.my-class {
+  @include delink;
+}
+```
+
+**CSS Output**
+```css
+.my-class {
+  color: inherit;
+  text-decoration: none;
+}
+```
+*/
+/* ---
+title: Delist Mixin
+section: Tools
+---
+
+Removes default list styles.
+
+**Use**
+```scss
+.my-class {
+  @include delist;
+}
+```
+
+**CSS Output**
+```css
+.my-class {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+```
+*/
+/* ---
+title: Print Mixin
+section: Tools
+---
+
+Provides two functionalities. The first is to hide the element when printed.
+
+**Use**
+```scss
+.my-class {
+  @include print(hide);
+}
+```
+
+**CSS Output**
+```css
+@media (print) {
+  .my-class {
+    display: none !important;
+  }
+}
+```
+
+The second functionality is to provide custom styles when printed.
+
+**Use**
+```scss
+.my-class {
+  @include print {
+    prop: value;
+  }
+}
+```
+
+**Use with a prop**
+```scss
+.my-class {
+  @include print {
+    background-color: black;
+  }
+}
+```
+
+**CSS Output**
+```css
+@media print {
+  .my-class {
+    background-color: black;
+  }
+}
+```
+*/
+/* ---
+title: Unbuttonize Mixin
+section: Tools
+---
+
+Removes styles added by default to button elements. For when something should semantically be a button, but isn't buttony in appearance.
+
+**Use**
+```scss
+.my-class {
+  @include unbuttonize;
+}
+```
+
+**CSS Output**
+```css
+.my-class {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: inherit;
+  font: inherit;
+  border-radius: 0;
+  appearance: none;
+}
+```
+*/
+/* ---
+title: Visually Hidden Mixin
+section: Tools
+---
+
+Hides an element visually, but still accessible to screen readers.
+
+**Use**
+```scss
+.my-class {
+  @include visually-hidden;
+}
+```
+
+**CSS Output**
+```css
+.my-class {
+  position: fixed;
+  clip: rect(0, 0, 0, 0);
+}
+```
+*/
+/* |=========== N O   C S S   A B O V E   T H I S   L I N E ===========| */
+main > section + section {
+  margin-top: 4rem;
+}
+
+.markdown-body {
+  font-family: system-ui, sans-serif;
+}
+.markdown-body p {
+  margin-bottom: 1.875rem;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #555;
+}
+
+.container {
+  max-width: 100%;
+  width: 100%;
+}
+
+.masthead {
+  background-color: #bf4080 !important;
+}
+
+.masthead-logo img {
+  display: none;
+}
+
+.docs-layout {
+  position: relative;
+}
+.docs-layout .one-fourth {
+  max-width: 20rem;
+  position: sticky;
+  top: 0;
+  overflow: auto;
+  box-sizing: border-box;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  max-height: 100vh;
+}
+
+.docs-example {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: center;
+  position: relative;
+}
+
+.docs-resize {
+  width: 100%;
+}
+
+.docs-iframe {
+  border: 0;
+  height: auto;
+  width: 100%;
+}
+
+.colors + pre {
+  display: none;
+}
+
+.swatch {
+  padding: 0.25em;
+  margin: 0 0.3em 0.3em 0;
+  word-break: break-all;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.color-property {
+  font-size: 80%;
+}
+
+section[id*=grid-demo-] + section[id*=grid-demo-] {
+  margin-top: 2px;
+}
+
+.menu-item[href*=grid-demo-] {
+  display: none;
+}
+
+.sparkle-grid-demo {
+  grid-gap: 2px;
+}
+
+.sparkle-grid-demo [class*=-grid-cell-] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+}
+.sparkle-grid-demo [class*=-grid-cell-]:nth-child(1) {
+  background-color: #4992f6;
+}
+.sparkle-grid-demo [class*=-grid-cell-]:nth-child(2) {
+  background-color: #2b5cc7;
+}
+.sparkle-grid-demo [class*=-grid-cell-]:nth-child(3) {
+  background-color: #6a7be4;
+}
+.sparkle-grid-demo [class*=-grid-cell-]:nth-child(4) {
+  background-color: #554dbc;
+}
+.sparkle-grid-demo [class*=-grid-cell-]:nth-child(5) {
+  background-color: #8b64d2;
+}
+.sparkle-grid-demo [class*=-grid-cell-]:nth-child(6) {
+  background-color: #803fb2;
+}
+.sparkle-grid-demo [class*=-grid-cell-]:nth-child(7) {
+  background-color: #ac4dc0;
+}
+.sparkle-grid-demo [class*=-grid-cell-]:nth-child(8) {
+  background-color: #aa31a8;
+}
+.sparkle-grid-demo [class*=-grid-cell-]:nth-child(9) {
+  background-color: #cd36ae;
+}
+.sparkle-grid-demo [class*=-grid-cell-]:nth-child(10) {
+  background-color: #d5229d;
+}
+.sparkle-grid-demo [class*=-grid-cell-]:nth-child(11) {
+  background-color: #ee1f9c;
+}
+.sparkle-grid-demo [class*=-grid-cell-]:nth-child(12) {
+  background-color: deeppink;
+}
+.sparkle-grid-demo [class*=-grid-cell-] span {
+  display: inline-block;
+  padding: 0 4px;
+  border-radius: 4px;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+}
+
+/* ---
+section: Systems
+order: -1
+---
+Systems are not on their own part of the ITCSS organization, but instead are a collection of Settings, Tools, and Utilities. Systems are the most complex and customizable part of this framework. Each System usually has at least a Sass Function and Sass Map, while some generate Utility classes as well.
+*/
+/* ---
+title: Media Queries System
+section: Systems
+---
+The media queries of this system are not intended to be the only media queries in your styles, but are meant to be the major media queries and inform the responsive suffixes that are applied to the utility classes.
+
+### Media Queries Function
+
+```scss
+@media (min-width: mq(<key>)) {
+  ...
+}
+```
+
+### Responsive Suffix Classes
+
+Responsive suffix classes scope a utility class’s styles to a media query. For example a class named `.display-block` add the property and value of `display: block`, it will have a companion class called `.display-block@md` that applies `display: block` only when the screen width is at the defined size for the `md` media query key.
+
+### Framework Media Queries
+
+The following table contains a list of the media query values defined in this framework.
+
+<table>
+<title>Framework Media Queries</title>
+<thead>
+<tr>
+  <th>Function</th>
+  <th>Screen Width Size</th>
+  <th>Class Suffix</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>mq(sm)</td>
+<td>40rem</td>
+<td>@sm</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>mq(md)</td>
+<td>60rem</td>
+<td>@md</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>mq(lg)</td>
+<td>80rem</td>
+<td>@lg</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+title: Color System
+section: Systems
+---
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Color</th>
+<th>Name</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+  section: Systems
+  ---
+
+  <tr>
+  <td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="deeppink" /></svg></td>
+  <td>`deeppink`</td>
+  <td>primary</td>
+  <td>`color(primary)`</td>
+  </tr>
+  */
+/* ---
+  section: Systems
+  ---
+
+  <tr>
+  <td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="dodgerblue" /></svg></td>
+  <td>`dodgerblue`</td>
+  <td>secondary</td>
+  <td>`color(secondary)`</td>
+  </tr>
+  */
+/* ---
+  section: Systems
+  ---
+
+  <tr>
+  <td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="#333" /></svg></td>
+  <td>`#333`</td>
+  <td>text</td>
+  <td>`color(text)`</td>
+  </tr>
+  */
+/* ---
+  section: Systems
+  ---
+
+  <tr>
+  <td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="blue" /></svg></td>
+  <td>`blue`</td>
+  <td>link</td>
+  <td>`color(link)`</td>
+  </tr>
+  */
+/* ---
+  section: Systems
+  ---
+
+  <tr>
+  <td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="rebeccapurple" /></svg></td>
+  <td>`rebeccapurple`</td>
+  <td>link-visited</td>
+  <td>`color(link-visited)`</td>
+  </tr>
+  */
+/* ---
+  section: Systems
+  ---
+
+  <tr>
+  <td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="tomato" /></svg></td>
+  <td>`tomato`</td>
+  <td>link-active</td>
+  <td>`color(link-active)`</td>
+  </tr>
+  */
+/* ---
+  section: Systems
+  ---
+  </tbody>
+  </table>
+  */
+/* ---
+section: Systems
+---
+### Text Color Utility Classes
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Default Class</th>
+<th>`:hover` Class</th>
+<th>`:focus` Class</th>
+<th>`:active` Class</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="deeppink" /></svg></td>
+<td>`.sparkle-color-primary`</td>
+<td>`.sparkle-color-primary:hover`</td>
+<td>`.sparkle-color-primary:focus`</td>
+<td>`.sparkle-color-primary:active`</td>
+</tr>
+*/
+.sparkle-color-primary, .sparkle-color-primary\:hover:hover, .sparkle-color-primary\:active:active, .sparkle-color-primary\:focus:focus {
+  color: deeppink;
+}
+@media (min-width: 40rem) {
+  .sparkle-color-primary\@sm, .sparkle-color-primary\@sm\:hover:hover, .sparkle-color-primary\@sm\:active:active, .sparkle-color-primary\@sm\:focus:focus {
+    color: deeppink;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-color-primary\@md, .sparkle-color-primary\@md\:hover:hover, .sparkle-color-primary\@md\:active:active, .sparkle-color-primary\@md\:focus:focus {
+    color: deeppink;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-color-primary\@lg, .sparkle-color-primary\@lg\:hover:hover, .sparkle-color-primary\@lg\:active:active, .sparkle-color-primary\@lg\:focus:focus {
+    color: deeppink;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="dodgerblue" /></svg></td>
+<td>`.sparkle-color-secondary`</td>
+<td>`.sparkle-color-secondary:hover`</td>
+<td>`.sparkle-color-secondary:focus`</td>
+<td>`.sparkle-color-secondary:active`</td>
+</tr>
+*/
+.sparkle-color-secondary, .sparkle-color-secondary\:hover:hover, .sparkle-color-secondary\:active:active, .sparkle-color-secondary\:focus:focus {
+  color: dodgerblue;
+}
+@media (min-width: 40rem) {
+  .sparkle-color-secondary\@sm, .sparkle-color-secondary\@sm\:hover:hover, .sparkle-color-secondary\@sm\:active:active, .sparkle-color-secondary\@sm\:focus:focus {
+    color: dodgerblue;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-color-secondary\@md, .sparkle-color-secondary\@md\:hover:hover, .sparkle-color-secondary\@md\:active:active, .sparkle-color-secondary\@md\:focus:focus {
+    color: dodgerblue;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-color-secondary\@lg, .sparkle-color-secondary\@lg\:hover:hover, .sparkle-color-secondary\@lg\:active:active, .sparkle-color-secondary\@lg\:focus:focus {
+    color: dodgerblue;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="#333" /></svg></td>
+<td>`.sparkle-color-text`</td>
+<td>`.sparkle-color-text:hover`</td>
+<td>`.sparkle-color-text:focus`</td>
+<td>`.sparkle-color-text:active`</td>
+</tr>
+*/
+.sparkle-color-text, .sparkle-color-text\:hover:hover, .sparkle-color-text\:active:active, .sparkle-color-text\:focus:focus {
+  color: #333;
+}
+@media (min-width: 40rem) {
+  .sparkle-color-text\@sm, .sparkle-color-text\@sm\:hover:hover, .sparkle-color-text\@sm\:active:active, .sparkle-color-text\@sm\:focus:focus {
+    color: #333;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-color-text\@md, .sparkle-color-text\@md\:hover:hover, .sparkle-color-text\@md\:active:active, .sparkle-color-text\@md\:focus:focus {
+    color: #333;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-color-text\@lg, .sparkle-color-text\@lg\:hover:hover, .sparkle-color-text\@lg\:active:active, .sparkle-color-text\@lg\:focus:focus {
+    color: #333;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="blue" /></svg></td>
+<td>`.sparkle-color-link`</td>
+<td>`.sparkle-color-link:hover`</td>
+<td>`.sparkle-color-link:focus`</td>
+<td>`.sparkle-color-link:active`</td>
+</tr>
+*/
+.sparkle-color-link, .sparkle-color-link\:hover:hover, .sparkle-color-link\:active:active, .sparkle-color-link\:focus:focus {
+  color: blue;
+}
+@media (min-width: 40rem) {
+  .sparkle-color-link\@sm, .sparkle-color-link\@sm\:hover:hover, .sparkle-color-link\@sm\:active:active, .sparkle-color-link\@sm\:focus:focus {
+    color: blue;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-color-link\@md, .sparkle-color-link\@md\:hover:hover, .sparkle-color-link\@md\:active:active, .sparkle-color-link\@md\:focus:focus {
+    color: blue;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-color-link\@lg, .sparkle-color-link\@lg\:hover:hover, .sparkle-color-link\@lg\:active:active, .sparkle-color-link\@lg\:focus:focus {
+    color: blue;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="rebeccapurple" /></svg></td>
+<td>`.sparkle-color-link-visited`</td>
+<td>`.sparkle-color-link-visited:hover`</td>
+<td>`.sparkle-color-link-visited:focus`</td>
+<td>`.sparkle-color-link-visited:active`</td>
+</tr>
+*/
+.sparkle-color-link-visited, .sparkle-color-link-visited\:hover:hover, .sparkle-color-link-visited\:active:active, .sparkle-color-link-visited\:focus:focus {
+  color: rebeccapurple;
+}
+@media (min-width: 40rem) {
+  .sparkle-color-link-visited\@sm, .sparkle-color-link-visited\@sm\:hover:hover, .sparkle-color-link-visited\@sm\:active:active, .sparkle-color-link-visited\@sm\:focus:focus {
+    color: rebeccapurple;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-color-link-visited\@md, .sparkle-color-link-visited\@md\:hover:hover, .sparkle-color-link-visited\@md\:active:active, .sparkle-color-link-visited\@md\:focus:focus {
+    color: rebeccapurple;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-color-link-visited\@lg, .sparkle-color-link-visited\@lg\:hover:hover, .sparkle-color-link-visited\@lg\:active:active, .sparkle-color-link-visited\@lg\:focus:focus {
+    color: rebeccapurple;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="tomato" /></svg></td>
+<td>`.sparkle-color-link-active`</td>
+<td>`.sparkle-color-link-active:hover`</td>
+<td>`.sparkle-color-link-active:focus`</td>
+<td>`.sparkle-color-link-active:active`</td>
+</tr>
+*/
+.sparkle-color-link-active, .sparkle-color-link-active\:hover:hover, .sparkle-color-link-active\:active:active, .sparkle-color-link-active\:focus:focus {
+  color: tomato;
+}
+@media (min-width: 40rem) {
+  .sparkle-color-link-active\@sm, .sparkle-color-link-active\@sm\:hover:hover, .sparkle-color-link-active\@sm\:active:active, .sparkle-color-link-active\@sm\:focus:focus {
+    color: tomato;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-color-link-active\@md, .sparkle-color-link-active\@md\:hover:hover, .sparkle-color-link-active\@md\:active:active, .sparkle-color-link-active\@md\:focus:focus {
+    color: tomato;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-color-link-active\@lg, .sparkle-color-link-active\@lg\:hover:hover, .sparkle-color-link-active\@lg\:active:active, .sparkle-color-link-active\@lg\:focus:focus {
+    color: tomato;
+  }
+}
+
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Systems
+---
+
+### Background Color Utility Classes
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Default Class</th>
+<th>`:hover` Class</th>
+<th>`:focus` Class</th>
+<th>`:active` Class</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="deeppink" /></svg></td>
+<td>`.sparkle-background-color-primary`</td>
+<td>`.sparkle-background-color-primary:hover`</td>
+<td>`.sparkle-background-color-primary:focus`</td>
+<td>`.sparkle-background-color-primary:active`</td>
+</tr>
+*/
+.sparkle-background-color-primary, .sparkle-background-color-primary\:hover:hover, .sparkle-background-color-primary\:active:active, .sparkle-background-color-primary\:focus:focus {
+  background-color: deeppink;
+}
+@media (min-width: 40rem) {
+  .sparkle-background-color-primary\@sm, .sparkle-background-color-primary\@sm\:hover:hover, .sparkle-background-color-primary\@sm\:active:active, .sparkle-background-color-primary\@sm\:focus:focus {
+    background-color: deeppink;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-background-color-primary\@md, .sparkle-background-color-primary\@md\:hover:hover, .sparkle-background-color-primary\@md\:active:active, .sparkle-background-color-primary\@md\:focus:focus {
+    background-color: deeppink;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-background-color-primary\@lg, .sparkle-background-color-primary\@lg\:hover:hover, .sparkle-background-color-primary\@lg\:active:active, .sparkle-background-color-primary\@lg\:focus:focus {
+    background-color: deeppink;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="dodgerblue" /></svg></td>
+<td>`.sparkle-background-color-secondary`</td>
+<td>`.sparkle-background-color-secondary:hover`</td>
+<td>`.sparkle-background-color-secondary:focus`</td>
+<td>`.sparkle-background-color-secondary:active`</td>
+</tr>
+*/
+.sparkle-background-color-secondary, .sparkle-background-color-secondary\:hover:hover, .sparkle-background-color-secondary\:active:active, .sparkle-background-color-secondary\:focus:focus {
+  background-color: dodgerblue;
+}
+@media (min-width: 40rem) {
+  .sparkle-background-color-secondary\@sm, .sparkle-background-color-secondary\@sm\:hover:hover, .sparkle-background-color-secondary\@sm\:active:active, .sparkle-background-color-secondary\@sm\:focus:focus {
+    background-color: dodgerblue;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-background-color-secondary\@md, .sparkle-background-color-secondary\@md\:hover:hover, .sparkle-background-color-secondary\@md\:active:active, .sparkle-background-color-secondary\@md\:focus:focus {
+    background-color: dodgerblue;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-background-color-secondary\@lg, .sparkle-background-color-secondary\@lg\:hover:hover, .sparkle-background-color-secondary\@lg\:active:active, .sparkle-background-color-secondary\@lg\:focus:focus {
+    background-color: dodgerblue;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="#333" /></svg></td>
+<td>`.sparkle-background-color-text`</td>
+<td>`.sparkle-background-color-text:hover`</td>
+<td>`.sparkle-background-color-text:focus`</td>
+<td>`.sparkle-background-color-text:active`</td>
+</tr>
+*/
+.sparkle-background-color-text, .sparkle-background-color-text\:hover:hover, .sparkle-background-color-text\:active:active, .sparkle-background-color-text\:focus:focus {
+  background-color: #333;
+}
+@media (min-width: 40rem) {
+  .sparkle-background-color-text\@sm, .sparkle-background-color-text\@sm\:hover:hover, .sparkle-background-color-text\@sm\:active:active, .sparkle-background-color-text\@sm\:focus:focus {
+    background-color: #333;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-background-color-text\@md, .sparkle-background-color-text\@md\:hover:hover, .sparkle-background-color-text\@md\:active:active, .sparkle-background-color-text\@md\:focus:focus {
+    background-color: #333;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-background-color-text\@lg, .sparkle-background-color-text\@lg\:hover:hover, .sparkle-background-color-text\@lg\:active:active, .sparkle-background-color-text\@lg\:focus:focus {
+    background-color: #333;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="blue" /></svg></td>
+<td>`.sparkle-background-color-link`</td>
+<td>`.sparkle-background-color-link:hover`</td>
+<td>`.sparkle-background-color-link:focus`</td>
+<td>`.sparkle-background-color-link:active`</td>
+</tr>
+*/
+.sparkle-background-color-link, .sparkle-background-color-link\:hover:hover, .sparkle-background-color-link\:active:active, .sparkle-background-color-link\:focus:focus {
+  background-color: blue;
+}
+@media (min-width: 40rem) {
+  .sparkle-background-color-link\@sm, .sparkle-background-color-link\@sm\:hover:hover, .sparkle-background-color-link\@sm\:active:active, .sparkle-background-color-link\@sm\:focus:focus {
+    background-color: blue;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-background-color-link\@md, .sparkle-background-color-link\@md\:hover:hover, .sparkle-background-color-link\@md\:active:active, .sparkle-background-color-link\@md\:focus:focus {
+    background-color: blue;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-background-color-link\@lg, .sparkle-background-color-link\@lg\:hover:hover, .sparkle-background-color-link\@lg\:active:active, .sparkle-background-color-link\@lg\:focus:focus {
+    background-color: blue;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="rebeccapurple" /></svg></td>
+<td>`.sparkle-background-color-link-visited`</td>
+<td>`.sparkle-background-color-link-visited:hover`</td>
+<td>`.sparkle-background-color-link-visited:focus`</td>
+<td>`.sparkle-background-color-link-visited:active`</td>
+</tr>
+*/
+.sparkle-background-color-link-visited, .sparkle-background-color-link-visited\:hover:hover, .sparkle-background-color-link-visited\:active:active, .sparkle-background-color-link-visited\:focus:focus {
+  background-color: rebeccapurple;
+}
+@media (min-width: 40rem) {
+  .sparkle-background-color-link-visited\@sm, .sparkle-background-color-link-visited\@sm\:hover:hover, .sparkle-background-color-link-visited\@sm\:active:active, .sparkle-background-color-link-visited\@sm\:focus:focus {
+    background-color: rebeccapurple;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-background-color-link-visited\@md, .sparkle-background-color-link-visited\@md\:hover:hover, .sparkle-background-color-link-visited\@md\:active:active, .sparkle-background-color-link-visited\@md\:focus:focus {
+    background-color: rebeccapurple;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-background-color-link-visited\@lg, .sparkle-background-color-link-visited\@lg\:hover:hover, .sparkle-background-color-link-visited\@lg\:active:active, .sparkle-background-color-link-visited\@lg\:focus:focus {
+    background-color: rebeccapurple;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="tomato" /></svg></td>
+<td>`.sparkle-background-color-link-active`</td>
+<td>`.sparkle-background-color-link-active:hover`</td>
+<td>`.sparkle-background-color-link-active:focus`</td>
+<td>`.sparkle-background-color-link-active:active`</td>
+</tr>
+*/
+.sparkle-background-color-link-active, .sparkle-background-color-link-active\:hover:hover, .sparkle-background-color-link-active\:active:active, .sparkle-background-color-link-active\:focus:focus {
+  background-color: tomato;
+}
+@media (min-width: 40rem) {
+  .sparkle-background-color-link-active\@sm, .sparkle-background-color-link-active\@sm\:hover:hover, .sparkle-background-color-link-active\@sm\:active:active, .sparkle-background-color-link-active\@sm\:focus:focus {
+    background-color: tomato;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-background-color-link-active\@md, .sparkle-background-color-link-active\@md\:hover:hover, .sparkle-background-color-link-active\@md\:active:active, .sparkle-background-color-link-active\@md\:focus:focus {
+    background-color: tomato;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-background-color-link-active\@lg, .sparkle-background-color-link-active\@lg\:hover:hover, .sparkle-background-color-link-active\@lg\:active:active, .sparkle-background-color-link-active\@lg\:focus:focus {
+    background-color: tomato;
+  }
+}
+
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Systems
+---
+### Border Color Utility Classes
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Default Class</th>
+<th>`:hover` Class</th>
+<th>`:focus` Class</th>
+<th>`:active` Class</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="deeppink" /></svg></td>
+<td>`.sparkle-border-color-primary`</td>
+<td>`.sparkle-border-color-primary:hover`</td>
+<td>`.sparkle-border-color-primary:focus`</td>
+<td>`.sparkle-border-color-primary:active`</td>
+</tr>
+*/
+.sparkle-border-color-primary, .sparkle-border-color-primary\:hover:hover, .sparkle-border-color-primary\:active:active, .sparkle-border-color-primary\:focus:focus {
+  border-color: deeppink;
+}
+@media (min-width: 40rem) {
+  .sparkle-border-color-primary\@sm, .sparkle-border-color-primary\@sm\:hover:hover, .sparkle-border-color-primary\@sm\:active:active, .sparkle-border-color-primary\@sm\:focus:focus {
+    border-color: deeppink;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-border-color-primary\@md, .sparkle-border-color-primary\@md\:hover:hover, .sparkle-border-color-primary\@md\:active:active, .sparkle-border-color-primary\@md\:focus:focus {
+    border-color: deeppink;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-border-color-primary\@lg, .sparkle-border-color-primary\@lg\:hover:hover, .sparkle-border-color-primary\@lg\:active:active, .sparkle-border-color-primary\@lg\:focus:focus {
+    border-color: deeppink;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="dodgerblue" /></svg></td>
+<td>`.sparkle-border-color-secondary`</td>
+<td>`.sparkle-border-color-secondary:hover`</td>
+<td>`.sparkle-border-color-secondary:focus`</td>
+<td>`.sparkle-border-color-secondary:active`</td>
+</tr>
+*/
+.sparkle-border-color-secondary, .sparkle-border-color-secondary\:hover:hover, .sparkle-border-color-secondary\:active:active, .sparkle-border-color-secondary\:focus:focus {
+  border-color: dodgerblue;
+}
+@media (min-width: 40rem) {
+  .sparkle-border-color-secondary\@sm, .sparkle-border-color-secondary\@sm\:hover:hover, .sparkle-border-color-secondary\@sm\:active:active, .sparkle-border-color-secondary\@sm\:focus:focus {
+    border-color: dodgerblue;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-border-color-secondary\@md, .sparkle-border-color-secondary\@md\:hover:hover, .sparkle-border-color-secondary\@md\:active:active, .sparkle-border-color-secondary\@md\:focus:focus {
+    border-color: dodgerblue;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-border-color-secondary\@lg, .sparkle-border-color-secondary\@lg\:hover:hover, .sparkle-border-color-secondary\@lg\:active:active, .sparkle-border-color-secondary\@lg\:focus:focus {
+    border-color: dodgerblue;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="#333" /></svg></td>
+<td>`.sparkle-border-color-text`</td>
+<td>`.sparkle-border-color-text:hover`</td>
+<td>`.sparkle-border-color-text:focus`</td>
+<td>`.sparkle-border-color-text:active`</td>
+</tr>
+*/
+.sparkle-border-color-text, .sparkle-border-color-text\:hover:hover, .sparkle-border-color-text\:active:active, .sparkle-border-color-text\:focus:focus {
+  border-color: #333;
+}
+@media (min-width: 40rem) {
+  .sparkle-border-color-text\@sm, .sparkle-border-color-text\@sm\:hover:hover, .sparkle-border-color-text\@sm\:active:active, .sparkle-border-color-text\@sm\:focus:focus {
+    border-color: #333;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-border-color-text\@md, .sparkle-border-color-text\@md\:hover:hover, .sparkle-border-color-text\@md\:active:active, .sparkle-border-color-text\@md\:focus:focus {
+    border-color: #333;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-border-color-text\@lg, .sparkle-border-color-text\@lg\:hover:hover, .sparkle-border-color-text\@lg\:active:active, .sparkle-border-color-text\@lg\:focus:focus {
+    border-color: #333;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="blue" /></svg></td>
+<td>`.sparkle-border-color-link`</td>
+<td>`.sparkle-border-color-link:hover`</td>
+<td>`.sparkle-border-color-link:focus`</td>
+<td>`.sparkle-border-color-link:active`</td>
+</tr>
+*/
+.sparkle-border-color-link, .sparkle-border-color-link\:hover:hover, .sparkle-border-color-link\:active:active, .sparkle-border-color-link\:focus:focus {
+  border-color: blue;
+}
+@media (min-width: 40rem) {
+  .sparkle-border-color-link\@sm, .sparkle-border-color-link\@sm\:hover:hover, .sparkle-border-color-link\@sm\:active:active, .sparkle-border-color-link\@sm\:focus:focus {
+    border-color: blue;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-border-color-link\@md, .sparkle-border-color-link\@md\:hover:hover, .sparkle-border-color-link\@md\:active:active, .sparkle-border-color-link\@md\:focus:focus {
+    border-color: blue;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-border-color-link\@lg, .sparkle-border-color-link\@lg\:hover:hover, .sparkle-border-color-link\@lg\:active:active, .sparkle-border-color-link\@lg\:focus:focus {
+    border-color: blue;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="rebeccapurple" /></svg></td>
+<td>`.sparkle-border-color-link-visited`</td>
+<td>`.sparkle-border-color-link-visited:hover`</td>
+<td>`.sparkle-border-color-link-visited:focus`</td>
+<td>`.sparkle-border-color-link-visited:active`</td>
+</tr>
+*/
+.sparkle-border-color-link-visited, .sparkle-border-color-link-visited\:hover:hover, .sparkle-border-color-link-visited\:active:active, .sparkle-border-color-link-visited\:focus:focus {
+  border-color: rebeccapurple;
+}
+@media (min-width: 40rem) {
+  .sparkle-border-color-link-visited\@sm, .sparkle-border-color-link-visited\@sm\:hover:hover, .sparkle-border-color-link-visited\@sm\:active:active, .sparkle-border-color-link-visited\@sm\:focus:focus {
+    border-color: rebeccapurple;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-border-color-link-visited\@md, .sparkle-border-color-link-visited\@md\:hover:hover, .sparkle-border-color-link-visited\@md\:active:active, .sparkle-border-color-link-visited\@md\:focus:focus {
+    border-color: rebeccapurple;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-border-color-link-visited\@lg, .sparkle-border-color-link-visited\@lg\:hover:hover, .sparkle-border-color-link-visited\@lg\:active:active, .sparkle-border-color-link-visited\@lg\:focus:focus {
+    border-color: rebeccapurple;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="tomato" /></svg></td>
+<td>`.sparkle-border-color-link-active`</td>
+<td>`.sparkle-border-color-link-active:hover`</td>
+<td>`.sparkle-border-color-link-active:focus`</td>
+<td>`.sparkle-border-color-link-active:active`</td>
+</tr>
+*/
+.sparkle-border-color-link-active, .sparkle-border-color-link-active\:hover:hover, .sparkle-border-color-link-active\:active:active, .sparkle-border-color-link-active\:focus:focus {
+  border-color: tomato;
+}
+@media (min-width: 40rem) {
+  .sparkle-border-color-link-active\@sm, .sparkle-border-color-link-active\@sm\:hover:hover, .sparkle-border-color-link-active\@sm\:active:active, .sparkle-border-color-link-active\@sm\:focus:focus {
+    border-color: tomato;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-border-color-link-active\@md, .sparkle-border-color-link-active\@md\:hover:hover, .sparkle-border-color-link-active\@md\:active:active, .sparkle-border-color-link-active\@md\:focus:focus {
+    border-color: tomato;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-border-color-link-active\@lg, .sparkle-border-color-link-active\@lg\:hover:hover, .sparkle-border-color-link-active\@lg\:active:active, .sparkle-border-color-link-active\@lg\:focus:focus {
+    border-color: tomato;
+  }
+}
+
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Systems
+---
+### Outline Color Utility Classes
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Default Class</th>
+<th>`:hover` Class</th>
+<th>`:focus` Class</th>
+<th>`:active` Class</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="deeppink" /></svg></td>
+<td>`.sparkle-outline-primary`</td>
+<td>`.sparkle-outline-primary:hover`</td>
+<td>`.sparkle-outline-primary:focus`</td>
+<td>`.sparkle-outline-primary:active`</td>
+</tr>
+*/
+.sparkle-outline-primary, .sparkle-outline-primary\:hover:hover, .sparkle-outline-primary\:active:active, .sparkle-outline-primary\:focus:focus {
+  outline-color: deeppink;
+}
+@media (min-width: 40rem) {
+  .sparkle-outline-primary\@sm, .sparkle-outline-primary\@sm\:hover:hover, .sparkle-outline-primary\@sm\:active:active, .sparkle-outline-primary\@sm\:focus:focus {
+    outline-color: deeppink;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-outline-primary\@md, .sparkle-outline-primary\@md\:hover:hover, .sparkle-outline-primary\@md\:active:active, .sparkle-outline-primary\@md\:focus:focus {
+    outline-color: deeppink;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-outline-primary\@lg, .sparkle-outline-primary\@lg\:hover:hover, .sparkle-outline-primary\@lg\:active:active, .sparkle-outline-primary\@lg\:focus:focus {
+    outline-color: deeppink;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="dodgerblue" /></svg></td>
+<td>`.sparkle-outline-secondary`</td>
+<td>`.sparkle-outline-secondary:hover`</td>
+<td>`.sparkle-outline-secondary:focus`</td>
+<td>`.sparkle-outline-secondary:active`</td>
+</tr>
+*/
+.sparkle-outline-secondary, .sparkle-outline-secondary\:hover:hover, .sparkle-outline-secondary\:active:active, .sparkle-outline-secondary\:focus:focus {
+  outline-color: dodgerblue;
+}
+@media (min-width: 40rem) {
+  .sparkle-outline-secondary\@sm, .sparkle-outline-secondary\@sm\:hover:hover, .sparkle-outline-secondary\@sm\:active:active, .sparkle-outline-secondary\@sm\:focus:focus {
+    outline-color: dodgerblue;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-outline-secondary\@md, .sparkle-outline-secondary\@md\:hover:hover, .sparkle-outline-secondary\@md\:active:active, .sparkle-outline-secondary\@md\:focus:focus {
+    outline-color: dodgerblue;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-outline-secondary\@lg, .sparkle-outline-secondary\@lg\:hover:hover, .sparkle-outline-secondary\@lg\:active:active, .sparkle-outline-secondary\@lg\:focus:focus {
+    outline-color: dodgerblue;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="#333" /></svg></td>
+<td>`.sparkle-outline-text`</td>
+<td>`.sparkle-outline-text:hover`</td>
+<td>`.sparkle-outline-text:focus`</td>
+<td>`.sparkle-outline-text:active`</td>
+</tr>
+*/
+.sparkle-outline-text, .sparkle-outline-text\:hover:hover, .sparkle-outline-text\:active:active, .sparkle-outline-text\:focus:focus {
+  outline-color: #333;
+}
+@media (min-width: 40rem) {
+  .sparkle-outline-text\@sm, .sparkle-outline-text\@sm\:hover:hover, .sparkle-outline-text\@sm\:active:active, .sparkle-outline-text\@sm\:focus:focus {
+    outline-color: #333;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-outline-text\@md, .sparkle-outline-text\@md\:hover:hover, .sparkle-outline-text\@md\:active:active, .sparkle-outline-text\@md\:focus:focus {
+    outline-color: #333;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-outline-text\@lg, .sparkle-outline-text\@lg\:hover:hover, .sparkle-outline-text\@lg\:active:active, .sparkle-outline-text\@lg\:focus:focus {
+    outline-color: #333;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="blue" /></svg></td>
+<td>`.sparkle-outline-link`</td>
+<td>`.sparkle-outline-link:hover`</td>
+<td>`.sparkle-outline-link:focus`</td>
+<td>`.sparkle-outline-link:active`</td>
+</tr>
+*/
+.sparkle-outline-link, .sparkle-outline-link\:hover:hover, .sparkle-outline-link\:active:active, .sparkle-outline-link\:focus:focus {
+  outline-color: blue;
+}
+@media (min-width: 40rem) {
+  .sparkle-outline-link\@sm, .sparkle-outline-link\@sm\:hover:hover, .sparkle-outline-link\@sm\:active:active, .sparkle-outline-link\@sm\:focus:focus {
+    outline-color: blue;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-outline-link\@md, .sparkle-outline-link\@md\:hover:hover, .sparkle-outline-link\@md\:active:active, .sparkle-outline-link\@md\:focus:focus {
+    outline-color: blue;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-outline-link\@lg, .sparkle-outline-link\@lg\:hover:hover, .sparkle-outline-link\@lg\:active:active, .sparkle-outline-link\@lg\:focus:focus {
+    outline-color: blue;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="rebeccapurple" /></svg></td>
+<td>`.sparkle-outline-link-visited`</td>
+<td>`.sparkle-outline-link-visited:hover`</td>
+<td>`.sparkle-outline-link-visited:focus`</td>
+<td>`.sparkle-outline-link-visited:active`</td>
+</tr>
+*/
+.sparkle-outline-link-visited, .sparkle-outline-link-visited\:hover:hover, .sparkle-outline-link-visited\:active:active, .sparkle-outline-link-visited\:focus:focus {
+  outline-color: rebeccapurple;
+}
+@media (min-width: 40rem) {
+  .sparkle-outline-link-visited\@sm, .sparkle-outline-link-visited\@sm\:hover:hover, .sparkle-outline-link-visited\@sm\:active:active, .sparkle-outline-link-visited\@sm\:focus:focus {
+    outline-color: rebeccapurple;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-outline-link-visited\@md, .sparkle-outline-link-visited\@md\:hover:hover, .sparkle-outline-link-visited\@md\:active:active, .sparkle-outline-link-visited\@md\:focus:focus {
+    outline-color: rebeccapurple;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-outline-link-visited\@lg, .sparkle-outline-link-visited\@lg\:hover:hover, .sparkle-outline-link-visited\@lg\:active:active, .sparkle-outline-link-visited\@lg\:focus:focus {
+    outline-color: rebeccapurple;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="tomato" /></svg></td>
+<td>`.sparkle-outline-link-active`</td>
+<td>`.sparkle-outline-link-active:hover`</td>
+<td>`.sparkle-outline-link-active:focus`</td>
+<td>`.sparkle-outline-link-active:active`</td>
+</tr>
+*/
+.sparkle-outline-link-active, .sparkle-outline-link-active\:hover:hover, .sparkle-outline-link-active\:active:active, .sparkle-outline-link-active\:focus:focus {
+  outline-color: tomato;
+}
+@media (min-width: 40rem) {
+  .sparkle-outline-link-active\@sm, .sparkle-outline-link-active\@sm\:hover:hover, .sparkle-outline-link-active\@sm\:active:active, .sparkle-outline-link-active\@sm\:focus:focus {
+    outline-color: tomato;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-outline-link-active\@md, .sparkle-outline-link-active\@md\:hover:hover, .sparkle-outline-link-active\@md\:active:active, .sparkle-outline-link-active\@md\:focus:focus {
+    outline-color: tomato;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-outline-link-active\@lg, .sparkle-outline-link-active\@lg\:hover:hover, .sparkle-outline-link-active\@lg\:active:active, .sparkle-outline-link-active\@lg\:focus:focus {
+    outline-color: tomato;
+  }
+}
+
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Systems
+---
+
+### Text Decoration Color Utility Classes
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Default Class</th>
+<th>`:hover` Class</th>
+<th>`:focus` Class</th>
+<th>`:active` Class</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="deeppink" /></svg></td>
+<td>`.sparkle-decoration-color-primary`</td>
+<td>`.sparkle-decoration-color-primary:hover`</td>
+<td>`.sparkle-decoration-color-primary:focus`</td>
+<td>`.sparkle-decoration-color-primary:active`</td>
+</tr>
+*/
+.sparkle-decoration-color-primary, .sparkle-decoration-color-primary\:hover:hover, .sparkle-decoration-color-primary\:active:active, .sparkle-decoration-color-primary\:focus:focus {
+  text-decoration-color: deeppink;
+}
+@media (min-width: 40rem) {
+  .sparkle-decoration-color-primary\@sm, .sparkle-decoration-color-primary\@sm\:hover:hover, .sparkle-decoration-color-primary\@sm\:active:active, .sparkle-decoration-color-primary\@sm\:focus:focus {
+    text-decoration-color: deeppink;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-decoration-color-primary\@md, .sparkle-decoration-color-primary\@md\:hover:hover, .sparkle-decoration-color-primary\@md\:active:active, .sparkle-decoration-color-primary\@md\:focus:focus {
+    text-decoration-color: deeppink;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-decoration-color-primary\@lg, .sparkle-decoration-color-primary\@lg\:hover:hover, .sparkle-decoration-color-primary\@lg\:active:active, .sparkle-decoration-color-primary\@lg\:focus:focus {
+    text-decoration-color: deeppink;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="dodgerblue" /></svg></td>
+<td>`.sparkle-decoration-color-secondary`</td>
+<td>`.sparkle-decoration-color-secondary:hover`</td>
+<td>`.sparkle-decoration-color-secondary:focus`</td>
+<td>`.sparkle-decoration-color-secondary:active`</td>
+</tr>
+*/
+.sparkle-decoration-color-secondary, .sparkle-decoration-color-secondary\:hover:hover, .sparkle-decoration-color-secondary\:active:active, .sparkle-decoration-color-secondary\:focus:focus {
+  text-decoration-color: dodgerblue;
+}
+@media (min-width: 40rem) {
+  .sparkle-decoration-color-secondary\@sm, .sparkle-decoration-color-secondary\@sm\:hover:hover, .sparkle-decoration-color-secondary\@sm\:active:active, .sparkle-decoration-color-secondary\@sm\:focus:focus {
+    text-decoration-color: dodgerblue;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-decoration-color-secondary\@md, .sparkle-decoration-color-secondary\@md\:hover:hover, .sparkle-decoration-color-secondary\@md\:active:active, .sparkle-decoration-color-secondary\@md\:focus:focus {
+    text-decoration-color: dodgerblue;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-decoration-color-secondary\@lg, .sparkle-decoration-color-secondary\@lg\:hover:hover, .sparkle-decoration-color-secondary\@lg\:active:active, .sparkle-decoration-color-secondary\@lg\:focus:focus {
+    text-decoration-color: dodgerblue;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="#333" /></svg></td>
+<td>`.sparkle-decoration-color-text`</td>
+<td>`.sparkle-decoration-color-text:hover`</td>
+<td>`.sparkle-decoration-color-text:focus`</td>
+<td>`.sparkle-decoration-color-text:active`</td>
+</tr>
+*/
+.sparkle-decoration-color-text, .sparkle-decoration-color-text\:hover:hover, .sparkle-decoration-color-text\:active:active, .sparkle-decoration-color-text\:focus:focus {
+  text-decoration-color: #333;
+}
+@media (min-width: 40rem) {
+  .sparkle-decoration-color-text\@sm, .sparkle-decoration-color-text\@sm\:hover:hover, .sparkle-decoration-color-text\@sm\:active:active, .sparkle-decoration-color-text\@sm\:focus:focus {
+    text-decoration-color: #333;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-decoration-color-text\@md, .sparkle-decoration-color-text\@md\:hover:hover, .sparkle-decoration-color-text\@md\:active:active, .sparkle-decoration-color-text\@md\:focus:focus {
+    text-decoration-color: #333;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-decoration-color-text\@lg, .sparkle-decoration-color-text\@lg\:hover:hover, .sparkle-decoration-color-text\@lg\:active:active, .sparkle-decoration-color-text\@lg\:focus:focus {
+    text-decoration-color: #333;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="blue" /></svg></td>
+<td>`.sparkle-decoration-color-link`</td>
+<td>`.sparkle-decoration-color-link:hover`</td>
+<td>`.sparkle-decoration-color-link:focus`</td>
+<td>`.sparkle-decoration-color-link:active`</td>
+</tr>
+*/
+.sparkle-decoration-color-link, .sparkle-decoration-color-link\:hover:hover, .sparkle-decoration-color-link\:active:active, .sparkle-decoration-color-link\:focus:focus {
+  text-decoration-color: blue;
+}
+@media (min-width: 40rem) {
+  .sparkle-decoration-color-link\@sm, .sparkle-decoration-color-link\@sm\:hover:hover, .sparkle-decoration-color-link\@sm\:active:active, .sparkle-decoration-color-link\@sm\:focus:focus {
+    text-decoration-color: blue;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-decoration-color-link\@md, .sparkle-decoration-color-link\@md\:hover:hover, .sparkle-decoration-color-link\@md\:active:active, .sparkle-decoration-color-link\@md\:focus:focus {
+    text-decoration-color: blue;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-decoration-color-link\@lg, .sparkle-decoration-color-link\@lg\:hover:hover, .sparkle-decoration-color-link\@lg\:active:active, .sparkle-decoration-color-link\@lg\:focus:focus {
+    text-decoration-color: blue;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="rebeccapurple" /></svg></td>
+<td>`.sparkle-decoration-color-link-visited`</td>
+<td>`.sparkle-decoration-color-link-visited:hover`</td>
+<td>`.sparkle-decoration-color-link-visited:focus`</td>
+<td>`.sparkle-decoration-color-link-visited:active`</td>
+</tr>
+*/
+.sparkle-decoration-color-link-visited, .sparkle-decoration-color-link-visited\:hover:hover, .sparkle-decoration-color-link-visited\:active:active, .sparkle-decoration-color-link-visited\:focus:focus {
+  text-decoration-color: rebeccapurple;
+}
+@media (min-width: 40rem) {
+  .sparkle-decoration-color-link-visited\@sm, .sparkle-decoration-color-link-visited\@sm\:hover:hover, .sparkle-decoration-color-link-visited\@sm\:active:active, .sparkle-decoration-color-link-visited\@sm\:focus:focus {
+    text-decoration-color: rebeccapurple;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-decoration-color-link-visited\@md, .sparkle-decoration-color-link-visited\@md\:hover:hover, .sparkle-decoration-color-link-visited\@md\:active:active, .sparkle-decoration-color-link-visited\@md\:focus:focus {
+    text-decoration-color: rebeccapurple;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-decoration-color-link-visited\@lg, .sparkle-decoration-color-link-visited\@lg\:hover:hover, .sparkle-decoration-color-link-visited\@lg\:active:active, .sparkle-decoration-color-link-visited\@lg\:focus:focus {
+    text-decoration-color: rebeccapurple;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><svg height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 0,18, 18,18 18,0z" fill="tomato" /></svg></td>
+<td>`.sparkle-decoration-color-link-active`</td>
+<td>`.sparkle-decoration-color-link-active:hover`</td>
+<td>`.sparkle-decoration-color-link-active:focus`</td>
+<td>`.sparkle-decoration-color-link-active:active`</td>
+</tr>
+*/
+.sparkle-decoration-color-link-active, .sparkle-decoration-color-link-active\:hover:hover, .sparkle-decoration-color-link-active\:active:active, .sparkle-decoration-color-link-active\:focus:focus {
+  text-decoration-color: tomato;
+}
+@media (min-width: 40rem) {
+  .sparkle-decoration-color-link-active\@sm, .sparkle-decoration-color-link-active\@sm\:hover:hover, .sparkle-decoration-color-link-active\@sm\:active:active, .sparkle-decoration-color-link-active\@sm\:focus:focus {
+    text-decoration-color: tomato;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-decoration-color-link-active\@md, .sparkle-decoration-color-link-active\@md\:hover:hover, .sparkle-decoration-color-link-active\@md\:active:active, .sparkle-decoration-color-link-active\@md\:focus:focus {
+    text-decoration-color: tomato;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-decoration-color-link-active\@lg, .sparkle-decoration-color-link-active\@lg\:hover:hover, .sparkle-decoration-color-link-active\@lg\:active:active, .sparkle-decoration-color-link-active\@lg\:focus:focus {
+    text-decoration-color: tomato;
+  }
+}
+
+/* ---
+section: Systems
+---
+
+</tbody>
+</table>
+*/
+/* ---
+title: Spacing System
+section: Systems
+---
+
+### Spacing System Function
+
+The spacing system function allows you to load the determined spacing value by calling the `space()` function with the size key.
+
+```css
+.my-class {
+  margin-left: space(md);
+}
+```
+
+Below is the spacing system value options and the spacing size.
+
+<table>
+<thead>
+<th>Function</th>
+<th>Size</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><code>space(sm)</code></td>
+<td><code>0.5rem</code></td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><code>space(md)</code></td>
+<td><code>1rem</code></td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><code>space(lg)</code></td>
+<td><code>1.5rem</code></td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Systems
+---
+### Margin Utility Classes
+
+The margin spacing utility classes apply spacing system value size to the defined side on the outside of the container.
+*/
+/* ---
+section: Systems
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Spacing Size</th>
+<th>Sides</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-btm-sm</code></td>
+<td><code>0.5rem</td>
+<td>bottom</td>
+</tr>
+*/
+.sparkle-margin-btm-sm {
+  margin-bottom: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-btm-md</code></td>
+<td><code>1rem</td>
+<td>bottom</td>
+</tr>
+*/
+.sparkle-margin-btm-md {
+  margin-bottom: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-btm-lg</code></td>
+<td><code>1.5rem</td>
+<td>bottom</td>
+</tr>
+*/
+.sparkle-margin-btm-lg {
+  margin-bottom: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-top-sm</code></td>
+<td><code>0.5rem</td>
+<td>top</td>
+</tr>
+*/
+.sparkle-margin-top-sm {
+  margin-top: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-top-md</code></td>
+<td><code>1rem</td>
+<td>top</td>
+</tr>
+*/
+.sparkle-margin-top-md {
+  margin-top: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-top-lg</code></td>
+<td><code>1.5rem</td>
+<td>top</td>
+</tr>
+*/
+.sparkle-margin-top-lg {
+  margin-top: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-lft-sm</code></td>
+<td><code>0.5rem</td>
+<td>left</td>
+</tr>
+*/
+.sparkle-margin-lft-sm {
+  margin-left: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-lft-md</code></td>
+<td><code>1rem</td>
+<td>left</td>
+</tr>
+*/
+.sparkle-margin-lft-md {
+  margin-left: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-lft-lg</code></td>
+<td><code>1.5rem</td>
+<td>left</td>
+</tr>
+*/
+.sparkle-margin-lft-lg {
+  margin-left: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-rgt-sm</code></td>
+<td><code>0.5rem</td>
+<td>right</td>
+</tr>
+*/
+.sparkle-margin-rgt-sm {
+  margin-right: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-rgt-md</code></td>
+<td><code>1rem</td>
+<td>right</td>
+</tr>
+*/
+.sparkle-margin-rgt-md {
+  margin-right: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-rgt-lg</code></td>
+<td><code>1.5rem</td>
+<td>right</td>
+</tr>
+*/
+.sparkle-margin-rgt-lg {
+  margin-right: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-all-sm</code></td>
+<td><code>0.5rem</td>
+<td>all</td>
+</tr>
+*/
+.sparkle-margin-all-sm {
+  margin: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-all-md</code></td>
+<td><code>1rem</td>
+<td>all</td>
+</tr>
+*/
+.sparkle-margin-all-md {
+  margin: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-all-lg</code></td>
+<td><code>1.5rem</td>
+<td>all</td>
+</tr>
+*/
+.sparkle-margin-all-lg {
+  margin: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-vrt-sm</code></td>
+<td><code>0.5rem</td>
+<td>y-axis</td>
+</tr>
+*/
+.sparkle-margin-vrt-sm {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-vrt-md</code></td>
+<td><code>1rem</td>
+<td>y-axis</td>
+</tr>
+*/
+.sparkle-margin-vrt-md {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-vrt-lg</code></td>
+<td><code>1.5rem</td>
+<td>y-axis</td>
+</tr>
+*/
+.sparkle-margin-vrt-lg {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-hrz-sm</code></td>
+<td><code>0.5rem</td>
+<td>x-axis</td>
+</tr>
+*/
+.sparkle-margin-hrz-sm {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-hrz-md</code></td>
+<td><code>1rem</td>
+<td>x-axis</td>
+</tr>
+*/
+.sparkle-margin-hrz-md {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-margin-hrz-lg</code></td>
+<td><code>1.5rem</td>
+<td>x-axis</td>
+</tr>
+*/
+.sparkle-margin-hrz-lg {
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+}
+
+@media (min-width: 40rem) {
+  .sparkle-margin-btm-sm\@sm {
+    margin-bottom: 0.5rem;
+  }
+
+  .sparkle-margin-btm-md\@sm {
+    margin-bottom: 1rem;
+  }
+
+  .sparkle-margin-btm-lg\@sm {
+    margin-bottom: 1.5rem;
+  }
+
+  .sparkle-margin-top-sm\@sm {
+    margin-top: 0.5rem;
+  }
+
+  .sparkle-margin-top-md\@sm {
+    margin-top: 1rem;
+  }
+
+  .sparkle-margin-top-lg\@sm {
+    margin-top: 1.5rem;
+  }
+
+  .sparkle-margin-lft-sm\@sm {
+    margin-left: 0.5rem;
+  }
+
+  .sparkle-margin-lft-md\@sm {
+    margin-left: 1rem;
+  }
+
+  .sparkle-margin-lft-lg\@sm {
+    margin-left: 1.5rem;
+  }
+
+  .sparkle-margin-rgt-sm\@sm {
+    margin-right: 0.5rem;
+  }
+
+  .sparkle-margin-rgt-md\@sm {
+    margin-right: 1rem;
+  }
+
+  .sparkle-margin-rgt-lg\@sm {
+    margin-right: 1.5rem;
+  }
+
+  .sparkle-margin-all-sm\@sm {
+    margin: 0.5rem;
+  }
+
+  .sparkle-margin-all-md\@sm {
+    margin: 1rem;
+  }
+
+  .sparkle-margin-all-lg\@sm {
+    margin: 1.5rem;
+  }
+
+  .sparkle-margin-vrt-sm\@sm {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sparkle-margin-vrt-md\@sm {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .sparkle-margin-vrt-lg\@sm {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sparkle-margin-hrz-sm\@sm {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
+  .sparkle-margin-hrz-md\@sm {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  .sparkle-margin-hrz-lg\@sm {
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-margin-btm-sm\@md {
+    margin-bottom: 0.5rem;
+  }
+
+  .sparkle-margin-btm-md\@md {
+    margin-bottom: 1rem;
+  }
+
+  .sparkle-margin-btm-lg\@md {
+    margin-bottom: 1.5rem;
+  }
+
+  .sparkle-margin-top-sm\@md {
+    margin-top: 0.5rem;
+  }
+
+  .sparkle-margin-top-md\@md {
+    margin-top: 1rem;
+  }
+
+  .sparkle-margin-top-lg\@md {
+    margin-top: 1.5rem;
+  }
+
+  .sparkle-margin-lft-sm\@md {
+    margin-left: 0.5rem;
+  }
+
+  .sparkle-margin-lft-md\@md {
+    margin-left: 1rem;
+  }
+
+  .sparkle-margin-lft-lg\@md {
+    margin-left: 1.5rem;
+  }
+
+  .sparkle-margin-rgt-sm\@md {
+    margin-right: 0.5rem;
+  }
+
+  .sparkle-margin-rgt-md\@md {
+    margin-right: 1rem;
+  }
+
+  .sparkle-margin-rgt-lg\@md {
+    margin-right: 1.5rem;
+  }
+
+  .sparkle-margin-all-sm\@md {
+    margin: 0.5rem;
+  }
+
+  .sparkle-margin-all-md\@md {
+    margin: 1rem;
+  }
+
+  .sparkle-margin-all-lg\@md {
+    margin: 1.5rem;
+  }
+
+  .sparkle-margin-vrt-sm\@md {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sparkle-margin-vrt-md\@md {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .sparkle-margin-vrt-lg\@md {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sparkle-margin-hrz-sm\@md {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
+  .sparkle-margin-hrz-md\@md {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  .sparkle-margin-hrz-lg\@md {
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-margin-btm-sm\@lg {
+    margin-bottom: 0.5rem;
+  }
+
+  .sparkle-margin-btm-md\@lg {
+    margin-bottom: 1rem;
+  }
+
+  .sparkle-margin-btm-lg\@lg {
+    margin-bottom: 1.5rem;
+  }
+
+  .sparkle-margin-top-sm\@lg {
+    margin-top: 0.5rem;
+  }
+
+  .sparkle-margin-top-md\@lg {
+    margin-top: 1rem;
+  }
+
+  .sparkle-margin-top-lg\@lg {
+    margin-top: 1.5rem;
+  }
+
+  .sparkle-margin-lft-sm\@lg {
+    margin-left: 0.5rem;
+  }
+
+  .sparkle-margin-lft-md\@lg {
+    margin-left: 1rem;
+  }
+
+  .sparkle-margin-lft-lg\@lg {
+    margin-left: 1.5rem;
+  }
+
+  .sparkle-margin-rgt-sm\@lg {
+    margin-right: 0.5rem;
+  }
+
+  .sparkle-margin-rgt-md\@lg {
+    margin-right: 1rem;
+  }
+
+  .sparkle-margin-rgt-lg\@lg {
+    margin-right: 1.5rem;
+  }
+
+  .sparkle-margin-all-sm\@lg {
+    margin: 0.5rem;
+  }
+
+  .sparkle-margin-all-md\@lg {
+    margin: 1rem;
+  }
+
+  .sparkle-margin-all-lg\@lg {
+    margin: 1.5rem;
+  }
+
+  .sparkle-margin-vrt-sm\@lg {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sparkle-margin-vrt-md\@lg {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .sparkle-margin-vrt-lg\@lg {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sparkle-margin-hrz-sm\@lg {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
+  .sparkle-margin-hrz-md\@lg {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  .sparkle-margin-hrz-lg\@lg {
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+  }
+}
+@media print {
+  .sparkle-margin-btm-sm\@print {
+    margin-bottom: 0.5rem;
+  }
+
+  .sparkle-margin-btm-md\@print {
+    margin-bottom: 1rem;
+  }
+
+  .sparkle-margin-btm-lg\@print {
+    margin-bottom: 1.5rem;
+  }
+
+  .sparkle-margin-top-sm\@print {
+    margin-top: 0.5rem;
+  }
+
+  .sparkle-margin-top-md\@print {
+    margin-top: 1rem;
+  }
+
+  .sparkle-margin-top-lg\@print {
+    margin-top: 1.5rem;
+  }
+
+  .sparkle-margin-lft-sm\@print {
+    margin-left: 0.5rem;
+  }
+
+  .sparkle-margin-lft-md\@print {
+    margin-left: 1rem;
+  }
+
+  .sparkle-margin-lft-lg\@print {
+    margin-left: 1.5rem;
+  }
+
+  .sparkle-margin-rgt-sm\@print {
+    margin-right: 0.5rem;
+  }
+
+  .sparkle-margin-rgt-md\@print {
+    margin-right: 1rem;
+  }
+
+  .sparkle-margin-rgt-lg\@print {
+    margin-right: 1.5rem;
+  }
+
+  .sparkle-margin-all-sm\@print {
+    margin: 0.5rem;
+  }
+
+  .sparkle-margin-all-md\@print {
+    margin: 1rem;
+  }
+
+  .sparkle-margin-all-lg\@print {
+    margin: 1.5rem;
+  }
+
+  .sparkle-margin-vrt-sm\@print {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sparkle-margin-vrt-md\@print {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .sparkle-margin-vrt-lg\@print {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sparkle-margin-hrz-sm\@print {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
+  .sparkle-margin-hrz-md\@print {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  .sparkle-margin-hrz-lg\@print {
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+  }
+}
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Systems
+---
+
+### Padding Utility Classes
+
+The padding spacing utility classes apply spacing system value size to the defined side on the inside of the container.
+*/
+/* ---
+section: Systems
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Spacing Size</th>
+<th>Sides</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-btm-sm</code></td>
+<td><code>0.5rem</td>
+<td>bottom</td>
+</tr>
+*/
+.sparkle-pad-btm-sm {
+  padding-bottom: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-btm-md</code></td>
+<td><code>1rem</td>
+<td>bottom</td>
+</tr>
+*/
+.sparkle-pad-btm-md {
+  padding-bottom: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-btm-lg</code></td>
+<td><code>1.5rem</td>
+<td>bottom</td>
+</tr>
+*/
+.sparkle-pad-btm-lg {
+  padding-bottom: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-top-sm</code></td>
+<td><code>0.5rem</td>
+<td>top</td>
+</tr>
+*/
+.sparkle-pad-top-sm {
+  padding-top: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-top-md</code></td>
+<td><code>1rem</td>
+<td>top</td>
+</tr>
+*/
+.sparkle-pad-top-md {
+  padding-top: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-top-lg</code></td>
+<td><code>1.5rem</td>
+<td>top</td>
+</tr>
+*/
+.sparkle-pad-top-lg {
+  padding-top: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-lft-sm</code></td>
+<td><code>0.5rem</td>
+<td>left</td>
+</tr>
+*/
+.sparkle-pad-lft-sm {
+  padding-left: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-lft-md</code></td>
+<td><code>1rem</td>
+<td>left</td>
+</tr>
+*/
+.sparkle-pad-lft-md {
+  padding-left: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-lft-lg</code></td>
+<td><code>1.5rem</td>
+<td>left</td>
+</tr>
+*/
+.sparkle-pad-lft-lg {
+  padding-left: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-rgt-sm</code></td>
+<td><code>0.5rem</td>
+<td>right</td>
+</tr>
+*/
+.sparkle-pad-rgt-sm {
+  padding-right: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-rgt-md</code></td>
+<td><code>1rem</td>
+<td>right</td>
+</tr>
+*/
+.sparkle-pad-rgt-md {
+  padding-right: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-rgt-lg</code></td>
+<td><code>1.5rem</td>
+<td>right</td>
+</tr>
+*/
+.sparkle-pad-rgt-lg {
+  padding-right: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-all-sm</code></td>
+<td><code>0.5rem</td>
+<td>all</td>
+</tr>
+*/
+.sparkle-pad-all-sm {
+  padding: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-all-md</code></td>
+<td><code>1rem</td>
+<td>all</td>
+</tr>
+*/
+.sparkle-pad-all-md {
+  padding: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-all-lg</code></td>
+<td><code>1.5rem</td>
+<td>all</td>
+</tr>
+*/
+.sparkle-pad-all-lg {
+  padding: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-vrt-sm</code></td>
+<td><code>0.5rem</td>
+<td>y-axis</td>
+</tr>
+*/
+.sparkle-pad-vrt-sm {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-vrt-md</code></td>
+<td><code>1rem</td>
+<td>y-axis</td>
+</tr>
+*/
+.sparkle-pad-vrt-md {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-vrt-lg</code></td>
+<td><code>1.5rem</td>
+<td>y-axis</td>
+</tr>
+*/
+.sparkle-pad-vrt-lg {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-hrz-sm</code></td>
+<td><code>0.5rem</td>
+<td>x-axis</td>
+</tr>
+*/
+.sparkle-pad-hrz-sm {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-hrz-md</code></td>
+<td><code>1rem</td>
+<td>x-axis</td>
+</tr>
+*/
+.sparkle-pad-hrz-md {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-pad-hrz-lg</code></td>
+<td><code>1.5rem</td>
+<td>x-axis</td>
+</tr>
+*/
+.sparkle-pad-hrz-lg {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+@media (min-width: 40rem) {
+  .sparkle-pad-btm-sm\@sm {
+    padding-bottom: 0.5rem;
+  }
+
+  .sparkle-pad-btm-md\@sm {
+    padding-bottom: 1rem;
+  }
+
+  .sparkle-pad-btm-lg\@sm {
+    padding-bottom: 1.5rem;
+  }
+
+  .sparkle-pad-top-sm\@sm {
+    padding-top: 0.5rem;
+  }
+
+  .sparkle-pad-top-md\@sm {
+    padding-top: 1rem;
+  }
+
+  .sparkle-pad-top-lg\@sm {
+    padding-top: 1.5rem;
+  }
+
+  .sparkle-pad-lft-sm\@sm {
+    padding-left: 0.5rem;
+  }
+
+  .sparkle-pad-lft-md\@sm {
+    padding-left: 1rem;
+  }
+
+  .sparkle-pad-lft-lg\@sm {
+    padding-left: 1.5rem;
+  }
+
+  .sparkle-pad-rgt-sm\@sm {
+    padding-right: 0.5rem;
+  }
+
+  .sparkle-pad-rgt-md\@sm {
+    padding-right: 1rem;
+  }
+
+  .sparkle-pad-rgt-lg\@sm {
+    padding-right: 1.5rem;
+  }
+
+  .sparkle-pad-all-sm\@sm {
+    padding: 0.5rem;
+  }
+
+  .sparkle-pad-all-md\@sm {
+    padding: 1rem;
+  }
+
+  .sparkle-pad-all-lg\@sm {
+    padding: 1.5rem;
+  }
+
+  .sparkle-pad-vrt-sm\@sm {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .sparkle-pad-vrt-md\@sm {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .sparkle-pad-vrt-lg\@sm {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .sparkle-pad-hrz-sm\@sm {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .sparkle-pad-hrz-md\@sm {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .sparkle-pad-hrz-lg\@sm {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-pad-btm-sm\@md {
+    padding-bottom: 0.5rem;
+  }
+
+  .sparkle-pad-btm-md\@md {
+    padding-bottom: 1rem;
+  }
+
+  .sparkle-pad-btm-lg\@md {
+    padding-bottom: 1.5rem;
+  }
+
+  .sparkle-pad-top-sm\@md {
+    padding-top: 0.5rem;
+  }
+
+  .sparkle-pad-top-md\@md {
+    padding-top: 1rem;
+  }
+
+  .sparkle-pad-top-lg\@md {
+    padding-top: 1.5rem;
+  }
+
+  .sparkle-pad-lft-sm\@md {
+    padding-left: 0.5rem;
+  }
+
+  .sparkle-pad-lft-md\@md {
+    padding-left: 1rem;
+  }
+
+  .sparkle-pad-lft-lg\@md {
+    padding-left: 1.5rem;
+  }
+
+  .sparkle-pad-rgt-sm\@md {
+    padding-right: 0.5rem;
+  }
+
+  .sparkle-pad-rgt-md\@md {
+    padding-right: 1rem;
+  }
+
+  .sparkle-pad-rgt-lg\@md {
+    padding-right: 1.5rem;
+  }
+
+  .sparkle-pad-all-sm\@md {
+    padding: 0.5rem;
+  }
+
+  .sparkle-pad-all-md\@md {
+    padding: 1rem;
+  }
+
+  .sparkle-pad-all-lg\@md {
+    padding: 1.5rem;
+  }
+
+  .sparkle-pad-vrt-sm\@md {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .sparkle-pad-vrt-md\@md {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .sparkle-pad-vrt-lg\@md {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .sparkle-pad-hrz-sm\@md {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .sparkle-pad-hrz-md\@md {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .sparkle-pad-hrz-lg\@md {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-pad-btm-sm\@lg {
+    padding-bottom: 0.5rem;
+  }
+
+  .sparkle-pad-btm-md\@lg {
+    padding-bottom: 1rem;
+  }
+
+  .sparkle-pad-btm-lg\@lg {
+    padding-bottom: 1.5rem;
+  }
+
+  .sparkle-pad-top-sm\@lg {
+    padding-top: 0.5rem;
+  }
+
+  .sparkle-pad-top-md\@lg {
+    padding-top: 1rem;
+  }
+
+  .sparkle-pad-top-lg\@lg {
+    padding-top: 1.5rem;
+  }
+
+  .sparkle-pad-lft-sm\@lg {
+    padding-left: 0.5rem;
+  }
+
+  .sparkle-pad-lft-md\@lg {
+    padding-left: 1rem;
+  }
+
+  .sparkle-pad-lft-lg\@lg {
+    padding-left: 1.5rem;
+  }
+
+  .sparkle-pad-rgt-sm\@lg {
+    padding-right: 0.5rem;
+  }
+
+  .sparkle-pad-rgt-md\@lg {
+    padding-right: 1rem;
+  }
+
+  .sparkle-pad-rgt-lg\@lg {
+    padding-right: 1.5rem;
+  }
+
+  .sparkle-pad-all-sm\@lg {
+    padding: 0.5rem;
+  }
+
+  .sparkle-pad-all-md\@lg {
+    padding: 1rem;
+  }
+
+  .sparkle-pad-all-lg\@lg {
+    padding: 1.5rem;
+  }
+
+  .sparkle-pad-vrt-sm\@lg {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .sparkle-pad-vrt-md\@lg {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .sparkle-pad-vrt-lg\@lg {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .sparkle-pad-hrz-sm\@lg {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .sparkle-pad-hrz-md\@lg {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .sparkle-pad-hrz-lg\@lg {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
+@media print {
+  .sparkle-pad-btm-sm\@print {
+    padding-bottom: 0.5rem;
+  }
+
+  .sparkle-pad-btm-md\@print {
+    padding-bottom: 1rem;
+  }
+
+  .sparkle-pad-btm-lg\@print {
+    padding-bottom: 1.5rem;
+  }
+
+  .sparkle-pad-top-sm\@print {
+    padding-top: 0.5rem;
+  }
+
+  .sparkle-pad-top-md\@print {
+    padding-top: 1rem;
+  }
+
+  .sparkle-pad-top-lg\@print {
+    padding-top: 1.5rem;
+  }
+
+  .sparkle-pad-lft-sm\@print {
+    padding-left: 0.5rem;
+  }
+
+  .sparkle-pad-lft-md\@print {
+    padding-left: 1rem;
+  }
+
+  .sparkle-pad-lft-lg\@print {
+    padding-left: 1.5rem;
+  }
+
+  .sparkle-pad-rgt-sm\@print {
+    padding-right: 0.5rem;
+  }
+
+  .sparkle-pad-rgt-md\@print {
+    padding-right: 1rem;
+  }
+
+  .sparkle-pad-rgt-lg\@print {
+    padding-right: 1.5rem;
+  }
+
+  .sparkle-pad-all-sm\@print {
+    padding: 0.5rem;
+  }
+
+  .sparkle-pad-all-md\@print {
+    padding: 1rem;
+  }
+
+  .sparkle-pad-all-lg\@print {
+    padding: 1.5rem;
+  }
+
+  .sparkle-pad-vrt-sm\@print {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .sparkle-pad-vrt-md\@print {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .sparkle-pad-vrt-lg\@print {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .sparkle-pad-hrz-sm\@print {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .sparkle-pad-hrz-md\@print {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .sparkle-pad-hrz-lg\@print {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Systems
+---
+
+### Position Spacing Utility Classes
+
+The position spacing utility classes should be used in conjunction with the position utility classes. These classes apply spacing system value size to the defined side.
+
+*/
+/* ---
+section: Systems
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Spacing Size</th>
+<th>Sides</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-btm-sm</code></td>
+<td><code>0.5rem</td>
+<td>bottom</td>
+</tr>
+*/
+.sparkle-position-btm-sm {
+  bottom: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-btm-md</code></td>
+<td><code>1rem</td>
+<td>bottom</td>
+</tr>
+*/
+.sparkle-position-btm-md {
+  bottom: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-btm-lg</code></td>
+<td><code>1.5rem</td>
+<td>bottom</td>
+</tr>
+*/
+.sparkle-position-btm-lg {
+  bottom: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-top-sm</code></td>
+<td><code>0.5rem</td>
+<td>top</td>
+</tr>
+*/
+.sparkle-position-top-sm {
+  top: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-top-md</code></td>
+<td><code>1rem</td>
+<td>top</td>
+</tr>
+*/
+.sparkle-position-top-md {
+  top: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-top-lg</code></td>
+<td><code>1.5rem</td>
+<td>top</td>
+</tr>
+*/
+.sparkle-position-top-lg {
+  top: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-lft-sm</code></td>
+<td><code>0.5rem</td>
+<td>left</td>
+</tr>
+*/
+.sparkle-position-lft-sm {
+  left: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-lft-md</code></td>
+<td><code>1rem</td>
+<td>left</td>
+</tr>
+*/
+.sparkle-position-lft-md {
+  left: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-lft-lg</code></td>
+<td><code>1.5rem</td>
+<td>left</td>
+</tr>
+*/
+.sparkle-position-lft-lg {
+  left: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-rgt-sm</code></td>
+<td><code>0.5rem</td>
+<td>right</td>
+</tr>
+*/
+.sparkle-position-rgt-sm {
+  right: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-rgt-md</code></td>
+<td><code>1rem</td>
+<td>right</td>
+</tr>
+*/
+.sparkle-position-rgt-md {
+  right: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-rgt-lg</code></td>
+<td><code>1.5rem</td>
+<td>right</td>
+</tr>
+*/
+.sparkle-position-rgt-lg {
+  right: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-all-sm</code></td>
+<td><code>0.5rem</td>
+<td>all</td>
+</tr>
+*/
+.sparkle-position-all-sm {
+  top: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  left: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-all-md</code></td>
+<td><code>1rem</td>
+<td>all</td>
+</tr>
+*/
+.sparkle-position-all-md {
+  top: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-all-lg</code></td>
+<td><code>1.5rem</td>
+<td>all</td>
+</tr>
+*/
+.sparkle-position-all-lg {
+  top: 1.5rem;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  left: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-vrt-sm</code></td>
+<td><code>0.5rem</td>
+<td>y-axis</td>
+</tr>
+*/
+.sparkle-position-vrt-sm {
+  top: 0.5rem;
+  bottom: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-vrt-md</code></td>
+<td><code>1rem</td>
+<td>y-axis</td>
+</tr>
+*/
+.sparkle-position-vrt-md {
+  top: 1rem;
+  bottom: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-vrt-lg</code></td>
+<td><code>1.5rem</td>
+<td>y-axis</td>
+</tr>
+*/
+.sparkle-position-vrt-lg {
+  top: 1.5rem;
+  bottom: 1.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-hrz-sm</code></td>
+<td><code>0.5rem</td>
+<td>x-axis</td>
+</tr>
+*/
+.sparkle-position-hrz-sm {
+  right: 0.5rem;
+  left: 0.5rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-hrz-md</code></td>
+<td><code>1rem</td>
+<td>x-axis</td>
+</tr>
+*/
+.sparkle-position-hrz-md {
+  right: 1rem;
+  left: 1rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-position-hrz-lg</code></td>
+<td><code>1.5rem</td>
+<td>x-axis</td>
+</tr>
+*/
+.sparkle-position-hrz-lg {
+  right: 1.5rem;
+  left: 1.5rem;
+}
+
+@media (min-width: 40rem) {
+  .sparkle-position-btm-sm\@sm {
+    bottom: 0.5rem;
+  }
+
+  .sparkle-position-btm-md\@sm {
+    bottom: 1rem;
+  }
+
+  .sparkle-position-btm-lg\@sm {
+    bottom: 1.5rem;
+  }
+
+  .sparkle-position-top-sm\@sm {
+    top: 0.5rem;
+  }
+
+  .sparkle-position-top-md\@sm {
+    top: 1rem;
+  }
+
+  .sparkle-position-top-lg\@sm {
+    top: 1.5rem;
+  }
+
+  .sparkle-position-lft-sm\@sm {
+    left: 0.5rem;
+  }
+
+  .sparkle-position-lft-md\@sm {
+    left: 1rem;
+  }
+
+  .sparkle-position-lft-lg\@sm {
+    left: 1.5rem;
+  }
+
+  .sparkle-position-rgt-sm\@sm {
+    right: 0.5rem;
+  }
+
+  .sparkle-position-rgt-md\@sm {
+    right: 1rem;
+  }
+
+  .sparkle-position-rgt-lg\@sm {
+    right: 1.5rem;
+  }
+
+  .sparkle-position-all-sm\@sm {
+    top: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .sparkle-position-all-md\@sm {
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  .sparkle-position-all-lg\@sm {
+    top: 1.5rem;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .sparkle-position-vrt-sm\@sm {
+    top: 0.5rem;
+    bottom: 0.5rem;
+  }
+
+  .sparkle-position-vrt-md\@sm {
+    top: 1rem;
+    bottom: 1rem;
+  }
+
+  .sparkle-position-vrt-lg\@sm {
+    top: 1.5rem;
+    bottom: 1.5rem;
+  }
+
+  .sparkle-position-hrz-sm\@sm {
+    right: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .sparkle-position-hrz-md\@sm {
+    right: 1rem;
+    left: 1rem;
+  }
+
+  .sparkle-position-hrz-lg\@sm {
+    right: 1.5rem;
+    left: 1.5rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-position-btm-sm\@md {
+    bottom: 0.5rem;
+  }
+
+  .sparkle-position-btm-md\@md {
+    bottom: 1rem;
+  }
+
+  .sparkle-position-btm-lg\@md {
+    bottom: 1.5rem;
+  }
+
+  .sparkle-position-top-sm\@md {
+    top: 0.5rem;
+  }
+
+  .sparkle-position-top-md\@md {
+    top: 1rem;
+  }
+
+  .sparkle-position-top-lg\@md {
+    top: 1.5rem;
+  }
+
+  .sparkle-position-lft-sm\@md {
+    left: 0.5rem;
+  }
+
+  .sparkle-position-lft-md\@md {
+    left: 1rem;
+  }
+
+  .sparkle-position-lft-lg\@md {
+    left: 1.5rem;
+  }
+
+  .sparkle-position-rgt-sm\@md {
+    right: 0.5rem;
+  }
+
+  .sparkle-position-rgt-md\@md {
+    right: 1rem;
+  }
+
+  .sparkle-position-rgt-lg\@md {
+    right: 1.5rem;
+  }
+
+  .sparkle-position-all-sm\@md {
+    top: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .sparkle-position-all-md\@md {
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  .sparkle-position-all-lg\@md {
+    top: 1.5rem;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .sparkle-position-vrt-sm\@md {
+    top: 0.5rem;
+    bottom: 0.5rem;
+  }
+
+  .sparkle-position-vrt-md\@md {
+    top: 1rem;
+    bottom: 1rem;
+  }
+
+  .sparkle-position-vrt-lg\@md {
+    top: 1.5rem;
+    bottom: 1.5rem;
+  }
+
+  .sparkle-position-hrz-sm\@md {
+    right: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .sparkle-position-hrz-md\@md {
+    right: 1rem;
+    left: 1rem;
+  }
+
+  .sparkle-position-hrz-lg\@md {
+    right: 1.5rem;
+    left: 1.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-position-btm-sm\@lg {
+    bottom: 0.5rem;
+  }
+
+  .sparkle-position-btm-md\@lg {
+    bottom: 1rem;
+  }
+
+  .sparkle-position-btm-lg\@lg {
+    bottom: 1.5rem;
+  }
+
+  .sparkle-position-top-sm\@lg {
+    top: 0.5rem;
+  }
+
+  .sparkle-position-top-md\@lg {
+    top: 1rem;
+  }
+
+  .sparkle-position-top-lg\@lg {
+    top: 1.5rem;
+  }
+
+  .sparkle-position-lft-sm\@lg {
+    left: 0.5rem;
+  }
+
+  .sparkle-position-lft-md\@lg {
+    left: 1rem;
+  }
+
+  .sparkle-position-lft-lg\@lg {
+    left: 1.5rem;
+  }
+
+  .sparkle-position-rgt-sm\@lg {
+    right: 0.5rem;
+  }
+
+  .sparkle-position-rgt-md\@lg {
+    right: 1rem;
+  }
+
+  .sparkle-position-rgt-lg\@lg {
+    right: 1.5rem;
+  }
+
+  .sparkle-position-all-sm\@lg {
+    top: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .sparkle-position-all-md\@lg {
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  .sparkle-position-all-lg\@lg {
+    top: 1.5rem;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .sparkle-position-vrt-sm\@lg {
+    top: 0.5rem;
+    bottom: 0.5rem;
+  }
+
+  .sparkle-position-vrt-md\@lg {
+    top: 1rem;
+    bottom: 1rem;
+  }
+
+  .sparkle-position-vrt-lg\@lg {
+    top: 1.5rem;
+    bottom: 1.5rem;
+  }
+
+  .sparkle-position-hrz-sm\@lg {
+    right: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .sparkle-position-hrz-md\@lg {
+    right: 1rem;
+    left: 1rem;
+  }
+
+  .sparkle-position-hrz-lg\@lg {
+    right: 1.5rem;
+    left: 1.5rem;
+  }
+}
+@media print {
+  .sparkle-position-btm-sm\@print {
+    bottom: 0.5rem;
+  }
+
+  .sparkle-position-btm-md\@print {
+    bottom: 1rem;
+  }
+
+  .sparkle-position-btm-lg\@print {
+    bottom: 1.5rem;
+  }
+
+  .sparkle-position-top-sm\@print {
+    top: 0.5rem;
+  }
+
+  .sparkle-position-top-md\@print {
+    top: 1rem;
+  }
+
+  .sparkle-position-top-lg\@print {
+    top: 1.5rem;
+  }
+
+  .sparkle-position-lft-sm\@print {
+    left: 0.5rem;
+  }
+
+  .sparkle-position-lft-md\@print {
+    left: 1rem;
+  }
+
+  .sparkle-position-lft-lg\@print {
+    left: 1.5rem;
+  }
+
+  .sparkle-position-rgt-sm\@print {
+    right: 0.5rem;
+  }
+
+  .sparkle-position-rgt-md\@print {
+    right: 1rem;
+  }
+
+  .sparkle-position-rgt-lg\@print {
+    right: 1.5rem;
+  }
+
+  .sparkle-position-all-sm\@print {
+    top: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .sparkle-position-all-md\@print {
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  .sparkle-position-all-lg\@print {
+    top: 1.5rem;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .sparkle-position-vrt-sm\@print {
+    top: 0.5rem;
+    bottom: 0.5rem;
+  }
+
+  .sparkle-position-vrt-md\@print {
+    top: 1rem;
+    bottom: 1rem;
+  }
+
+  .sparkle-position-vrt-lg\@print {
+    top: 1.5rem;
+    bottom: 1.5rem;
+  }
+
+  .sparkle-position-hrz-sm\@print {
+    right: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .sparkle-position-hrz-md\@print {
+    right: 1rem;
+    left: 1rem;
+  }
+
+  .sparkle-position-hrz-lg\@print {
+    right: 1.5rem;
+    left: 1.5rem;
+  }
+}
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+title: Font System
+section: Systems
+---
+
+Below are the font system functions and utilities.
+
+### Font Functions
+
+The font functions allow you to load the determined value by calling the function, e.g. `size()`, with the key from the corresponding map.
+
+```css
+.my-class {
+  font-family: family(<key>);
+  font-size: size(<key>);
+  font-weight: weight(<key>);
+}
+```
+*/
+/* ---
+section: Systems
+---
+#### Font Family
+
+<table>
+<thead>
+<th>Class</th>
+<th>Function</th>
+<th>Name</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-family-sans</code></td>
+  <td><code>family(sans)</code></td>
+  <td><code>sans: Helvetica Nueue, Helvetica, sans-serif</td>
+</tr>
+*/
+.sparkle-family-sans {
+  font-family: "Helvetica Nueue", Helvetica, sans-serif;
+}
+@media (min-width: 40rem) {
+  .sparkle-family-sans\@sm {
+    font-family: "Helvetica Nueue", Helvetica, sans-serif;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-family-sans\@md {
+    font-family: "Helvetica Nueue", Helvetica, sans-serif;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-family-sans\@lg {
+    font-family: "Helvetica Nueue", Helvetica, sans-serif;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-family-serif</code></td>
+  <td><code>family(serif)</code></td>
+  <td><code>serif: Georgia, Times New Roman, serif</td>
+</tr>
+*/
+.sparkle-family-serif {
+  font-family: Georgia, "Times New Roman", serif;
+}
+@media (min-width: 40rem) {
+  .sparkle-family-serif\@sm {
+    font-family: Georgia, "Times New Roman", serif;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-family-serif\@md {
+    font-family: Georgia, "Times New Roman", serif;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-family-serif\@lg {
+    font-family: Georgia, "Times New Roman", serif;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-family-mono</code></td>
+  <td><code>family(mono)</code></td>
+  <td><code>mono: Monaco, monospace</td>
+</tr>
+*/
+.sparkle-family-mono {
+  font-family: Monaco, monospace;
+}
+@media (min-width: 40rem) {
+  .sparkle-family-mono\@sm {
+    font-family: Monaco, monospace;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-family-mono\@md {
+    font-family: Monaco, monospace;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-family-mono\@lg {
+    font-family: Monaco, monospace;
+  }
+}
+
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Systems
+---
+#### Font Size
+
+<table>
+<thead>
+<th>Class</th>
+<th>Function</th>
+<th>Size</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-size-sm</code></td>
+<td><code>size(sm)</code></td>
+<td><code>sm: 0.875rem</td>
+</tr>
+*/
+.sparkle-size-sm {
+  font-size: 0.875rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-size-sm\@sm {
+    font-size: 0.875rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-size-sm\@md {
+    font-size: 0.875rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-size-sm\@lg {
+    font-size: 0.875rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-size-md</code></td>
+<td><code>size(md)</code></td>
+<td><code>md: 1.125rem</td>
+</tr>
+*/
+.sparkle-size-md {
+  font-size: 1.125rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-size-md\@sm {
+    font-size: 1.125rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-size-md\@md {
+    font-size: 1.125rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-size-md\@lg {
+    font-size: 1.125rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-size-lg</code></td>
+<td><code>size(lg)</code></td>
+<td><code>lg: 1.5rem</td>
+</tr>
+*/
+.sparkle-size-lg {
+  font-size: 1.5rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-size-lg\@sm {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-size-lg\@md {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-size-lg\@lg {
+    font-size: 1.5rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Systems
+---
+#### Font Weight
+
+<table>
+<thead>
+<th>Class</th>
+<th>Function</th>
+<th>Weight</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-weight-light</code></td>
+<td><code>weight(light)</code></td>
+<td><code>light: 200</td>
+</tr>
+*/
+.sparkle-weight-light {
+  font-weight: 200;
+}
+@media (min-width: 40rem) {
+  .sparkle-weight-light\@sm {
+    font-weight: 200;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-weight-light\@md {
+    font-weight: 200;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-weight-light\@lg {
+    font-weight: 200;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-weight-normal</code></td>
+<td><code>weight(normal)</code></td>
+<td><code>normal: 400</td>
+</tr>
+*/
+.sparkle-weight-normal {
+  font-weight: 400;
+}
+@media (min-width: 40rem) {
+  .sparkle-weight-normal\@sm {
+    font-weight: 400;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-weight-normal\@md {
+    font-weight: 400;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-weight-normal\@lg {
+    font-weight: 400;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-weight-bold</code></td>
+<td><code>weight(bold)</code></td>
+<td><code>bold: 700</td>
+</tr>
+*/
+.sparkle-weight-bold {
+  font-weight: 700;
+}
+@media (min-width: 40rem) {
+  .sparkle-weight-bold\@sm {
+    font-weight: 700;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-weight-bold\@md {
+    font-weight: 700;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-weight-bold\@lg {
+    font-weight: 700;
+  }
+}
+
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+title: Grid System
+section: Systems
+---
+
+The grid system we are using for page layouts is based on a 12 column grid. Grid classes can be nested if needed for more complex layouts.
+
+Most grid layouts are going to use either a two, three, or four column layout. The basic grid system includes all of the classes needed to create a simple layout with class names that are spelled out and easy to read.
+
+Each `sparkle-grid-cell-` class can have a responsive suffix to adjust the grid column span a different screen sizes. The 12 column count of `sparkle-grid-block` remain persistent at all screen sizes.
+
+### Grid Block Class
+
+To define a grid, an element must have the `sparkle-grid-block` class. This will apply a `display: grid` along with fallback styles for browsers that do not support CSS Grid.
+
+*/
+.sparkle-grid-block {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sparkle-grid-block::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+@supports (display: grid) {
+  .sparkle-grid-block {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .sparkle-grid-block::after {
+    content: none;
+    display: none;
+  }
+}
+
+/* ---
+section: Systems
+---
+### Grid Cell Classes
+
+To define a grid, an element must have the `sparkle-grid-block` class. This will apply a `display: grid` along with fallback styles for browsers that do not support CSS Grid.
+*/
+.sparkle-grid-cell-1-12 {
+  /* ---
+  section: Systems
+  name: grid-demo-1
+  ---
+  <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+  </div>
+  */
+  float: left;
+  width: 8.3333333333%;
+}
+@supports (display: grid) {
+  .sparkle-grid-cell-1-12 {
+    width: auto;
+    grid-column: span 1;
+  }
+}
+
+.sparkle-grid-cell-2-12 {
+  /* ---
+  section: Systems
+  name: grid-demo-2
+  ---
+  <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+  </div>
+  */
+  float: left;
+  width: 16.6666666667%;
+}
+@supports (display: grid) {
+  .sparkle-grid-cell-2-12 {
+    width: auto;
+    grid-column: span 2;
+  }
+}
+
+.sparkle-grid-cell-quarter, .sparkle-grid-cell-3-12 {
+  /* ---
+  section: Systems
+  name: grid-demo-3
+  ---
+  <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+  </div>
+  */
+  float: left;
+  width: 25%;
+}
+@supports (display: grid) {
+  .sparkle-grid-cell-quarter, .sparkle-grid-cell-3-12 {
+    width: auto;
+    grid-column: span 3;
+  }
+}
+
+.sparkle-grid-cell-third, .sparkle-grid-cell-4-12 {
+  /* ---
+  section: Systems
+  name: grid-demo-4
+  ---
+  <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+  </div>
+  */
+  float: left;
+  width: 33.3333333333%;
+}
+@supports (display: grid) {
+  .sparkle-grid-cell-third, .sparkle-grid-cell-4-12 {
+    width: auto;
+    grid-column: span 4;
+  }
+}
+
+.sparkle-grid-cell-5-12 {
+  /* ---
+  section: Systems
+  name: grid-demo-5
+  ---
+  <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+  </div>
+  */
+  float: left;
+  width: 41.6666666667%;
+}
+@supports (display: grid) {
+  .sparkle-grid-cell-5-12 {
+    width: auto;
+    grid-column: span 5;
+  }
+}
+
+.sparkle-grid-cell-half, .sparkle-grid-cell-6-12 {
+  /* ---
+  section: Systems
+  name: grid-demo-6
+  ---
+  <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-6-12"><span>6-12</span></div><div class="sparkle-grid-cell-6-12"><span>6-12</span></div>
+  </div>
+  */
+  float: left;
+  width: 50%;
+}
+@supports (display: grid) {
+  .sparkle-grid-cell-half, .sparkle-grid-cell-6-12 {
+    width: auto;
+    grid-column: span 6;
+  }
+}
+
+.sparkle-grid-cell-7-12 {
+  /* ---
+  section: Systems
+  name: grid-demo-7
+  ---
+  <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-7-12"><span>7-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div>
+  </div>
+  */
+  float: left;
+  width: 58.3333333333%;
+}
+@supports (display: grid) {
+  .sparkle-grid-cell-7-12 {
+    width: auto;
+    grid-column: span 7;
+  }
+}
+
+.sparkle-grid-cell-two-third, .sparkle-grid-cell-two-thirds, .sparkle-grid-cell-8-12 {
+  /* ---
+  section: Systems
+  name: grid-demo-8
+  ---
+  <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-8-12"><span>8-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+  </div>
+  */
+  float: left;
+  width: 66.6666666667%;
+}
+@supports (display: grid) {
+  .sparkle-grid-cell-two-third, .sparkle-grid-cell-two-thirds, .sparkle-grid-cell-8-12 {
+    width: auto;
+    grid-column: span 8;
+  }
+}
+
+.sparkle-grid-cell-three-quarter, .sparkle-grid-cell-three-quarters, .sparkle-grid-cell-9-12 {
+  /* ---
+  section: Systems
+  name: grid-demo-9
+  ---
+  <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-9-12"><span>9-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+  </div>
+  */
+  float: left;
+  width: 75%;
+}
+@supports (display: grid) {
+  .sparkle-grid-cell-three-quarter, .sparkle-grid-cell-three-quarters, .sparkle-grid-cell-9-12 {
+    width: auto;
+    grid-column: span 9;
+  }
+}
+
+.sparkle-grid-cell-10-12 {
+  /* ---
+  section: Systems
+  name: grid-demo-10
+  ---
+  <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-10-12"><span>10-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+  </div>
+  */
+  float: left;
+  width: 83.3333333333%;
+}
+@supports (display: grid) {
+  .sparkle-grid-cell-10-12 {
+    width: auto;
+    grid-column: span 10;
+  }
+}
+
+.sparkle-grid-cell-11-12 {
+  /* ---
+  section: Systems
+  name: grid-demo-11
+  ---
+  <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-11-12"><span>11-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+  </div>
+  */
+  float: left;
+  width: 91.6666666667%;
+}
+@supports (display: grid) {
+  .sparkle-grid-cell-11-12 {
+    width: auto;
+    grid-column: span 11;
+  }
+}
+
+.sparkle-grid-cell-full, .sparkle-grid-cell-12-12 {
+  /* ---
+  section: Systems
+  name: grid-demo-12
+  ---
+  <div class="sparkle-grid-demo sparkle-grid-block">
+    <div class="sparkle-grid-cell-12-12"><span>12-12</span></div>
+  </div>
+  */
+  float: left;
+  width: 100%;
+}
+@supports (display: grid) {
+  .sparkle-grid-cell-full, .sparkle-grid-cell-12-12 {
+    width: auto;
+    grid-column: span 12;
+  }
+}
+
+@media (min-width: 40rem) {
+  .sparkle-grid-cell-1-12\@sm {
+    /* ---
+    section: Systems
+    name: grid-demo-1
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 8.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-1-12\@sm {
+      width: auto;
+      grid-column: span 1;
+    }
+  }
+
+  .sparkle-grid-cell-2-12\@sm {
+    /* ---
+    section: Systems
+    name: grid-demo-2
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 16.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-2-12\@sm {
+      width: auto;
+      grid-column: span 2;
+    }
+  }
+
+  .sparkle-grid-cell-quarter\@sm, .sparkle-grid-cell-3-12\@sm {
+    /* ---
+    section: Systems
+    name: grid-demo-3
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 25%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-quarter\@sm, .sparkle-grid-cell-3-12\@sm {
+      width: auto;
+      grid-column: span 3;
+    }
+  }
+
+  .sparkle-grid-cell-third\@sm, .sparkle-grid-cell-4-12\@sm {
+    /* ---
+    section: Systems
+    name: grid-demo-4
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 33.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-third\@sm, .sparkle-grid-cell-4-12\@sm {
+      width: auto;
+      grid-column: span 4;
+    }
+  }
+
+  .sparkle-grid-cell-5-12\@sm {
+    /* ---
+    section: Systems
+    name: grid-demo-5
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 41.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-5-12\@sm {
+      width: auto;
+      grid-column: span 5;
+    }
+  }
+
+  .sparkle-grid-cell-half\@sm, .sparkle-grid-cell-6-12\@sm {
+    /* ---
+    section: Systems
+    name: grid-demo-6
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-6-12"><span>6-12</span></div><div class="sparkle-grid-cell-6-12"><span>6-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 50%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-half\@sm, .sparkle-grid-cell-6-12\@sm {
+      width: auto;
+      grid-column: span 6;
+    }
+  }
+
+  .sparkle-grid-cell-7-12\@sm {
+    /* ---
+    section: Systems
+    name: grid-demo-7
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-7-12"><span>7-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 58.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-7-12\@sm {
+      width: auto;
+      grid-column: span 7;
+    }
+  }
+
+  .sparkle-grid-cell-two-third\@sm, .sparkle-grid-cell-two-thirds\@sm, .sparkle-grid-cell-8-12\@sm {
+    /* ---
+    section: Systems
+    name: grid-demo-8
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-8-12"><span>8-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 66.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-two-third\@sm, .sparkle-grid-cell-two-thirds\@sm, .sparkle-grid-cell-8-12\@sm {
+      width: auto;
+      grid-column: span 8;
+    }
+  }
+
+  .sparkle-grid-cell-three-quarter\@sm, .sparkle-grid-cell-three-quarters\@sm, .sparkle-grid-cell-9-12\@sm {
+    /* ---
+    section: Systems
+    name: grid-demo-9
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-9-12"><span>9-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 75%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-three-quarter\@sm, .sparkle-grid-cell-three-quarters\@sm, .sparkle-grid-cell-9-12\@sm {
+      width: auto;
+      grid-column: span 9;
+    }
+  }
+
+  .sparkle-grid-cell-10-12\@sm {
+    /* ---
+    section: Systems
+    name: grid-demo-10
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-10-12"><span>10-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 83.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-10-12\@sm {
+      width: auto;
+      grid-column: span 10;
+    }
+  }
+
+  .sparkle-grid-cell-11-12\@sm {
+    /* ---
+    section: Systems
+    name: grid-demo-11
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-11-12"><span>11-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 91.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-11-12\@sm {
+      width: auto;
+      grid-column: span 11;
+    }
+  }
+
+  .sparkle-grid-cell-full\@sm, .sparkle-grid-cell-12-12\@sm {
+    /* ---
+    section: Systems
+    name: grid-demo-12
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-12-12"><span>12-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 100%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-full\@sm, .sparkle-grid-cell-12-12\@sm {
+      width: auto;
+      grid-column: span 12;
+    }
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-grid-cell-1-12\@md {
+    /* ---
+    section: Systems
+    name: grid-demo-1
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 8.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-1-12\@md {
+      width: auto;
+      grid-column: span 1;
+    }
+  }
+
+  .sparkle-grid-cell-2-12\@md {
+    /* ---
+    section: Systems
+    name: grid-demo-2
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 16.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-2-12\@md {
+      width: auto;
+      grid-column: span 2;
+    }
+  }
+
+  .sparkle-grid-cell-quarter\@md, .sparkle-grid-cell-3-12\@md {
+    /* ---
+    section: Systems
+    name: grid-demo-3
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 25%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-quarter\@md, .sparkle-grid-cell-3-12\@md {
+      width: auto;
+      grid-column: span 3;
+    }
+  }
+
+  .sparkle-grid-cell-third\@md, .sparkle-grid-cell-4-12\@md {
+    /* ---
+    section: Systems
+    name: grid-demo-4
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 33.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-third\@md, .sparkle-grid-cell-4-12\@md {
+      width: auto;
+      grid-column: span 4;
+    }
+  }
+
+  .sparkle-grid-cell-5-12\@md {
+    /* ---
+    section: Systems
+    name: grid-demo-5
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 41.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-5-12\@md {
+      width: auto;
+      grid-column: span 5;
+    }
+  }
+
+  .sparkle-grid-cell-half\@md, .sparkle-grid-cell-6-12\@md {
+    /* ---
+    section: Systems
+    name: grid-demo-6
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-6-12"><span>6-12</span></div><div class="sparkle-grid-cell-6-12"><span>6-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 50%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-half\@md, .sparkle-grid-cell-6-12\@md {
+      width: auto;
+      grid-column: span 6;
+    }
+  }
+
+  .sparkle-grid-cell-7-12\@md {
+    /* ---
+    section: Systems
+    name: grid-demo-7
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-7-12"><span>7-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 58.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-7-12\@md {
+      width: auto;
+      grid-column: span 7;
+    }
+  }
+
+  .sparkle-grid-cell-two-third\@md, .sparkle-grid-cell-two-thirds\@md, .sparkle-grid-cell-8-12\@md {
+    /* ---
+    section: Systems
+    name: grid-demo-8
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-8-12"><span>8-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 66.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-two-third\@md, .sparkle-grid-cell-two-thirds\@md, .sparkle-grid-cell-8-12\@md {
+      width: auto;
+      grid-column: span 8;
+    }
+  }
+
+  .sparkle-grid-cell-three-quarter\@md, .sparkle-grid-cell-three-quarters\@md, .sparkle-grid-cell-9-12\@md {
+    /* ---
+    section: Systems
+    name: grid-demo-9
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-9-12"><span>9-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 75%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-three-quarter\@md, .sparkle-grid-cell-three-quarters\@md, .sparkle-grid-cell-9-12\@md {
+      width: auto;
+      grid-column: span 9;
+    }
+  }
+
+  .sparkle-grid-cell-10-12\@md {
+    /* ---
+    section: Systems
+    name: grid-demo-10
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-10-12"><span>10-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 83.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-10-12\@md {
+      width: auto;
+      grid-column: span 10;
+    }
+  }
+
+  .sparkle-grid-cell-11-12\@md {
+    /* ---
+    section: Systems
+    name: grid-demo-11
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-11-12"><span>11-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 91.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-11-12\@md {
+      width: auto;
+      grid-column: span 11;
+    }
+  }
+
+  .sparkle-grid-cell-full\@md, .sparkle-grid-cell-12-12\@md {
+    /* ---
+    section: Systems
+    name: grid-demo-12
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-12-12"><span>12-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 100%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-full\@md, .sparkle-grid-cell-12-12\@md {
+      width: auto;
+      grid-column: span 12;
+    }
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-grid-cell-1-12\@lg {
+    /* ---
+    section: Systems
+    name: grid-demo-1
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 8.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-1-12\@lg {
+      width: auto;
+      grid-column: span 1;
+    }
+  }
+
+  .sparkle-grid-cell-2-12\@lg {
+    /* ---
+    section: Systems
+    name: grid-demo-2
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 16.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-2-12\@lg {
+      width: auto;
+      grid-column: span 2;
+    }
+  }
+
+  .sparkle-grid-cell-quarter\@lg, .sparkle-grid-cell-3-12\@lg {
+    /* ---
+    section: Systems
+    name: grid-demo-3
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 25%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-quarter\@lg, .sparkle-grid-cell-3-12\@lg {
+      width: auto;
+      grid-column: span 3;
+    }
+  }
+
+  .sparkle-grid-cell-third\@lg, .sparkle-grid-cell-4-12\@lg {
+    /* ---
+    section: Systems
+    name: grid-demo-4
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 33.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-third\@lg, .sparkle-grid-cell-4-12\@lg {
+      width: auto;
+      grid-column: span 4;
+    }
+  }
+
+  .sparkle-grid-cell-5-12\@lg {
+    /* ---
+    section: Systems
+    name: grid-demo-5
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 41.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-5-12\@lg {
+      width: auto;
+      grid-column: span 5;
+    }
+  }
+
+  .sparkle-grid-cell-half\@lg, .sparkle-grid-cell-6-12\@lg {
+    /* ---
+    section: Systems
+    name: grid-demo-6
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-6-12"><span>6-12</span></div><div class="sparkle-grid-cell-6-12"><span>6-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 50%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-half\@lg, .sparkle-grid-cell-6-12\@lg {
+      width: auto;
+      grid-column: span 6;
+    }
+  }
+
+  .sparkle-grid-cell-7-12\@lg {
+    /* ---
+    section: Systems
+    name: grid-demo-7
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-7-12"><span>7-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 58.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-7-12\@lg {
+      width: auto;
+      grid-column: span 7;
+    }
+  }
+
+  .sparkle-grid-cell-two-third\@lg, .sparkle-grid-cell-two-thirds\@lg, .sparkle-grid-cell-8-12\@lg {
+    /* ---
+    section: Systems
+    name: grid-demo-8
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-8-12"><span>8-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 66.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-two-third\@lg, .sparkle-grid-cell-two-thirds\@lg, .sparkle-grid-cell-8-12\@lg {
+      width: auto;
+      grid-column: span 8;
+    }
+  }
+
+  .sparkle-grid-cell-three-quarter\@lg, .sparkle-grid-cell-three-quarters\@lg, .sparkle-grid-cell-9-12\@lg {
+    /* ---
+    section: Systems
+    name: grid-demo-9
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-9-12"><span>9-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 75%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-three-quarter\@lg, .sparkle-grid-cell-three-quarters\@lg, .sparkle-grid-cell-9-12\@lg {
+      width: auto;
+      grid-column: span 9;
+    }
+  }
+
+  .sparkle-grid-cell-10-12\@lg {
+    /* ---
+    section: Systems
+    name: grid-demo-10
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-10-12"><span>10-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 83.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-10-12\@lg {
+      width: auto;
+      grid-column: span 10;
+    }
+  }
+
+  .sparkle-grid-cell-11-12\@lg {
+    /* ---
+    section: Systems
+    name: grid-demo-11
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-11-12"><span>11-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 91.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-11-12\@lg {
+      width: auto;
+      grid-column: span 11;
+    }
+  }
+
+  .sparkle-grid-cell-full\@lg, .sparkle-grid-cell-12-12\@lg {
+    /* ---
+    section: Systems
+    name: grid-demo-12
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-12-12"><span>12-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 100%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-full\@lg, .sparkle-grid-cell-12-12\@lg {
+      width: auto;
+      grid-column: span 12;
+    }
+  }
+}
+@media print {
+  .sparkle-grid-cell-1-12\@print {
+    /* ---
+    section: Systems
+    name: grid-demo-1
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 8.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-1-12\@print {
+      width: auto;
+      grid-column: span 1;
+    }
+  }
+
+  .sparkle-grid-cell-2-12\@print {
+    /* ---
+    section: Systems
+    name: grid-demo-2
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 16.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-2-12\@print {
+      width: auto;
+      grid-column: span 2;
+    }
+  }
+
+  .sparkle-grid-cell-quarter\@print, .sparkle-grid-cell-3-12\@print {
+    /* ---
+    section: Systems
+    name: grid-demo-3
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 25%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-quarter\@print, .sparkle-grid-cell-3-12\@print {
+      width: auto;
+      grid-column: span 3;
+    }
+  }
+
+  .sparkle-grid-cell-third\@print, .sparkle-grid-cell-4-12\@print {
+    /* ---
+    section: Systems
+    name: grid-demo-4
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 33.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-third\@print, .sparkle-grid-cell-4-12\@print {
+      width: auto;
+      grid-column: span 4;
+    }
+  }
+
+  .sparkle-grid-cell-5-12\@print {
+    /* ---
+    section: Systems
+    name: grid-demo-5
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 41.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-5-12\@print {
+      width: auto;
+      grid-column: span 5;
+    }
+  }
+
+  .sparkle-grid-cell-half\@print, .sparkle-grid-cell-6-12\@print {
+    /* ---
+    section: Systems
+    name: grid-demo-6
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-6-12"><span>6-12</span></div><div class="sparkle-grid-cell-6-12"><span>6-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 50%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-half\@print, .sparkle-grid-cell-6-12\@print {
+      width: auto;
+      grid-column: span 6;
+    }
+  }
+
+  .sparkle-grid-cell-7-12\@print {
+    /* ---
+    section: Systems
+    name: grid-demo-7
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-7-12"><span>7-12</span></div><div class="sparkle-grid-cell-5-12"><span>5-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 58.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-7-12\@print {
+      width: auto;
+      grid-column: span 7;
+    }
+  }
+
+  .sparkle-grid-cell-two-third\@print, .sparkle-grid-cell-two-thirds\@print, .sparkle-grid-cell-8-12\@print {
+    /* ---
+    section: Systems
+    name: grid-demo-8
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-8-12"><span>8-12</span></div><div class="sparkle-grid-cell-4-12"><span>4-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 66.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-two-third\@print, .sparkle-grid-cell-two-thirds\@print, .sparkle-grid-cell-8-12\@print {
+      width: auto;
+      grid-column: span 8;
+    }
+  }
+
+  .sparkle-grid-cell-three-quarter\@print, .sparkle-grid-cell-three-quarters\@print, .sparkle-grid-cell-9-12\@print {
+    /* ---
+    section: Systems
+    name: grid-demo-9
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-9-12"><span>9-12</span></div><div class="sparkle-grid-cell-3-12"><span>3-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 75%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-three-quarter\@print, .sparkle-grid-cell-three-quarters\@print, .sparkle-grid-cell-9-12\@print {
+      width: auto;
+      grid-column: span 9;
+    }
+  }
+
+  .sparkle-grid-cell-10-12\@print {
+    /* ---
+    section: Systems
+    name: grid-demo-10
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-10-12"><span>10-12</span></div><div class="sparkle-grid-cell-2-12"><span>2-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 83.3333333333%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-10-12\@print {
+      width: auto;
+      grid-column: span 10;
+    }
+  }
+
+  .sparkle-grid-cell-11-12\@print {
+    /* ---
+    section: Systems
+    name: grid-demo-11
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-11-12"><span>11-12</span></div><div class="sparkle-grid-cell-1-12"><span>1-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 91.6666666667%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-11-12\@print {
+      width: auto;
+      grid-column: span 11;
+    }
+  }
+
+  .sparkle-grid-cell-full\@print, .sparkle-grid-cell-12-12\@print {
+    /* ---
+    section: Systems
+    name: grid-demo-12
+    ---
+    <div class="sparkle-grid-demo sparkle-grid-block">
+      <div class="sparkle-grid-cell-12-12"><span>12-12</span></div>
+    </div>
+    */
+    float: left;
+    width: 100%;
+  }
+  @supports (display: grid) {
+    .sparkle-grid-cell-full\@print, .sparkle-grid-cell-12-12\@print {
+      width: auto;
+      grid-column: span 12;
+    }
+  }
+}
+/* ---
+section: Systems
+---
+<table>
+<thead>
+<tr>
+<th>Column Span</th>
+<th>Span Class(es)</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>1</td>
+<td>`.sparkle-grid-cell-1-12`</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>2</td>
+<td>`.sparkle-grid-cell-2-12`</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>3</td>
+<td>`.sparkle-grid-cell-quarter, .sparkle-grid-cell-3-12`</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>4</td>
+<td>`.sparkle-grid-cell-third, .sparkle-grid-cell-4-12`</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>5</td>
+<td>`.sparkle-grid-cell-5-12`</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>6</td>
+<td>`.sparkle-grid-cell-half, .sparkle-grid-cell-6-12`</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>7</td>
+<td>`.sparkle-grid-cell-7-12`</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>8</td>
+<td>`.sparkle-grid-cell-two-third, .sparkle-grid-cell-two-thirds, .sparkle-grid-cell-8-12`</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>9</td>
+<td>`.sparkle-grid-cell-three-quarter, .sparkle-grid-cell-three-quarters, .sparkle-grid-cell-9-12`</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>10</td>
+<td>`.sparkle-grid-cell-10-12`</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>11</td>
+<td>`.sparkle-grid-cell-11-12`</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td>12</td>
+<td>`.sparkle-grid-cell-full, .sparkle-grid-cell-12-12`</td>
+</tr>
+*/
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Systems
+---
+
+### Grid Gap Classes
+
+<table>
+<thead>
+  <th>Gap Width</th>
+  <th>Class Name</th>
+</thead>
+<tbody>
+<tr>
+  <th colspan="2">Row and Column Gap</th>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+  <td>0.5rem</td>
+  <td>`sparkle-gap-sm`</td>
+</tr>
+*/
+.sparkle-gap-sm {
+  grid-gap: 0.5rem;
+  gap: 0.5rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-gap-sm\@sm {
+    grid-gap: 0.5rem;
+    gap: 0.5rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-gap-sm\@md {
+    grid-gap: 0.5rem;
+    gap: 0.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-gap-sm\@lg {
+    grid-gap: 0.5rem;
+    gap: 0.5rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>1rem</td>
+  <td>`sparkle-gap-md`</td>
+</tr>
+*/
+.sparkle-gap-md {
+  grid-gap: 1rem;
+  gap: 1rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-gap-md\@sm {
+    grid-gap: 1rem;
+    gap: 1rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-gap-md\@md {
+    grid-gap: 1rem;
+    gap: 1rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-gap-md\@lg {
+    grid-gap: 1rem;
+    gap: 1rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>1.5rem</td>
+  <td>`sparkle-gap-lg`</td>
+</tr>
+*/
+.sparkle-gap-lg {
+  grid-gap: 1.5rem;
+  gap: 1.5rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-gap-lg\@sm {
+    grid-gap: 1.5rem;
+    gap: 1.5rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-gap-lg\@md {
+    grid-gap: 1.5rem;
+    gap: 1.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-gap-lg\@lg {
+    grid-gap: 1.5rem;
+    gap: 1.5rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <th colspan="2">Row Gap</th>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+  <td>0.5rem</td>
+  <td>`sparkle-gap-row-sm`</td>
+</tr>
+*/
+.sparkle-gap-row-sm {
+  grid-row-gap: 0.5rem;
+  row-gap: 0.5rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-gap-row-sm\@sm {
+    grid-row-gap: 0.5rem;
+    row-gap: 0.5rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-gap-row-sm\@md {
+    grid-row-gap: 0.5rem;
+    row-gap: 0.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-gap-row-sm\@lg {
+    grid-row-gap: 0.5rem;
+    row-gap: 0.5rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>1rem</td>
+  <td>`sparkle-gap-row-md`</td>
+</tr>
+*/
+.sparkle-gap-row-md {
+  grid-row-gap: 1rem;
+  row-gap: 1rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-gap-row-md\@sm {
+    grid-row-gap: 1rem;
+    row-gap: 1rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-gap-row-md\@md {
+    grid-row-gap: 1rem;
+    row-gap: 1rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-gap-row-md\@lg {
+    grid-row-gap: 1rem;
+    row-gap: 1rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>1.5rem</td>
+  <td>`sparkle-gap-row-lg`</td>
+</tr>
+*/
+.sparkle-gap-row-lg {
+  grid-row-gap: 1.5rem;
+  row-gap: 1.5rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-gap-row-lg\@sm {
+    grid-row-gap: 1.5rem;
+    row-gap: 1.5rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-gap-row-lg\@md {
+    grid-row-gap: 1.5rem;
+    row-gap: 1.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-gap-row-lg\@lg {
+    grid-row-gap: 1.5rem;
+    row-gap: 1.5rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <th colspan="2">Column Gap</th>
+</tr>
+*/
+/* ---
+section: Systems
+---
+<tr>
+  <td>0.5rem</td>
+  <td>`sparkle-gap-column-sm`</td>
+</tr>
+*/
+.sparkle-gap-column-sm {
+  grid-column-gap: 0.5rem;
+  column-gap: 0.5rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-gap-column-sm\@sm {
+    grid-column-gap: 0.5rem;
+    column-gap: 0.5rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-gap-column-sm\@md {
+    grid-column-gap: 0.5rem;
+    column-gap: 0.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-gap-column-sm\@lg {
+    grid-column-gap: 0.5rem;
+    column-gap: 0.5rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>1rem</td>
+  <td>`sparkle-gap-column-md`</td>
+</tr>
+*/
+.sparkle-gap-column-md {
+  grid-column-gap: 1rem;
+  column-gap: 1rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-gap-column-md\@sm {
+    grid-column-gap: 1rem;
+    column-gap: 1rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-gap-column-md\@md {
+    grid-column-gap: 1rem;
+    column-gap: 1rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-gap-column-md\@lg {
+    grid-column-gap: 1rem;
+    column-gap: 1rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>1.5rem</td>
+  <td>`sparkle-gap-column-lg`</td>
+</tr>
+*/
+.sparkle-gap-column-lg {
+  grid-column-gap: 1.5rem;
+  column-gap: 1.5rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-gap-column-lg\@sm {
+    grid-column-gap: 1.5rem;
+    column-gap: 1.5rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-gap-column-lg\@md {
+    grid-column-gap: 1.5rem;
+    column-gap: 1.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-gap-column-lg\@lg {
+    grid-column-gap: 1.5rem;
+    column-gap: 1.5rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+title: Border System
+section: Systems
+---
+
+### Border Position and Width 
+*/
+/* ---
+section: Systems
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Spacing Size</th>
+<th>Sides</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-btm-hairline</code></td>
+<td><code>1px</td>
+<td>bottom</td>
+</tr>
+*/
+.sparkle-border-btm-hairline {
+  border-bottom: 1px;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-btm-sm</code></td>
+<td><code>0.125rem</td>
+<td>bottom</td>
+</tr>
+*/
+.sparkle-border-btm-sm {
+  border-bottom: 0.125rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-btm-lg</code></td>
+<td><code>0.75rem</td>
+<td>bottom</td>
+</tr>
+*/
+.sparkle-border-btm-lg {
+  border-bottom: 0.75rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-top-hairline</code></td>
+<td><code>1px</td>
+<td>top</td>
+</tr>
+*/
+.sparkle-border-top-hairline {
+  border-top: 1px;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-top-sm</code></td>
+<td><code>0.125rem</td>
+<td>top</td>
+</tr>
+*/
+.sparkle-border-top-sm {
+  border-top: 0.125rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-top-lg</code></td>
+<td><code>0.75rem</td>
+<td>top</td>
+</tr>
+*/
+.sparkle-border-top-lg {
+  border-top: 0.75rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-lft-hairline</code></td>
+<td><code>1px</td>
+<td>left</td>
+</tr>
+*/
+.sparkle-border-lft-hairline {
+  border-left: 1px;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-lft-sm</code></td>
+<td><code>0.125rem</td>
+<td>left</td>
+</tr>
+*/
+.sparkle-border-lft-sm {
+  border-left: 0.125rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-lft-lg</code></td>
+<td><code>0.75rem</td>
+<td>left</td>
+</tr>
+*/
+.sparkle-border-lft-lg {
+  border-left: 0.75rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-rgt-hairline</code></td>
+<td><code>1px</td>
+<td>right</td>
+</tr>
+*/
+.sparkle-border-rgt-hairline {
+  border-right: 1px;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-rgt-sm</code></td>
+<td><code>0.125rem</td>
+<td>right</td>
+</tr>
+*/
+.sparkle-border-rgt-sm {
+  border-right: 0.125rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-rgt-lg</code></td>
+<td><code>0.75rem</td>
+<td>right</td>
+</tr>
+*/
+.sparkle-border-rgt-lg {
+  border-right: 0.75rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-all-hairline</code></td>
+<td><code>1px</td>
+<td>all</td>
+</tr>
+*/
+.sparkle-border-all-hairline {
+  border: 1px;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-all-sm</code></td>
+<td><code>0.125rem</td>
+<td>all</td>
+</tr>
+*/
+.sparkle-border-all-sm {
+  border: 0.125rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-all-lg</code></td>
+<td><code>0.75rem</td>
+<td>all</td>
+</tr>
+*/
+.sparkle-border-all-lg {
+  border: 0.75rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-vrt-hairline</code></td>
+<td><code>1px</td>
+<td>y-axis</td>
+</tr>
+*/
+.sparkle-border-vrt-hairline {
+  border-right: 1px;
+  border-left: 1px;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-vrt-sm</code></td>
+<td><code>0.125rem</td>
+<td>y-axis</td>
+</tr>
+*/
+.sparkle-border-vrt-sm {
+  border-right: 0.125rem;
+  border-left: 0.125rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-vrt-lg</code></td>
+<td><code>0.75rem</td>
+<td>y-axis</td>
+</tr>
+*/
+.sparkle-border-vrt-lg {
+  border-right: 0.75rem;
+  border-left: 0.75rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-hrz-hairline</code></td>
+<td><code>1px</td>
+<td>x-axis</td>
+</tr>
+*/
+.sparkle-border-hrz-hairline {
+  border-top: 1px;
+  border-bottom: 1px;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-hrz-sm</code></td>
+<td><code>0.125rem</td>
+<td>x-axis</td>
+</tr>
+*/
+.sparkle-border-hrz-sm {
+  border-top: 0.125rem;
+  border-bottom: 0.125rem;
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-hrz-lg</code></td>
+<td><code>0.75rem</td>
+<td>x-axis</td>
+</tr>
+*/
+.sparkle-border-hrz-lg {
+  border-top: 0.75rem;
+  border-bottom: 0.75rem;
+}
+
+@media (min-width: 40rem) {
+  .sparkle-border-btm-hairline\@sm {
+    border-bottom: 1px;
+  }
+
+  .sparkle-border-btm-sm\@sm {
+    border-bottom: 0.125rem;
+  }
+
+  .sparkle-border-btm-lg\@sm {
+    border-bottom: 0.75rem;
+  }
+
+  .sparkle-border-top-hairline\@sm {
+    border-top: 1px;
+  }
+
+  .sparkle-border-top-sm\@sm {
+    border-top: 0.125rem;
+  }
+
+  .sparkle-border-top-lg\@sm {
+    border-top: 0.75rem;
+  }
+
+  .sparkle-border-lft-hairline\@sm {
+    border-left: 1px;
+  }
+
+  .sparkle-border-lft-sm\@sm {
+    border-left: 0.125rem;
+  }
+
+  .sparkle-border-lft-lg\@sm {
+    border-left: 0.75rem;
+  }
+
+  .sparkle-border-rgt-hairline\@sm {
+    border-right: 1px;
+  }
+
+  .sparkle-border-rgt-sm\@sm {
+    border-right: 0.125rem;
+  }
+
+  .sparkle-border-rgt-lg\@sm {
+    border-right: 0.75rem;
+  }
+
+  .sparkle-border-all-hairline\@sm {
+    border: 1px;
+  }
+
+  .sparkle-border-all-sm\@sm {
+    border: 0.125rem;
+  }
+
+  .sparkle-border-all-lg\@sm {
+    border: 0.75rem;
+  }
+
+  .sparkle-border-vrt-hairline\@sm {
+    border-right: 1px;
+    border-left: 1px;
+  }
+
+  .sparkle-border-vrt-sm\@sm {
+    border-right: 0.125rem;
+    border-left: 0.125rem;
+  }
+
+  .sparkle-border-vrt-lg\@sm {
+    border-right: 0.75rem;
+    border-left: 0.75rem;
+  }
+
+  .sparkle-border-hrz-hairline\@sm {
+    border-top: 1px;
+    border-bottom: 1px;
+  }
+
+  .sparkle-border-hrz-sm\@sm {
+    border-top: 0.125rem;
+    border-bottom: 0.125rem;
+  }
+
+  .sparkle-border-hrz-lg\@sm {
+    border-top: 0.75rem;
+    border-bottom: 0.75rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-border-btm-hairline\@md {
+    border-bottom: 1px;
+  }
+
+  .sparkle-border-btm-sm\@md {
+    border-bottom: 0.125rem;
+  }
+
+  .sparkle-border-btm-lg\@md {
+    border-bottom: 0.75rem;
+  }
+
+  .sparkle-border-top-hairline\@md {
+    border-top: 1px;
+  }
+
+  .sparkle-border-top-sm\@md {
+    border-top: 0.125rem;
+  }
+
+  .sparkle-border-top-lg\@md {
+    border-top: 0.75rem;
+  }
+
+  .sparkle-border-lft-hairline\@md {
+    border-left: 1px;
+  }
+
+  .sparkle-border-lft-sm\@md {
+    border-left: 0.125rem;
+  }
+
+  .sparkle-border-lft-lg\@md {
+    border-left: 0.75rem;
+  }
+
+  .sparkle-border-rgt-hairline\@md {
+    border-right: 1px;
+  }
+
+  .sparkle-border-rgt-sm\@md {
+    border-right: 0.125rem;
+  }
+
+  .sparkle-border-rgt-lg\@md {
+    border-right: 0.75rem;
+  }
+
+  .sparkle-border-all-hairline\@md {
+    border: 1px;
+  }
+
+  .sparkle-border-all-sm\@md {
+    border: 0.125rem;
+  }
+
+  .sparkle-border-all-lg\@md {
+    border: 0.75rem;
+  }
+
+  .sparkle-border-vrt-hairline\@md {
+    border-right: 1px;
+    border-left: 1px;
+  }
+
+  .sparkle-border-vrt-sm\@md {
+    border-right: 0.125rem;
+    border-left: 0.125rem;
+  }
+
+  .sparkle-border-vrt-lg\@md {
+    border-right: 0.75rem;
+    border-left: 0.75rem;
+  }
+
+  .sparkle-border-hrz-hairline\@md {
+    border-top: 1px;
+    border-bottom: 1px;
+  }
+
+  .sparkle-border-hrz-sm\@md {
+    border-top: 0.125rem;
+    border-bottom: 0.125rem;
+  }
+
+  .sparkle-border-hrz-lg\@md {
+    border-top: 0.75rem;
+    border-bottom: 0.75rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-border-btm-hairline\@lg {
+    border-bottom: 1px;
+  }
+
+  .sparkle-border-btm-sm\@lg {
+    border-bottom: 0.125rem;
+  }
+
+  .sparkle-border-btm-lg\@lg {
+    border-bottom: 0.75rem;
+  }
+
+  .sparkle-border-top-hairline\@lg {
+    border-top: 1px;
+  }
+
+  .sparkle-border-top-sm\@lg {
+    border-top: 0.125rem;
+  }
+
+  .sparkle-border-top-lg\@lg {
+    border-top: 0.75rem;
+  }
+
+  .sparkle-border-lft-hairline\@lg {
+    border-left: 1px;
+  }
+
+  .sparkle-border-lft-sm\@lg {
+    border-left: 0.125rem;
+  }
+
+  .sparkle-border-lft-lg\@lg {
+    border-left: 0.75rem;
+  }
+
+  .sparkle-border-rgt-hairline\@lg {
+    border-right: 1px;
+  }
+
+  .sparkle-border-rgt-sm\@lg {
+    border-right: 0.125rem;
+  }
+
+  .sparkle-border-rgt-lg\@lg {
+    border-right: 0.75rem;
+  }
+
+  .sparkle-border-all-hairline\@lg {
+    border: 1px;
+  }
+
+  .sparkle-border-all-sm\@lg {
+    border: 0.125rem;
+  }
+
+  .sparkle-border-all-lg\@lg {
+    border: 0.75rem;
+  }
+
+  .sparkle-border-vrt-hairline\@lg {
+    border-right: 1px;
+    border-left: 1px;
+  }
+
+  .sparkle-border-vrt-sm\@lg {
+    border-right: 0.125rem;
+    border-left: 0.125rem;
+  }
+
+  .sparkle-border-vrt-lg\@lg {
+    border-right: 0.75rem;
+    border-left: 0.75rem;
+  }
+
+  .sparkle-border-hrz-hairline\@lg {
+    border-top: 1px;
+    border-bottom: 1px;
+  }
+
+  .sparkle-border-hrz-sm\@lg {
+    border-top: 0.125rem;
+    border-bottom: 0.125rem;
+  }
+
+  .sparkle-border-hrz-lg\@lg {
+    border-top: 0.75rem;
+    border-bottom: 0.75rem;
+  }
+}
+@media print {
+  .sparkle-border-btm-hairline\@print {
+    border-bottom: 1px;
+  }
+
+  .sparkle-border-btm-sm\@print {
+    border-bottom: 0.125rem;
+  }
+
+  .sparkle-border-btm-lg\@print {
+    border-bottom: 0.75rem;
+  }
+
+  .sparkle-border-top-hairline\@print {
+    border-top: 1px;
+  }
+
+  .sparkle-border-top-sm\@print {
+    border-top: 0.125rem;
+  }
+
+  .sparkle-border-top-lg\@print {
+    border-top: 0.75rem;
+  }
+
+  .sparkle-border-lft-hairline\@print {
+    border-left: 1px;
+  }
+
+  .sparkle-border-lft-sm\@print {
+    border-left: 0.125rem;
+  }
+
+  .sparkle-border-lft-lg\@print {
+    border-left: 0.75rem;
+  }
+
+  .sparkle-border-rgt-hairline\@print {
+    border-right: 1px;
+  }
+
+  .sparkle-border-rgt-sm\@print {
+    border-right: 0.125rem;
+  }
+
+  .sparkle-border-rgt-lg\@print {
+    border-right: 0.75rem;
+  }
+
+  .sparkle-border-all-hairline\@print {
+    border: 1px;
+  }
+
+  .sparkle-border-all-sm\@print {
+    border: 0.125rem;
+  }
+
+  .sparkle-border-all-lg\@print {
+    border: 0.75rem;
+  }
+
+  .sparkle-border-vrt-hairline\@print {
+    border-right: 1px;
+    border-left: 1px;
+  }
+
+  .sparkle-border-vrt-sm\@print {
+    border-right: 0.125rem;
+    border-left: 0.125rem;
+  }
+
+  .sparkle-border-vrt-lg\@print {
+    border-right: 0.75rem;
+    border-left: 0.75rem;
+  }
+
+  .sparkle-border-hrz-hairline\@print {
+    border-top: 1px;
+    border-bottom: 1px;
+  }
+
+  .sparkle-border-hrz-sm\@print {
+    border-top: 0.125rem;
+    border-bottom: 0.125rem;
+  }
+
+  .sparkle-border-hrz-lg\@print {
+    border-top: 0.75rem;
+    border-bottom: 0.75rem;
+  }
+}
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Systems
+---
+
+### Border Styles
+
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Function</th>
+<th>Border Style Value</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-style-none</code></td>
+<td><code>border-style(none)</code></td>
+<td><code>none</code></td>
+</tr>
+*/
+.sparkle-border-style-none {
+  border-style: none;
+}
+@media (min-width: 40rem) {
+  .sparkle-border-style-none\@sm {
+    border-style: none;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-border-style-none\@md {
+    border-style: none;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-border-style-none\@lg {
+    border-style: none;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-style-solid</code></td>
+<td><code>border-style(solid)</code></td>
+<td><code>solid</code></td>
+</tr>
+*/
+.sparkle-border-style-solid {
+  border-style: solid;
+}
+@media (min-width: 40rem) {
+  .sparkle-border-style-solid\@sm {
+    border-style: solid;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-border-style-solid\@md {
+    border-style: solid;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-border-style-solid\@lg {
+    border-style: solid;
+  }
+}
+
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+  section: Systems
+  ---
+  */
+/* ---
+section: Systems
+---
+
+### Border Width
+
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Function</th>
+<th>Border Width Value</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-width-hairline</code></td>
+<td><code>border-width(hairline)</code></td>
+<td><code>1px</code></td>
+</tr>
+*/
+.sparkle-border-width-hairline {
+  border-width: 1px;
+}
+@media (min-width: 40rem) {
+  .sparkle-border-width-hairline\@sm {
+    border-width: 1px;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-border-width-hairline\@md {
+    border-width: 1px;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-border-width-hairline\@lg {
+    border-width: 1px;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-width-sm</code></td>
+<td><code>border-width(sm)</code></td>
+<td><code>0.125rem</code></td>
+</tr>
+*/
+.sparkle-border-width-sm {
+  border-width: 0.125rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-border-width-sm\@sm {
+    border-width: 0.125rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-border-width-sm\@md {
+    border-width: 0.125rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-border-width-sm\@lg {
+    border-width: 0.125rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+<td><code>sparkle-border-width-lg</code></td>
+<td><code>border-width(lg)</code></td>
+<td><code>0.75rem</code></td>
+</tr>
+*/
+.sparkle-border-width-lg {
+  border-width: 0.75rem;
+}
+@media (min-width: 40rem) {
+  .sparkle-border-width-lg\@sm {
+    border-width: 0.75rem;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-border-width-lg\@md {
+    border-width: 0.75rem;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-border-width-lg\@lg {
+    border-width: 0.75rem;
+  }
+}
+
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Systems
+title: Z-Index System
+---
+<table>
+<thead>
+<tr>
+<th>Property Value</th>
+<th>Class</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+*/
+/* ---
+section: Systems
+---
+<tr>
+  <td>100</td>
+  <td>`.sparkle-z-index-1`</td>
+  <td>`z-index(1)`</td>
+</tr>
+*/
+.sparkle-z-index-1 {
+  z-index: 100;
+}
+@media (min-width: 40rem) {
+  .sparkle-z-index-1\@sm {
+    z-index: 100;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-z-index-1\@md {
+    z-index: 100;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-z-index-1\@lg {
+    z-index: 100;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>200</td>
+  <td>`.sparkle-z-index-2`</td>
+  <td>`z-index(2)`</td>
+</tr>
+*/
+.sparkle-z-index-2 {
+  z-index: 200;
+}
+@media (min-width: 40rem) {
+  .sparkle-z-index-2\@sm {
+    z-index: 200;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-z-index-2\@md {
+    z-index: 200;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-z-index-2\@lg {
+    z-index: 200;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>300</td>
+  <td>`.sparkle-z-index-3`</td>
+  <td>`z-index(3)`</td>
+</tr>
+*/
+.sparkle-z-index-3 {
+  z-index: 300;
+}
+@media (min-width: 40rem) {
+  .sparkle-z-index-3\@sm {
+    z-index: 300;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-z-index-3\@md {
+    z-index: 300;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-z-index-3\@lg {
+    z-index: 300;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>400</td>
+  <td>`.sparkle-z-index-4`</td>
+  <td>`z-index(4)`</td>
+</tr>
+*/
+.sparkle-z-index-4 {
+  z-index: 400;
+}
+@media (min-width: 40rem) {
+  .sparkle-z-index-4\@sm {
+    z-index: 400;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-z-index-4\@md {
+    z-index: 400;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-z-index-4\@lg {
+    z-index: 400;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>500</td>
+  <td>`.sparkle-z-index-5`</td>
+  <td>`z-index(5)`</td>
+</tr>
+*/
+.sparkle-z-index-5 {
+  z-index: 500;
+}
+@media (min-width: 40rem) {
+  .sparkle-z-index-5\@sm {
+    z-index: 500;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-z-index-5\@md {
+    z-index: 500;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-z-index-5\@lg {
+    z-index: 500;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>600</td>
+  <td>`.sparkle-z-index-6`</td>
+  <td>`z-index(6)`</td>
+</tr>
+*/
+.sparkle-z-index-6 {
+  z-index: 600;
+}
+@media (min-width: 40rem) {
+  .sparkle-z-index-6\@sm {
+    z-index: 600;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-z-index-6\@md {
+    z-index: 600;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-z-index-6\@lg {
+    z-index: 600;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>700</td>
+  <td>`.sparkle-z-index-7`</td>
+  <td>`z-index(7)`</td>
+</tr>
+*/
+.sparkle-z-index-7 {
+  z-index: 700;
+}
+@media (min-width: 40rem) {
+  .sparkle-z-index-7\@sm {
+    z-index: 700;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-z-index-7\@md {
+    z-index: 700;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-z-index-7\@lg {
+    z-index: 700;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>800</td>
+  <td>`.sparkle-z-index-8`</td>
+  <td>`z-index(8)`</td>
+</tr>
+*/
+.sparkle-z-index-8 {
+  z-index: 800;
+}
+@media (min-width: 40rem) {
+  .sparkle-z-index-8\@sm {
+    z-index: 800;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-z-index-8\@md {
+    z-index: 800;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-z-index-8\@lg {
+    z-index: 800;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>900</td>
+  <td>`.sparkle-z-index-9`</td>
+  <td>`z-index(9)`</td>
+</tr>
+*/
+.sparkle-z-index-9 {
+  z-index: 900;
+}
+@media (min-width: 40rem) {
+  .sparkle-z-index-9\@sm {
+    z-index: 900;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-z-index-9\@md {
+    z-index: 900;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-z-index-9\@lg {
+    z-index: 900;
+  }
+}
+
+/* ---
+section: Systems
+---
+<tr>
+  <td>1000</td>
+  <td>`.sparkle-z-index-10`</td>
+  <td>`z-index(10)`</td>
+</tr>
+*/
+.sparkle-z-index-10 {
+  z-index: 1000;
+}
+@media (min-width: 40rem) {
+  .sparkle-z-index-10\@sm {
+    z-index: 1000;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-z-index-10\@md {
+    z-index: 1000;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-z-index-10\@lg {
+    z-index: 1000;
+  }
+}
+
+/* ---
+section: Systems
+---
+</tbody>
+</table>
+*/
+/* ---
+section: Utilities
+---
+The final declaration of the ITCSS method are the utilities. Any additional styles should be declared between Tools and Utilities. The utilities are classes that have distinct purposes. Some of the Utilities are part of a System. Systems contain specific mixins, functions, and utility classes around a specific aspect of the framework, for example the Color and Spacing systems.
+*/
+/* BEGIN: Sparkle Utility Classes */
+/* ---
+title: Anti-aliased Utility
+section: Utilities
+---
+
+Smooths the font on the level of the pixel.
+
+```scss
+.sparkle-antialiased
+```
+*/
+.sparkle-antialiased {
+  -moz-osx-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---
+title: Clearfix Utility
+section: Utilities
+---
+Prevents an element from collapsing due to margins for floated contents.
+```scss
+.sparkle-clearfix
+```
+*/
+.sparkle-clearfix::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+/* ---
+title: Delink Utility
+section: Utilities
+---
+Removes link styles from and element.
+
+```scss
+.sparkle-delink
+```
+*/
+.sparkle-delink {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---
+title: Delist Utility
+section: Utilities
+---
+Removes the list styles from ordered and unordered lists.
+
+```scss
+.sparkle-delist
+```
+
+*/
+.sparkle-delist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---
+title: Unbuttonize Utility
+section: Utilities
+---
+
+Removes styles added by default to button elements.
+
+```scss
+.sparkle-unbuttonize
+```
+*/
+.sparkle-unbuttonize {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: inherit;
+  font: inherit;
+  border-radius: 0;
+  appearance: none;
+}
+
+/* ---
+title: Display Utility
+section: Utilities
+---
+
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Utilities
+---
+
+<tr>
+<td>`.sparkle-display-none`</td>
+<td>`display: none`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+
+<tr>
+<td>`.sparkle-display-block`</td>
+<td>`display: block`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+
+<tr>
+<td>`.sparkle-display-inline`</td>
+<td>`display: inline`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+
+<tr>
+<td>`.sparkle-display-inline-block`</td>
+<td>`display: inline-block`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+
+<tr>
+<td>`.sparkle-display-flex`</td>
+<td>`display: flex`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+
+<tr>
+<td>`.sparkle-display-inline-flex`</td>
+<td>`display: inline-flex`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+</tbody>
+</table>
+*/
+.sparkle-display-none {
+  display: none;
+}
+@media (min-width: 40rem) {
+  .sparkle-display-none\@sm {
+    display: none;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-display-none\@md {
+    display: none;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-display-none\@lg {
+    display: none;
+  }
+}
+
+.sparkle-display-block {
+  display: block;
+}
+@media (min-width: 40rem) {
+  .sparkle-display-block\@sm {
+    display: block;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-display-block\@md {
+    display: block;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-display-block\@lg {
+    display: block;
+  }
+}
+
+.sparkle-display-inline {
+  display: inline;
+}
+@media (min-width: 40rem) {
+  .sparkle-display-inline\@sm {
+    display: inline;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-display-inline\@md {
+    display: inline;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-display-inline\@lg {
+    display: inline;
+  }
+}
+
+.sparkle-display-inline-block {
+  display: inline-block;
+}
+@media (min-width: 40rem) {
+  .sparkle-display-inline-block\@sm {
+    display: inline-block;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-display-inline-block\@md {
+    display: inline-block;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-display-inline-block\@lg {
+    display: inline-block;
+  }
+}
+
+.sparkle-display-flex {
+  display: flex;
+}
+@media (min-width: 40rem) {
+  .sparkle-display-flex\@sm {
+    display: flex;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-display-flex\@md {
+    display: flex;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-display-flex\@lg {
+    display: flex;
+  }
+}
+
+.sparkle-display-inline-flex {
+  display: inline-flex;
+}
+@media (min-width: 40rem) {
+  .sparkle-display-inline-flex\@sm {
+    display: inline-flex;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-display-inline-flex\@md {
+    display: inline-flex;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-display-inline-flex\@lg {
+    display: inline-flex;
+  }
+}
+
+/* ---
+title: Position Utility
+section: Utilities
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-position-fixed`</td>
+<td>`position: fixed`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-position-relative`</td>
+<td>`position: relative`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-position-absolute`</td>
+<td>`position: absolute`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-position-static`</td>
+<td>`position: static`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-position-sticky`</td>
+<td>`position: sticky`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+</tbody>
+</table>
+*/
+.sparkle-position-fixed {
+  position: fixed;
+}
+@media (min-width: 40rem) {
+  .sparkle-position-fixed\@sm {
+    position: fixed;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-position-fixed\@md {
+    position: fixed;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-position-fixed\@lg {
+    position: fixed;
+  }
+}
+
+.sparkle-position-relative {
+  position: relative;
+}
+@media (min-width: 40rem) {
+  .sparkle-position-relative\@sm {
+    position: relative;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-position-relative\@md {
+    position: relative;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-position-relative\@lg {
+    position: relative;
+  }
+}
+
+.sparkle-position-absolute {
+  position: absolute;
+}
+@media (min-width: 40rem) {
+  .sparkle-position-absolute\@sm {
+    position: absolute;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-position-absolute\@md {
+    position: absolute;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-position-absolute\@lg {
+    position: absolute;
+  }
+}
+
+.sparkle-position-static {
+  position: static;
+}
+@media (min-width: 40rem) {
+  .sparkle-position-static\@sm {
+    position: static;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-position-static\@md {
+    position: static;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-position-static\@lg {
+    position: static;
+  }
+}
+
+.sparkle-position-sticky {
+  position: sticky;
+}
+@media (min-width: 40rem) {
+  .sparkle-position-sticky\@sm {
+    position: sticky;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-position-sticky\@md {
+    position: sticky;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-position-sticky\@lg {
+    position: sticky;
+  }
+}
+
+/* ---
+title: Text-Align Utility
+section: Utilities
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-text-left`</td>
+<td>`text-align: left`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-text-right`</td>
+<td>`text-align: right`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-text-center`</td>
+<td>`text-align: center`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+</tbody>
+</table>
+*/
+.sparkle-text-left {
+  text-align: left;
+}
+@media (min-width: 40rem) {
+  .sparkle-text-left\@sm {
+    text-align: left;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-text-left\@md {
+    text-align: left;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-text-left\@lg {
+    text-align: left;
+  }
+}
+
+.sparkle-text-right {
+  text-align: right;
+}
+@media (min-width: 40rem) {
+  .sparkle-text-right\@sm {
+    text-align: right;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-text-right\@md {
+    text-align: right;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-text-right\@lg {
+    text-align: right;
+  }
+}
+
+.sparkle-text-center {
+  text-align: center;
+}
+@media (min-width: 40rem) {
+  .sparkle-text-center\@sm {
+    text-align: center;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-text-center\@md {
+    text-align: center;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-text-center\@lg {
+    text-align: center;
+  }
+}
+
+/* ---
+title: Text Decoration Utility
+section: Utilities
+---
+
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+  section: Utilities
+  ---
+  <tr>
+  <td>`.sparkle-text-decoration-none`</td>
+  <td>`text-decoration: none`</td>
+  </tr>
+  */
+/* ---
+  section: Utilities
+  ---
+  <tr>
+  <td>`.sparkle-text-decoration-overline`</td>
+  <td>`text-decoration: overline`</td>
+  </tr>
+  */
+/* ---
+  section: Utilities
+  ---
+  <tr>
+  <td>`.sparkle-text-decoration-underline`</td>
+  <td>`text-decoration: underline`</td>
+  </tr>
+  */
+/* ---
+  section: Utilities
+  ---
+  <tr>
+  <td>`.sparkle-text-decoration-line-through`</td>
+  <td>`text-decoration: line-through`</td>
+  </tr>
+  */
+/* ---
+  section: Utilities
+  ---
+  </tbody>
+  </table>
+  */
+.sparkle-text-decoration-none {
+  text-decoration: none;
+}
+@media (min-width: 40rem) {
+  .sparkle-text-decoration-none\@sm {
+    text-decoration: none;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-text-decoration-none\@md {
+    text-decoration: none;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-text-decoration-none\@lg {
+    text-decoration: none;
+  }
+}
+
+.sparkle-text-decoration-overline {
+  text-decoration: overline;
+}
+@media (min-width: 40rem) {
+  .sparkle-text-decoration-overline\@sm {
+    text-decoration: overline;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-text-decoration-overline\@md {
+    text-decoration: overline;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-text-decoration-overline\@lg {
+    text-decoration: overline;
+  }
+}
+
+.sparkle-text-decoration-underline {
+  text-decoration: underline;
+}
+@media (min-width: 40rem) {
+  .sparkle-text-decoration-underline\@sm {
+    text-decoration: underline;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-text-decoration-underline\@md {
+    text-decoration: underline;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-text-decoration-underline\@lg {
+    text-decoration: underline;
+  }
+}
+
+.sparkle-text-decoration-line-through {
+  text-decoration: line-through;
+}
+@media (min-width: 40rem) {
+  .sparkle-text-decoration-line-through\@sm {
+    text-decoration: line-through;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-text-decoration-line-through\@md {
+    text-decoration: line-through;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-text-decoration-line-through\@lg {
+    text-decoration: line-through;
+  }
+}
+
+/* ---
+title: Text Transform Utility
+section: Utilities
+---
+
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Utilities
+---
+
+<tr>
+<td>`.sparkle-text-uppercase`</td>
+<td>`text-transform: uppercase`</td>
+</tr>
+
+*/
+/* ---
+section: Utilities
+---
+
+<tr>
+<td>`.sparkle-text-lowercase`</td>
+<td>`text-transform: lowercase`</td>
+</tr>
+
+*/
+/* ---
+section: Utilities
+---
+
+<tr>
+<td>`.sparkle-text-capitalize`</td>
+<td>`text-transform: capitalize`</td>
+</tr>
+
+*/
+/* ---
+  section: Utilities
+  ---
+  </tbody>
+  </table>
+  */
+.sparkle-text-uppercase {
+  text-transform: uppercase;
+}
+@media (min-width: 40rem) {
+  .sparkle-text-uppercase\@sm {
+    text-transform: uppercase;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-text-uppercase\@md {
+    text-transform: uppercase;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-text-uppercase\@lg {
+    text-transform: uppercase;
+  }
+}
+
+.sparkle-text-lowercase {
+  text-transform: lowercase;
+}
+@media (min-width: 40rem) {
+  .sparkle-text-lowercase\@sm {
+    text-transform: lowercase;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-text-lowercase\@md {
+    text-transform: lowercase;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-text-lowercase\@lg {
+    text-transform: lowercase;
+  }
+}
+
+.sparkle-text-capitalize {
+  text-transform: capitalize;
+}
+@media (min-width: 40rem) {
+  .sparkle-text-capitalize\@sm {
+    text-transform: capitalize;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-text-capitalize\@md {
+    text-transform: capitalize;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-text-capitalize\@lg {
+    text-transform: capitalize;
+  }
+}
+
+/* ---
+title: Visually Hidden Utility
+section: Utilities
+---
+
+Use the `sparkle-visually-hidden` to hide content that should be hidden from the page visually, but still accessible to those using keyboard or screen reader controls.
+
+```html
+<div class="sparkle-visually-hidden">...</div>
+```
+*/
+.sparkle-visually-hidden {
+  position: fixed;
+  right: 100%;
+  bottom: 100%;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+}
+.sparkle-visually-hidden:focus {
+  left: 0;
+  right: auto;
+  top: 0;
+  bottom: auto;
+  clip: auto;
+  clip-path: none;
+}
+@media (min-width: 40rem) {
+  .sparkle-visually-hidden\@sm {
+    position: fixed;
+    right: 100%;
+    bottom: 100%;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+  }
+  .sparkle-visually-hidden\@sm:focus {
+    left: 0;
+    right: auto;
+    top: 0;
+    bottom: auto;
+    clip: auto;
+    clip-path: none;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-visually-hidden\@md {
+    position: fixed;
+    right: 100%;
+    bottom: 100%;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+  }
+  .sparkle-visually-hidden\@md:focus {
+    left: 0;
+    right: auto;
+    top: 0;
+    bottom: auto;
+    clip: auto;
+    clip-path: none;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-visually-hidden\@lg {
+    position: fixed;
+    right: 100%;
+    bottom: 100%;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+  }
+  .sparkle-visually-hidden\@lg:focus {
+    left: 0;
+    right: auto;
+    top: 0;
+    bottom: auto;
+    clip: auto;
+    clip-path: none;
+  }
+}
+
+/* ---
+title: Justify Content Utility
+section: Utilities
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-justify-content-left`</td>
+<td>`justify-content: left`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-justify-content-right`</td>
+<td>`justify-content: right`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-justify-content-center`</td>
+<td>`justify-content: center`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+</tbody>
+</table>
+*/
+.sparkle-justify-content-start {
+  justify-content: start;
+}
+@media (min-width: 40rem) {
+  .sparkle-justify-content-start\@sm {
+    justify-content: start;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-justify-content-start\@md {
+    justify-content: start;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-justify-content-start\@lg {
+    justify-content: start;
+  }
+}
+
+.sparkle-justify-content-end {
+  justify-content: end;
+}
+@media (min-width: 40rem) {
+  .sparkle-justify-content-end\@sm {
+    justify-content: end;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-justify-content-end\@md {
+    justify-content: end;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-justify-content-end\@lg {
+    justify-content: end;
+  }
+}
+
+.sparkle-justify-content-flex-start {
+  justify-content: flex-start;
+}
+@media (min-width: 40rem) {
+  .sparkle-justify-content-flex-start\@sm {
+    justify-content: flex-start;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-justify-content-flex-start\@md {
+    justify-content: flex-start;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-justify-content-flex-start\@lg {
+    justify-content: flex-start;
+  }
+}
+
+.sparkle-justify-content-flex-end {
+  justify-content: flex-end;
+}
+@media (min-width: 40rem) {
+  .sparkle-justify-content-flex-end\@sm {
+    justify-content: flex-end;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-justify-content-flex-end\@md {
+    justify-content: flex-end;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-justify-content-flex-end\@lg {
+    justify-content: flex-end;
+  }
+}
+
+.sparkle-justify-content-center {
+  justify-content: center;
+}
+@media (min-width: 40rem) {
+  .sparkle-justify-content-center\@sm {
+    justify-content: center;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-justify-content-center\@md {
+    justify-content: center;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-justify-content-center\@lg {
+    justify-content: center;
+  }
+}
+
+.sparkle-justify-content-space-between {
+  justify-content: space-between;
+}
+@media (min-width: 40rem) {
+  .sparkle-justify-content-space-between\@sm {
+    justify-content: space-between;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-justify-content-space-between\@md {
+    justify-content: space-between;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-justify-content-space-between\@lg {
+    justify-content: space-between;
+  }
+}
+
+.sparkle-justify-content-space-around {
+  justify-content: space-around;
+}
+@media (min-width: 40rem) {
+  .sparkle-justify-content-space-around\@sm {
+    justify-content: space-around;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-justify-content-space-around\@md {
+    justify-content: space-around;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-justify-content-space-around\@lg {
+    justify-content: space-around;
+  }
+}
+
+.sparkle-justify-content-space-evenly {
+  justify-content: space-evenly;
+}
+@media (min-width: 40rem) {
+  .sparkle-justify-content-space-evenly\@sm {
+    justify-content: space-evenly;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-justify-content-space-evenly\@md {
+    justify-content: space-evenly;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-justify-content-space-evenly\@lg {
+    justify-content: space-evenly;
+  }
+}
+
+.sparkle-justify-content-stretch {
+  justify-content: stretch;
+}
+@media (min-width: 40rem) {
+  .sparkle-justify-content-stretch\@sm {
+    justify-content: stretch;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-justify-content-stretch\@md {
+    justify-content: stretch;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-justify-content-stretch\@lg {
+    justify-content: stretch;
+  }
+}
+
+/* ---
+title: Align Items Utility
+section: Utilities
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-align-items-start`</td>
+<td>`align-items: start`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-align-items-end`</td>
+<td>`align-items: end`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-align-items-flex-start`</td>
+<td>`align-items: flex-start`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-align-items-flex-end`</td>
+<td>`align-items: flex-end`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-align-items-center`</td>
+<td>`align-items: center`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-align-items-stretch`</td>
+<td>`align-items: stretch`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+</tbody>
+</table>
+*/
+.sparkle-align-items-start {
+  align-items: start;
+}
+@media (min-width: 40rem) {
+  .sparkle-align-items-start\@sm {
+    align-items: start;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-align-items-start\@md {
+    align-items: start;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-align-items-start\@lg {
+    align-items: start;
+  }
+}
+
+.sparkle-align-items-end {
+  align-items: end;
+}
+@media (min-width: 40rem) {
+  .sparkle-align-items-end\@sm {
+    align-items: end;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-align-items-end\@md {
+    align-items: end;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-align-items-end\@lg {
+    align-items: end;
+  }
+}
+
+.sparkle-align-items-flex-start {
+  align-items: flex-start;
+}
+@media (min-width: 40rem) {
+  .sparkle-align-items-flex-start\@sm {
+    align-items: flex-start;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-align-items-flex-start\@md {
+    align-items: flex-start;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-align-items-flex-start\@lg {
+    align-items: flex-start;
+  }
+}
+
+.sparkle-align-items-flex-end {
+  align-items: flex-end;
+}
+@media (min-width: 40rem) {
+  .sparkle-align-items-flex-end\@sm {
+    align-items: flex-end;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-align-items-flex-end\@md {
+    align-items: flex-end;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-align-items-flex-end\@lg {
+    align-items: flex-end;
+  }
+}
+
+.sparkle-align-items-center {
+  align-items: center;
+}
+@media (min-width: 40rem) {
+  .sparkle-align-items-center\@sm {
+    align-items: center;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-align-items-center\@md {
+    align-items: center;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-align-items-center\@lg {
+    align-items: center;
+  }
+}
+
+.sparkle-align-items-stretch {
+  align-items: stretch;
+}
+@media (min-width: 40rem) {
+  .sparkle-align-items-stretch\@sm {
+    align-items: stretch;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-align-items-stretch\@md {
+    align-items: stretch;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-align-items-stretch\@lg {
+    align-items: stretch;
+  }
+}
+
+/* ---
+title: Align Self Utility
+section: Utilities
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-align-self-start`</td>
+<td>`align-self: start`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-align-self-end`</td>
+<td>`align-self: end`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-align-self-flex-start`</td>
+<td>`align-self: flex-start`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-align-self-flex-end`</td>
+<td>`align-self: flex-end`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-align-self-center`</td>
+<td>`align-self: center`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-align-self-stretch`</td>
+<td>`align-self: stretch`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+</tbody>
+</table>
+*/
+.sparkle-align-self-start {
+  align-self: start;
+}
+@media (min-width: 40rem) {
+  .sparkle-align-self-start\@sm {
+    align-self: start;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-align-self-start\@md {
+    align-self: start;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-align-self-start\@lg {
+    align-self: start;
+  }
+}
+
+.sparkle-align-self-end {
+  align-self: end;
+}
+@media (min-width: 40rem) {
+  .sparkle-align-self-end\@sm {
+    align-self: end;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-align-self-end\@md {
+    align-self: end;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-align-self-end\@lg {
+    align-self: end;
+  }
+}
+
+.sparkle-align-self-flex-start {
+  align-self: flex-start;
+}
+@media (min-width: 40rem) {
+  .sparkle-align-self-flex-start\@sm {
+    align-self: flex-start;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-align-self-flex-start\@md {
+    align-self: flex-start;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-align-self-flex-start\@lg {
+    align-self: flex-start;
+  }
+}
+
+.sparkle-align-self-flex-end {
+  align-self: flex-end;
+}
+@media (min-width: 40rem) {
+  .sparkle-align-self-flex-end\@sm {
+    align-self: flex-end;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-align-self-flex-end\@md {
+    align-self: flex-end;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-align-self-flex-end\@lg {
+    align-self: flex-end;
+  }
+}
+
+.sparkle-align-self-center {
+  align-self: center;
+}
+@media (min-width: 40rem) {
+  .sparkle-align-self-center\@sm {
+    align-self: center;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-align-self-center\@md {
+    align-self: center;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-align-self-center\@lg {
+    align-self: center;
+  }
+}
+
+.sparkle-align-self-stretch {
+  align-self: stretch;
+}
+@media (min-width: 40rem) {
+  .sparkle-align-self-stretch\@sm {
+    align-self: stretch;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-align-self-stretch\@md {
+    align-self: stretch;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-align-self-stretch\@lg {
+    align-self: stretch;
+  }
+}
+
+/* ---
+title: Order Utility
+section: Utilities
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-order--1`</td>
+<td>`order: -1`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-order-0`</td>
+<td>`order: 0`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-order-1`</td>
+<td>`order: 1`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-order-2`</td>
+<td>`order: 2`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-order-3`</td>
+<td>`order: 3`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-order-4`</td>
+<td>`order: 4`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-order-5`</td>
+<td>`order: 5`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+</tbody>
+</table>
+*/
+.sparkle-order-minus-1 {
+  order: -1;
+}
+@media (min-width: 40rem) {
+  .sparkle-order-minus-1\@sm {
+    order: -1;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-order-minus-1\@md {
+    order: -1;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-order-minus-1\@lg {
+    order: -1;
+  }
+}
+
+.sparkle-order-0 {
+  order: 0;
+}
+@media (min-width: 40rem) {
+  .sparkle-order-0\@sm {
+    order: 0;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-order-0\@md {
+    order: 0;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-order-0\@lg {
+    order: 0;
+  }
+}
+
+.sparkle-order-1 {
+  order: 1;
+}
+@media (min-width: 40rem) {
+  .sparkle-order-1\@sm {
+    order: 1;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-order-1\@md {
+    order: 1;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-order-1\@lg {
+    order: 1;
+  }
+}
+
+.sparkle-order-2 {
+  order: 2;
+}
+@media (min-width: 40rem) {
+  .sparkle-order-2\@sm {
+    order: 2;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-order-2\@md {
+    order: 2;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-order-2\@lg {
+    order: 2;
+  }
+}
+
+.sparkle-order-3 {
+  order: 3;
+}
+@media (min-width: 40rem) {
+  .sparkle-order-3\@sm {
+    order: 3;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-order-3\@md {
+    order: 3;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-order-3\@lg {
+    order: 3;
+  }
+}
+
+.sparkle-order-4 {
+  order: 4;
+}
+@media (min-width: 40rem) {
+  .sparkle-order-4\@sm {
+    order: 4;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-order-4\@md {
+    order: 4;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-order-4\@lg {
+    order: 4;
+  }
+}
+
+.sparkle-order-5 {
+  order: 5;
+}
+@media (min-width: 40rem) {
+  .sparkle-order-5\@sm {
+    order: 5;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-order-5\@md {
+    order: 5;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-order-5\@lg {
+    order: 5;
+  }
+}
+
+/* ---
+title: Flex Direction Utility
+section: Utilities
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-row`</td>
+<td>`flex-direction: row`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-row-reverse`</td>
+<td>`flex-direction: row-reverse`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-column`</td>
+<td>`flex-direction: column`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-column-reverse`</td>
+<td>`flex-direction: column-reverse`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+</tbody>
+</table>
+*/
+.sparkle-flex-row {
+  flex-direction: row;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-row\@sm {
+    flex-direction: row;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-row\@md {
+    flex-direction: row;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-row\@lg {
+    flex-direction: row;
+  }
+}
+
+.sparkle-flex-row-reverse {
+  flex-direction: row-reverse;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-row-reverse\@sm {
+    flex-direction: row-reverse;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-row-reverse\@md {
+    flex-direction: row-reverse;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-row-reverse\@lg {
+    flex-direction: row-reverse;
+  }
+}
+
+.sparkle-flex-column {
+  flex-direction: column;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-column\@sm {
+    flex-direction: column;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-column\@md {
+    flex-direction: column;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-column\@lg {
+    flex-direction: column;
+  }
+}
+
+.sparkle-flex-column-reverse {
+  flex-direction: column-reverse;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-column-reverse\@sm {
+    flex-direction: column-reverse;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-column-reverse\@md {
+    flex-direction: column-reverse;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-column-reverse\@lg {
+    flex-direction: column-reverse;
+  }
+}
+
+/* ---
+title: Flex Grow Utility
+section: Utilities
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-grow-0`</td>
+<td>`flex-grow: 0`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-grow-1`</td>
+<td>`flex-grow: 1`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-grow-2`</td>
+<td>`flex-grow: 2`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+</tbody>
+</table>
+*/
+.sparkle-flex-grow-0 {
+  flex-grow: 0;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-grow-0\@sm {
+    flex-grow: 0;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-grow-0\@md {
+    flex-grow: 0;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-grow-0\@lg {
+    flex-grow: 0;
+  }
+}
+
+.sparkle-flex-grow-1 {
+  flex-grow: 1;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-grow-1\@sm {
+    flex-grow: 1;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-grow-1\@md {
+    flex-grow: 1;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-grow-1\@lg {
+    flex-grow: 1;
+  }
+}
+
+.sparkle-flex-grow-2 {
+  flex-grow: 2;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-grow-2\@sm {
+    flex-grow: 2;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-grow-2\@md {
+    flex-grow: 2;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-grow-2\@lg {
+    flex-grow: 2;
+  }
+}
+
+/* ---
+title: Flex Shrink Utility
+section: Utilities
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-shrink-0`</td>
+<td>`flex-shrink: 0`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-shrink-1`</td>
+<td>`flex-shrink: 1`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-shrink-2`</td>
+<td>`flex-shrink: 2`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+</tbody>
+</table>
+*/
+.sparkle-flex-shrink-0 {
+  flex-shrink: 0;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-shrink-0\@sm {
+    flex-shrink: 0;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-shrink-0\@md {
+    flex-shrink: 0;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-shrink-0\@lg {
+    flex-shrink: 0;
+  }
+}
+
+.sparkle-flex-shrink-1 {
+  flex-shrink: 1;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-shrink-1\@sm {
+    flex-shrink: 1;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-shrink-1\@md {
+    flex-shrink: 1;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-shrink-1\@lg {
+    flex-shrink: 1;
+  }
+}
+
+.sparkle-flex-shrink-2 {
+  flex-shrink: 2;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-shrink-2\@sm {
+    flex-shrink: 2;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-shrink-2\@md {
+    flex-shrink: 2;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-shrink-2\@lg {
+    flex-shrink: 2;
+  }
+}
+
+/* ---
+title: Flex Wrap Utility
+section: Utilities
+---
+<table>
+<thead>
+<tr>
+<th>Class Name</th>
+<th>Property</th>
+</thead>
+<tbody>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-wrap`</td>
+<td>`flex-wrap: wrap`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-nowrap`</td>
+<td>`flex-wrap: nowrap`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+<tr>
+<td>`.sparkle-flex-wrap-reverse`</td>
+<td>`flex-wrap: wrap-reverse`</td>
+</tr>
+*/
+/* ---
+section: Utilities
+---
+</tbody>
+</table>
+*/
+.sparkle-flex-wrap {
+  flex-wrap: wrap;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-wrap\@sm {
+    flex-wrap: wrap;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-wrap\@md {
+    flex-wrap: wrap;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-wrap\@lg {
+    flex-wrap: wrap;
+  }
+}
+
+.sparkle-flex-nowrap {
+  flex-wrap: nowrap;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-nowrap\@sm {
+    flex-wrap: nowrap;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-nowrap\@md {
+    flex-wrap: nowrap;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-nowrap\@lg {
+    flex-wrap: nowrap;
+  }
+}
+
+.sparkle-flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+@media (min-width: 40rem) {
+  .sparkle-flex-wrap-reverse\@sm {
+    flex-wrap: wrap-reverse;
+  }
+}
+@media (min-width: 60rem) {
+  .sparkle-flex-wrap-reverse\@md {
+    flex-wrap: wrap-reverse;
+  }
+}
+@media (min-width: 80rem) {
+  .sparkle-flex-wrap-reverse\@lg {
+    flex-wrap: wrap-reverse;
+  }
+}
+
+/* END: Sparkle Utility Classes */
+/* End Sparkle Docs */
+
+/*# sourceMappingURL=docs.css.map */
